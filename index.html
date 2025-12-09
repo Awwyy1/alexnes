@@ -10,7 +10,49 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
+    <!-- Cal.com Embed Script -->
+    <script>
+      (function (C, A, L) {
+        let p = function (a, ar) { a.q.push(ar); };
+        let d = C.document;
+        C.Cal = C.Cal || function () {
+          let cal = C.Cal;
+          let ar = arguments;
+          if (!cal.loaded) {
+            cal.ns = {};
+            cal.q = cal.q || [];
+            d.head.appendChild(d.createElement("script")).src = A;
+            cal.loaded = true;
+          }
+          if (ar[0] === L) {
+            const api = function () { p(api, arguments); };
+            const namespace = ar[1];
+            api.q = api.q || [];
+            if (typeof namespace === "string") {
+              cal.ns[namespace] = cal.ns[namespace] || api;
+              p(cal.ns[namespace], ar);
+              p(cal, ["initNamespace", namespace]);
+            } else p(cal, ar);
+            return;
+          }
+          p(cal, ar);
+        };
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+
+      // Инициализация Cal.com с тёмной темой
+      Cal("init", "consultation", { origin: "https://cal.com" });
+
+      Cal.ns.consultation("ui", {
+        "theme": "dark",
+        "styles": {
+          "branding": { "brandColor": "#ffffff" }
+        },
+        "hideEventTypeDetails": false,
+        "layout": "month_view"
+      });
+    </script>
+
     <style>
         :root {
             --black: #0a0a0a;
@@ -989,7 +1031,24 @@
             stroke-width: 1.5;
             fill: none;
         }
-        
+
+        /* Cal.com button styles - ensure buttons look like links */
+        button.btn {
+            background: transparent;
+            font-family: var(--font-main);
+        }
+
+        button.btn-primary {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        button.btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid var(--mid-gray);
+        }
+
         /* Scroll animations */
         .fade-in {
             opacity: 0;
@@ -1169,7 +1228,13 @@
                 </h1>
                 <p class="hero-subtitle">11 лет трезвости. Сотни клиентов. Не теория — живой путь восстановления, который я прошёл сам.</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Записаться на консультацию</a>
+                    <!-- Cal.com: замени YOUR_USERNAME на свой username из Cal.com -->
+                    <button
+                        class="btn btn-primary"
+                        data-cal-namespace="consultation"
+                        data-cal-link="YOUR_USERNAME/consultation"
+                        data-cal-config='{"layout":"month_view","theme":"dark"}'
+                    >Записаться на консультацию</button>
                     <a href="#services" class="btn btn-secondary">Узнать программы</a>
                 </div>
                 <div class="hero-stats">
@@ -1299,9 +1364,14 @@
                         <li>Интенсив 20 сессий</li>
                     </ul>
                     <div class="service-price">от 2 000 <span>/ сессия</span></div>
-                    <a href="#contact" class="btn btn-secondary">Записаться</a>
+                    <button
+                        class="btn btn-secondary"
+                        data-cal-namespace="consultation"
+                        data-cal-link="YOUR_USERNAME/individual"
+                        data-cal-config='{"layout":"month_view","theme":"dark"}'
+                    >Записаться</button>
                 </div>
-                
+
                 <!-- Group -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
@@ -1323,9 +1393,14 @@
                         <li>Группа по игровой зависимости</li>
                     </ul>
                     <div class="service-price">от 1 500  <span>/ встреча</span></div>
-                    <a href="#contact" class="btn btn-secondary">Записаться</a>
+                    <button
+                        class="btn btn-secondary"
+                        data-cal-namespace="consultation"
+                        data-cal-link="YOUR_USERNAME/group"
+                        data-cal-config='{"layout":"month_view","theme":"dark"}'
+                    >Записаться</button>
                 </div>
-                
+
                 <!-- Corporate -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
@@ -1344,9 +1419,14 @@
                         <li>Индивидуальные решения</li>
                     </ul>
                     <div class="service-price">По запросу</div>
-                    <a href="#contact" class="btn btn-secondary">Обсудить</a>
+                    <button
+                        class="btn btn-secondary"
+                        data-cal-namespace="consultation"
+                        data-cal-link="YOUR_USERNAME/corporate"
+                        data-cal-config='{"layout":"month_view","theme":"dark"}'
+                    >Обсудить</button>
                 </div>
-                
+
                 <!-- Offline -->
                 <div class="service-card fade-in">
                     <div class="service-icon">
@@ -1364,7 +1444,12 @@
                         <li>Индивидуальные ретриты</li>
                     </ul>
                     <div class="service-price">от 20 000 </div>
-                    <a href="#contact" class="btn btn-secondary">Узнать даты</a>
+                    <button
+                        class="btn btn-secondary"
+                        data-cal-namespace="consultation"
+                        data-cal-link="YOUR_USERNAME/event"
+                        data-cal-config='{"layout":"month_view","theme":"dark"}'
+                    >Узнать даты</button>
                 </div>
             </div>
         </div>
@@ -1440,7 +1525,12 @@
         <div class="container">
             <div class="cta-content fade-in">
                 <h2>Если ты хочешь изменить свою жизнь — начни сегодня. Я рядом.</h2>
-                <a href="#contact" class="btn btn-primary">Записаться на консультацию</a>
+                <button
+                    class="btn btn-primary"
+                    data-cal-namespace="consultation"
+                    data-cal-link="YOUR_USERNAME/consultation"
+                    data-cal-config='{"layout":"month_view","theme":"dark"}'
+                >Записаться на консультацию</button>
             </div>
         </div>
     </section>
