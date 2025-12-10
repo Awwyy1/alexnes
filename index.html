@@ -1379,6 +1379,170 @@
             0%, 100% { box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4); }
             50% { box-shadow: 0 8px 40px rgba(139, 92, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.3); }
         }
+
+        /* Reviews Carousel Styles */
+        .reviews-carousel {
+            background: var(--coal);
+            padding-bottom: clamp(80px, 12vw, 160px);
+        }
+
+        .carousel-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .carousel-track {
+            overflow: hidden;
+            border-radius: 16px;
+            background: var(--dark-gray);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s var(--ease-out-expo);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .carousel-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid var(--mid-gray);
+            background: var(--dark-gray);
+            color: var(--white);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            border-color: var(--white);
+            background: var(--coal);
+            transform: scale(1.1);
+        }
+
+        .carousel-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .carousel-counter {
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--mid-gray);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .carousel-counter span {
+            color: var(--white);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--dark-gray);
+            border: 1px solid var(--mid-gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--white);
+            border-color: var(--white);
+        }
+
+        .carousel-dot:hover {
+            border-color: var(--white);
+        }
+
+        /* Neon Theme - Carousel */
+        [data-theme="neon"] .carousel-track {
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+        }
+
+        [data-theme="neon"] .carousel-btn {
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+
+        [data-theme="neon"] .carousel-btn:hover {
+            border-color: #8B5CF6;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+
+        [data-theme="neon"] .carousel-dot.active {
+            background: #8B5CF6;
+            border-color: #8B5CF6;
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        }
+
+        [data-theme="neon"] .carousel-dot:hover {
+            border-color: #8B5CF6;
+        }
+
+        /* Swipe hint for mobile */
+        .swipe-hint {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--mid-gray);
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .swipe-hint {
+                display: block;
+            }
+
+            .carousel-container {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1722,6 +1886,54 @@
         </div>
     </section>
 
+    <!-- Reviews Carousel Section -->
+    <section class="reviews-carousel" id="reviews">
+        <div class="container">
+            <div class="carousel-header fade-in">
+                <span class="section-label">Отзывы клиентов</span>
+                <h2 class="section-title">Реальные <strong>истории</strong></h2>
+            </div>
+            <div class="carousel-container fade-in">
+                <div class="carousel-track">
+                    <div class="carousel-slides" id="carouselSlides">
+                        <div class="carousel-slide"><img src="images/reviews/review-01.jpg" alt="Отзыв 1" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-02.jpg" alt="Отзыв 2" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-03.jpg" alt="Отзыв 3" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-04.jpg" alt="Отзыв 4" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-05.jpg" alt="Отзыв 5" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-06.jpg" alt="Отзыв 6" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-07.jpg" alt="Отзыв 7" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-08.jpg" alt="Отзыв 8" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-09.jpg" alt="Отзыв 9" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-10.jpg" alt="Отзыв 10" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-11.jpg" alt="Отзыв 11" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-12.jpg" alt="Отзыв 12" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-13.jpg" alt="Отзыв 13" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-14.jpg" alt="Отзыв 14" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-15.jpg" alt="Отзыв 15" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-16.jpg" alt="Отзыв 16" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-17.jpg" alt="Отзыв 17" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-18.jpg" alt="Отзыв 18" loading="lazy"></div>
+                        <div class="carousel-slide"><img src="images/reviews/review-19.jpg" alt="Отзыв 19" loading="lazy"></div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="carouselPrev" aria-label="Предыдущий отзыв">
+                        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <div class="carousel-counter">
+                        <span id="carouselCurrent">1</span> / <span id="carouselTotal">19</span>
+                    </div>
+                    <button class="carousel-btn" id="carouselNext" aria-label="Следующий отзыв">
+                        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                </div>
+                <div class="carousel-dots" id="carouselDots"></div>
+                <p class="swipe-hint">← Свайп для переключения →</p>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta">
         <div class="cta-glow"></div>
@@ -1933,6 +2145,140 @@
                 }
             });
         });
+
+        // Reviews Carousel
+        (function() {
+            const slides = document.getElementById('carouselSlides');
+            const prevBtn = document.getElementById('carouselPrev');
+            const nextBtn = document.getElementById('carouselNext');
+            const currentSpan = document.getElementById('carouselCurrent');
+            const totalSpan = document.getElementById('carouselTotal');
+            const dotsContainer = document.getElementById('carouselDots');
+
+            if (!slides) return;
+
+            const totalSlides = slides.children.length;
+            let currentSlide = 0;
+            let startX = 0;
+            let isDragging = false;
+
+            // Update total count
+            if (totalSpan) totalSpan.textContent = totalSlides;
+
+            // Create dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Отзыв ${i + 1}`);
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
+
+            function updateCarousel() {
+                slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+                if (currentSpan) currentSpan.textContent = currentSlide + 1;
+
+                // Update dots
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+
+            function goToSlide(index) {
+                currentSlide = index;
+                if (currentSlide < 0) currentSlide = totalSlides - 1;
+                if (currentSlide >= totalSlides) currentSlide = 0;
+                updateCarousel();
+            }
+
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+
+            // Button events
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                const carouselInView = document.querySelector('.reviews-carousel');
+                if (!carouselInView) return;
+
+                const rect = carouselInView.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+
+                if (inView) {
+                    if (e.key === 'ArrowLeft') prevSlide();
+                    if (e.key === 'ArrowRight') nextSlide();
+                }
+            });
+
+            // Touch/Swipe support
+            const track = document.querySelector('.carousel-track');
+
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+            }, { passive: true });
+
+            track.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+            }, { passive: true });
+
+            track.addEventListener('touchend', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+
+                const endX = e.changedTouches[0].clientX;
+                const diff = startX - endX;
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
+                }
+            }, { passive: true });
+
+            // Mouse drag support for desktop
+            track.addEventListener('mousedown', (e) => {
+                startX = e.clientX;
+                isDragging = true;
+                track.style.cursor = 'grabbing';
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+            });
+
+            document.addEventListener('mouseup', (e) => {
+                if (!isDragging) return;
+                isDragging = false;
+                track.style.cursor = 'grab';
+
+                const diff = startX - e.clientX;
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
+                }
+            });
+
+            // Set initial cursor
+            track.style.cursor = 'grab';
+
+            // Auto-play (optional, uncomment if needed)
+            // setInterval(nextSlide, 5000);
+        })();
     </script>
 </body>
 </html>
