@@ -62,11 +62,33 @@
             --light-gray: #b0b0b0;
             --off-white: #f0f0f0;
             --white: #ffffff;
-            
+
             --font-main: 'Montserrat', -apple-system, sans-serif;
-            
+
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
+            /* Theme-specific variables */
+            --btn-radius: 0;
+            --accent-primary: var(--white);
+            --accent-secondary: var(--mid-gray);
+            --glow-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Neon Theme */
+        [data-theme="neon"] {
+            --black: #0c0a1a;
+            --coal: #13102a;
+            --dark-gray: #1e1a3a;
+            --mid-gray: #6b7280;
+            --light-gray: #9ca3af;
+            --off-white: #e5e7eb;
+            --white: #f9fafb;
+
+            --btn-radius: 50px;
+            --accent-primary: #8B5CF6;
+            --accent-secondary: #10B981;
+            --glow-color: rgba(139, 92, 246, 0.3);
         }
         
         * {
@@ -225,13 +247,14 @@
             transition: all 0.4s var(--ease-out-expo);
             position: relative;
             overflow: hidden;
+            border-radius: var(--btn-radius);
         }
-        
+
         .btn-primary {
             background: var(--white);
             color: var(--black);
         }
-        
+
         .btn-primary::before {
             content: '';
             position: absolute;
@@ -239,27 +262,55 @@
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             transform: translateX(-100%);
             animation: btn-shimmer 4s infinite;
+            border-radius: var(--btn-radius);
         }
-        
+
         @keyframes btn-shimmer {
             0%, 100% { transform: translateX(-100%); }
             50% { transform: translateX(100%); }
         }
-        
+
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 20px 60px rgba(255,255,255,0.15);
+            box-shadow: 0 20px 60px var(--glow-color);
         }
-        
+
         .btn-secondary {
             background: transparent;
             color: var(--white);
             border: 1px solid var(--mid-gray);
         }
-        
+
         .btn-secondary:hover {
             border-color: var(--white);
             background: rgba(255,255,255,0.05);
+        }
+
+        /* Neon Theme Button Styles */
+        [data-theme="neon"] .btn-primary {
+            background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 50%, #7C3AED 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        [data-theme="neon"] .btn-primary::before {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        }
+
+        [data-theme="neon"] .btn-primary:hover {
+            box-shadow: 0 8px 40px rgba(139, 92, 246, 0.6);
+            transform: translateY(-3px);
+        }
+
+        [data-theme="neon"] .btn-secondary {
+            border-color: rgba(139, 92, 246, 0.5);
+            color: var(--off-white);
+        }
+
+        [data-theme="neon"] .btn-secondary:hover {
+            border-color: #8B5CF6;
+            background: rgba(139, 92, 246, 0.1);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
         }
         
         /* Hero Section */
@@ -1183,6 +1234,151 @@
             font-size: 32px;
             cursor: pointer;
         }
+
+        /* Theme Toggle Styles */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .theme-toggle-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--mid-gray);
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle-switch {
+            position: relative;
+            width: 52px;
+            height: 28px;
+            background: var(--dark-gray);
+            border-radius: 14px;
+            padding: 3px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--mid-gray);
+        }
+
+        .theme-toggle-switch::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--white);
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: all 0.3s var(--ease-out-expo);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="neon"] .theme-toggle-switch {
+            background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+            border-color: #8B5CF6;
+        }
+
+        [data-theme="neon"] .theme-toggle-switch::before {
+            left: 27px;
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.5);
+        }
+
+        .theme-toggle:hover .theme-toggle-switch {
+            border-color: var(--white);
+        }
+
+        [data-theme="neon"] .theme-toggle:hover .theme-toggle-switch {
+            border-color: #A855F7;
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Mobile theme toggle in menu */
+        .mobile-theme-toggle {
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--dark-gray);
+        }
+
+        /* Neon Theme - Hero Glow */
+        [data-theme="neon"] .hero-glow {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, rgba(124, 58, 237, 0.1) 40%, transparent 70%);
+        }
+
+        [data-theme="neon"] .cta-glow {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+        }
+
+        /* Neon Theme - Timeline dot */
+        [data-theme="neon"] .timeline-item::before {
+            background: linear-gradient(135deg, #8B5CF6, #A855F7);
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+
+        /* Neon Theme - Service cards */
+        [data-theme="neon"] .service-card::before {
+            background: linear-gradient(145deg, rgba(139, 92, 246, 0.3), transparent) border-box;
+        }
+
+        [data-theme="neon"] .service-card:hover::before {
+            opacity: 0.8;
+        }
+
+        /* Neon Theme - Accent colors for labels */
+        [data-theme="neon"] .hero-stat-value,
+        [data-theme="neon"] .timeline-year,
+        [data-theme="neon"] .approach-number {
+            color: rgba(139, 92, 246, 0.4);
+        }
+
+        [data-theme="neon"] .approach-card:hover .approach-number {
+            color: rgba(139, 92, 246, 0.7);
+        }
+
+        /* Neon Theme - Form inputs */
+        [data-theme="neon"] .form-group input:focus,
+        [data-theme="neon"] .form-group textarea:focus,
+        [data-theme="neon"] .form-group select:focus {
+            border-color: #8B5CF6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        /* Neon Theme - Footer social */
+        [data-theme="neon"] .footer-social a:hover {
+            border-color: #8B5CF6;
+            color: #8B5CF6;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Neon Theme - Nav link underline */
+        [data-theme="neon"] .nav-links a::after {
+            background: linear-gradient(90deg, #8B5CF6, #A855F7);
+        }
+
+        /* Neon Theme - Blockquote */
+        [data-theme="neon"] .about-content blockquote {
+            border-left-color: #8B5CF6;
+        }
+
+        /* Neon Theme - Selection */
+        [data-theme="neon"] ::selection {
+            background: #8B5CF6;
+            color: #ffffff;
+        }
+
+        /* Neon Theme - CTA pulse animation */
+        [data-theme="neon"] .cta .btn-primary {
+            animation: neon-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes neon-pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4); }
+            50% { box-shadow: 0 8px 40px rgba(139, 92, 246, 0.6), 0 0 60px rgba(139, 92, 246, 0.3); }
+        }
     </style>
 </head>
 <body>
@@ -1213,6 +1409,13 @@
         <a href="#services" onclick="toggleMenu()">Услуги</a>
         <a href="#approach" onclick="toggleMenu()">Подход</a>
         <a href="#contact" onclick="toggleMenu()">Контакт</a>
+        <!-- Theme Toggle for Mobile -->
+        <div class="mobile-theme-toggle">
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <span class="theme-toggle-label" id="mobileThemeLabel">Classic</span>
+                <div class="theme-toggle-switch"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Hero Section -->
@@ -1615,6 +1818,11 @@
             </div>
             <div class="footer-bottom">
                 <p class="footer-copyright">© 2024 AlexNes. Все права защищены.</p>
+                <!-- Theme Toggle for Desktop -->
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <span class="theme-toggle-label" id="desktopThemeLabel">Classic</span>
+                    <div class="theme-toggle-switch"></div>
+                </div>
                 <div class="footer-social">
                     <a href="https://t.me/nesterealex" target="_blank" aria-label="Telegram">
                         <svg viewBox="0 0 24 24"><path d="M21 5L2 12.5l7 1M21 5l-2 14-8-6.5M21 5L9 13.5m0 0V19l3.5-3.5"/></svg>
@@ -1631,6 +1839,37 @@
     </footer>
 
     <script>
+        // Theme Management
+        function getTheme() {
+            return localStorage.getItem('theme') || 'classic';
+        }
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            updateThemeLabels(theme);
+        }
+
+        function toggleTheme() {
+            const currentTheme = getTheme();
+            const newTheme = currentTheme === 'classic' ? 'neon' : 'classic';
+            setTheme(newTheme);
+        }
+
+        function updateThemeLabels(theme) {
+            const label = theme === 'classic' ? 'Classic' : 'Neon';
+            const desktopLabel = document.getElementById('desktopThemeLabel');
+            const mobileLabel = document.getElementById('mobileThemeLabel');
+            if (desktopLabel) desktopLabel.textContent = label;
+            if (mobileLabel) mobileLabel.textContent = label;
+        }
+
+        // Initialize theme on page load
+        (function() {
+            const savedTheme = getTheme();
+            setTheme(savedTheme);
+        })();
+
         // Navigation scroll effect
         const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => {
