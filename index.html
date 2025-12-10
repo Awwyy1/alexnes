@@ -40,8 +40,8 @@
         };
       })(window, "https://app.cal.com/embed/embed.js", "init");
 
-      // Инициализация Cal.com с тёмной темой
-      Cal("init", "consultation", { origin: "https://cal.com" });
+      // Инициализация Cal.com с тёмной темой (европейский домен)
+      Cal("init", "consultation", { origin: "https://app.cal.eu" });
 
       Cal.ns.consultation("ui", {
         "theme": "dark",
@@ -1228,7 +1228,7 @@
                 </h1>
                 <p class="hero-subtitle">11 лет трезвости. Сотни клиентов. Не теория — живой путь восстановления, который я прошёл сам.</p>
                 <div class="hero-buttons">
-                    <!-- Cal.com: замени YOUR_USERNAME на свой username из Cal.com -->
+                    <!-- Cal.com: замени alexnes на свой username из Cal.com -->
                     <button
                         class="btn btn-primary"
                         data-cal-namespace="consultation"
@@ -1367,7 +1367,7 @@
                     <button
                         class="btn btn-secondary"
                         data-cal-namespace="consultation"
-                        data-cal-link="YOUR_USERNAME/individual"
+                        data-cal-link="alexnes/individual"
                         data-cal-config='{"layout":"month_view","theme":"dark"}'
                     >Записаться</button>
                 </div>
@@ -1396,7 +1396,7 @@
                     <button
                         class="btn btn-secondary"
                         data-cal-namespace="consultation"
-                        data-cal-link="YOUR_USERNAME/group"
+                        data-cal-link="alexnes/group"
                         data-cal-config='{"layout":"month_view","theme":"dark"}'
                     >Записаться</button>
                 </div>
@@ -1422,7 +1422,7 @@
                     <button
                         class="btn btn-secondary"
                         data-cal-namespace="consultation"
-                        data-cal-link="YOUR_USERNAME/corporate"
+                        data-cal-link="alexnes/corporate"
                         data-cal-config='{"layout":"month_view","theme":"dark"}'
                     >Обсудить</button>
                 </div>
@@ -1447,7 +1447,7 @@
                     <button
                         class="btn btn-secondary"
                         data-cal-namespace="consultation"
-                        data-cal-link="YOUR_USERNAME/event"
+                        data-cal-link="alexnes/event"
                         data-cal-config='{"layout":"month_view","theme":"dark"}'
                     >Узнать даты</button>
                 </div>
@@ -1528,7 +1528,7 @@
                 <button
                     class="btn btn-primary"
                     data-cal-namespace="consultation"
-                    data-cal-link="YOUR_USERNAME/consultation"
+                    data-cal-link="alexnes/consultation"
                     data-cal-config='{"layout":"month_view","theme":"dark"}'
                 >Записаться на консультацию</button>
             </div>
