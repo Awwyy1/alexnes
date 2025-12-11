@@ -2246,12 +2246,11 @@
                     </ul>
                 </div>
                 <div class="contact-form fade-in">
-                    <form id="contactForm" action="https://formsubmit.co/hello@alexnes.com" method="POST">
+                    <form id="contactForm" action="https://formsubmit.co/ajax/hello@alexnes.com" method="POST">
                         <!-- FormSubmit configuration -->
                         <input type="hidden" name="_subject" value="Новая заявка с сайта AlexNes">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="https://alexnes.com/?success=true#contact">
                         <input type="text" name="_honey" style="display:none">
 
                         <div class="form-group">
@@ -2575,21 +2574,46 @@
         function closeSuccessPopup() {
             document.getElementById('successPopup').classList.remove('active');
             document.body.style.overflow = '';
-            // Clear URL parameter
-            if (window.history.replaceState) {
-                const url = window.location.href.split('?')[0];
-                window.history.replaceState({}, document.title, url + '#contact');
-            }
         }
 
-        // Check for success parameter on page load
-        (function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('success') === 'true') {
-                // Small delay to ensure page is loaded
-                setTimeout(showSuccessPopup, 300);
-            }
-        })();
+        // Form submission with AJAX
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const form = this;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+
+            // Show loading state
+            submitBtn.textContent = 'Отправка...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    form.reset();
+                    showSuccessPopup();
+                } else {
+                    throw new Error('Ошибка отправки');
+                }
+            })
+            .catch(error => {
+                alert('Произошла ошибка. Попробуй ещё раз или напиши напрямую в Telegram.');
+                console.error('Form error:', error);
+            })
+            .finally(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+        });
 
         // Close success popup on overlay click
         document.getElementById('successPopup').addEventListener('click', function(e) {
