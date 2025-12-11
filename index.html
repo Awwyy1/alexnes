@@ -1656,6 +1656,100 @@
         [data-theme="neon"] .modal-content ul li::before {
             background: #8B5CF6;
         }
+
+        /* Success Popup */
+        .success-popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            padding: 20px;
+        }
+
+        .success-popup.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .success-popup-content {
+            background: var(--coal);
+            max-width: 450px;
+            padding: 48px;
+            text-align: center;
+            border: 1px solid var(--dark-gray);
+            position: relative;
+            animation: popup-slide-in 0.5s var(--ease-out-expo);
+        }
+
+        @keyframes popup-slide-in {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .success-popup-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            background: var(--dark-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-popup-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: var(--white);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .success-popup h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .success-popup p {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--light-gray);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .success-popup .btn {
+            min-width: 200px;
+        }
+
+        /* Neon Theme - Success Popup */
+        [data-theme="neon"] .success-popup-content {
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+        }
+
+        [data-theme="neon"] .success-popup-icon {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(124, 58, 237, 0.2));
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        }
+
+        [data-theme="neon"] .success-popup-icon svg {
+            stroke: #8B5CF6;
+        }
     </style>
 </head>
 <body>
@@ -1876,6 +1970,36 @@
                         class="btn btn-secondary"
                         data-cal-namespace="consultation"
                         data-cal-link="alexnes/group"
+                        data-cal-config='{"layout":"month_view","theme":"dark"}'
+                    >Записаться</button>
+                </div>
+
+                <!-- Codependency Therapy -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48">
+                            <circle cx="16" cy="16" r="6"/>
+                            <circle cx="32" cy="16" r="6"/>
+                            <path d="M16 24c-6 0-10 4-10 10v6"/>
+                            <path d="M32 24c6 0 10 4 10 10v6"/>
+                            <path d="M20 20c2 2 6 2 8 0"/>
+                            <path d="M24 28v8"/>
+                            <path d="M20 32h8"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Терапия созависимости</h3>
+                    <p class="service-description">Для партнёров, родителей и близких зависимых. Работа с эмоциональной болью, тревогой, контролем и потерей себя.</p>
+                    <ul class="service-features">
+                        <li>Выявление созависимых сценариев</li>
+                        <li>Восстановление личных границ</li>
+                        <li>Работа с тревогой и виной</li>
+                        <li>Возвращение контроля над жизнью</li>
+                    </ul>
+                    <div class="service-price">от 2 000 <span>/ сессия</span></div>
+                    <button
+                        class="btn btn-secondary"
+                        data-cal-namespace="consultation"
+                        data-cal-link="alexnes/codependency"
                         data-cal-config='{"layout":"month_view","theme":"dark"}'
                     >Записаться</button>
                 </div>
@@ -2127,7 +2251,7 @@
                         <input type="hidden" name="_subject" value="Новая заявка с сайта AlexNes">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="https://alexnes.com/#contact">
+                        <input type="hidden" name="_next" value="https://alexnes.com/?success=true#contact">
                         <input type="text" name="_honey" style="display:none">
 
                         <div class="form-group">
@@ -2144,6 +2268,7 @@
                                 <option value="">Выбери услугу</option>
                                 <option value="individual">Индивидуальная консультация</option>
                                 <option value="group">Групповая программа</option>
+                                <option value="codependency">Терапия созависимости</option>
                                 <option value="corporate">Корпоративная работа</option>
                                 <option value="event">Живое мероприятие</option>
                                 <option value="preventive">Превентивная консультация</option>
@@ -2435,7 +2560,40 @@
 
         // Close modal on Escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closePrivacy();
+            if (e.key === 'Escape') {
+                closePrivacy();
+                closeSuccessPopup();
+            }
+        });
+
+        // Success Popup Functions
+        function showSuccessPopup() {
+            document.getElementById('successPopup').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSuccessPopup() {
+            document.getElementById('successPopup').classList.remove('active');
+            document.body.style.overflow = '';
+            // Clear URL parameter
+            if (window.history.replaceState) {
+                const url = window.location.href.split('?')[0];
+                window.history.replaceState({}, document.title, url + '#contact');
+            }
+        }
+
+        // Check for success parameter on page load
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                // Small delay to ensure page is loaded
+                setTimeout(showSuccessPopup, 300);
+            }
+        })();
+
+        // Close success popup on overlay click
+        document.getElementById('successPopup').addEventListener('click', function(e) {
+            if (e.target === this) closeSuccessPopup();
         });
     </script>
 
@@ -2469,6 +2627,20 @@
             <p style="color: var(--mid-gray); font-size: 13px; margin-top: 24px;">
                 Обновлено: Декабрь 2025
             </p>
+        </div>
+    </div>
+
+    <!-- Success Popup -->
+    <div class="success-popup" id="successPopup">
+        <div class="success-popup-content">
+            <div class="success-popup-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 6L9 17l-5-5"/>
+                </svg>
+            </div>
+            <h3>Заявка отправлена!</h3>
+            <p>Спасибо за обращение. Я свяжусь с тобой в ближайшее время, чтобы обсудить детали.</p>
+            <button class="btn btn-primary" onclick="closeSuccessPopup()">Отлично</button>
         </div>
     </div>
 </body>
