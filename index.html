@@ -5,7 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="AlexNes — терапия зависимостей, основанная на реальном жизненном опыте. 11 лет трезвости. Реальный путь. Настоящая помощь.">
     <title>AlexNes — Терапия зависимостей | Реальный опыт. Настоящая помощь.</title>
-    
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9MGJNMBVG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D9MGJNMBVG');
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -220,14 +233,31 @@
             border: none;
             cursor: pointer;
             padding: 8px;
+            z-index: 1001;
+            position: relative;
         }
-        
+
         .mobile-menu-btn span {
             display: block;
             width: 28px;
-            height: 1px;
+            height: 2px;
             background: var(--white);
             transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        /* Burger to X animation */
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
         }
         
         /* Buttons */
@@ -1224,17 +1254,6 @@
             text-decoration: none;
         }
         
-        .mobile-menu-close {
-            position: absolute;
-            top: 24px;
-            right: 24px;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 32px;
-            cursor: pointer;
-        }
-
         /* Theme Toggle Styles */
         .theme-toggle {
             display: flex;
@@ -1543,6 +1562,100 @@
                 max-width: 100%;
             }
         }
+
+        /* Privacy Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--coal);
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 48px;
+            position: relative;
+            border: 1px solid var(--dark-gray);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--mid-gray);
+            font-size: 28px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--white);
+        }
+
+        .modal-content h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 24px;
+        }
+
+        .modal-content p {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--light-gray);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .modal-content ul {
+            list-style: none;
+            margin: 16px 0;
+        }
+
+        .modal-content ul li {
+            font-size: 14px;
+            color: var(--light-gray);
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .modal-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+        }
+
+        [data-theme="neon"] .modal-content {
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        [data-theme="neon"] .modal-content ul li::before {
+            background: #8B5CF6;
+        }
     </style>
 </head>
 <body>
@@ -1567,7 +1680,6 @@
     
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" onclick="toggleMenu()">×</button>
         <a href="#about" onclick="toggleMenu()">Об Алексе</a>
         <a href="#journey" onclick="toggleMenu()">Путь</a>
         <a href="#services" onclick="toggleMenu()">Услуги</a>
@@ -1818,6 +1930,36 @@
                         data-cal-config='{"layout":"month_view","theme":"dark"}'
                     >Узнать даты</button>
                 </div>
+
+                <!-- Preventive Consultation -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 48 48">
+                            <circle cx="24" cy="12" r="6"/>
+                            <path d="M16 44v-8a8 8 0 0 1 16 0v8"/>
+                            <circle cx="12" cy="20" r="4"/>
+                            <circle cx="36" cy="20" r="4"/>
+                            <path d="M8 36c0-4 2-6 4-6"/>
+                            <path d="M40 36c0-4-2-6-4-6"/>
+                            <path d="M20 28l4-4 4 4"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">Превентивная консультация</h3>
+                    <p class="service-description">Для родителей подростков и школьников. Как распознать ранние признаки и предотвратить беду до её начала.</p>
+                    <ul class="service-features">
+                        <li>Выявление ранних симптомов</li>
+                        <li>Признаки начинающего употребления</li>
+                        <li>Правильный подход к ребёнку</li>
+                        <li>Профилактика и доверие</li>
+                    </ul>
+                    <div class="service-price">от 2 500 <span>/ консультация</span></div>
+                    <button
+                        class="btn btn-secondary"
+                        data-cal-namespace="consultation"
+                        data-cal-link="alexnes/preventive"
+                        data-cal-config='{"layout":"month_view","theme":"dark"}'
+                    >Записаться</button>
+                </div>
             </div>
         </div>
     </section>
@@ -1980,7 +2122,14 @@
                     </ul>
                 </div>
                 <div class="contact-form fade-in">
-                    <form id="contactForm" action="#" method="POST">
+                    <form id="contactForm" action="https://formsubmit.co/hello@alexnes.com" method="POST">
+                        <!-- FormSubmit configuration -->
+                        <input type="hidden" name="_subject" value="Новая заявка с сайта AlexNes">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://alexnes.com/#contact">
+                        <input type="text" name="_honey" style="display:none">
+
                         <div class="form-group">
                             <label for="name">Имя</label>
                             <input type="text" id="name" name="name" placeholder="Как тебя зовут?" required>
@@ -1997,6 +2146,7 @@
                                 <option value="group">Групповая программа</option>
                                 <option value="corporate">Корпоративная работа</option>
                                 <option value="event">Живое мероприятие</option>
+                                <option value="preventive">Превентивная консультация</option>
                                 <option value="other">Другое</option>
                             </select>
                         </div>
@@ -2025,7 +2175,7 @@
                     <li><a href="#about">Об Алексе</a></li>
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#contact">Контакт</a></li>
-                    <li><a href="#">Политика конфиденциальности</a></li>
+                    <li><a href="#" onclick="openPrivacy(event)">Политика конфиденциальности</a></li>
                 </ul>
             </div>
             <div class="footer-bottom">
@@ -2095,7 +2245,9 @@
         // Mobile menu toggle
         function toggleMenu() {
             const menu = document.getElementById('mobileMenu');
+            const burgerBtn = document.querySelector('.mobile-menu-btn');
             menu.classList.toggle('active');
+            burgerBtn.classList.toggle('active');
         }
 
         // Scroll animations
@@ -2114,22 +2266,6 @@
 
         document.querySelectorAll('.fade-in, .timeline-item').forEach(el => {
             observer.observe(el);
-        });
-
-        // Form handling
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Here you would typically send the data to your server
-            console.log('Form submitted:', data);
-            
-            // Show success message
-            alert('Спасибо за заявку! Я свяжусь с тобой в ближайшее время.');
-            this.reset();
         });
 
         // Smooth scroll for anchor links
@@ -2279,6 +2415,62 @@
             // Auto-play (optional, uncomment if needed)
             // setInterval(nextSlide, 5000);
         })();
+
+        // Privacy Policy Modal
+        function openPrivacy(e) {
+            if (e) e.preventDefault();
+            document.getElementById('privacyModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePrivacy() {
+            document.getElementById('privacyModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on overlay click
+        document.getElementById('privacyModal').addEventListener('click', function(e) {
+            if (e.target === this) closePrivacy();
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePrivacy();
+        });
     </script>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePrivacy()">&times;</button>
+            <h3>Политика конфиденциальности</h3>
+            <p>
+                Ваша конфиденциальность — мой абсолютный приоритет. Все обращения и консультации строго конфиденциальны.
+            </p>
+            <p><strong>Гарантии конфиденциальности:</strong></p>
+            <ul>
+                <li>Все личные данные, истории и обращения остаются строго между нами</li>
+                <li>Информация никогда не передаётся третьим лицам без вашего согласия</li>
+                <li>Записи консультаций не ведутся без вашего разрешения</li>
+                <li>Ваша личность и факт обращения не разглашаются</li>
+                <li>Все коммуникации (мессенджеры, email, звонки) защищены</li>
+            </ul>
+            <p><strong>Сбор данных:</strong></p>
+            <ul>
+                <li>Сайт собирает только данные, которые вы добровольно предоставляете через форму обратной связи</li>
+                <li>Используется Google Analytics для анализа посещаемости (анонимные данные)</li>
+                <li>Данные формы отправляются напрямую на email и не хранятся на сторонних серверах</li>
+            </ul>
+            <p><strong>Этические принципы:</strong></p>
+            <p>
+                Работа ведётся в соответствии с профессиональными этическими стандартами.
+                Ваше доверие — основа нашей работы. Если у вас есть вопросы о конфиденциальности,
+                свяжитесь со мной напрямую.
+            </p>
+            <p style="color: var(--mid-gray); font-size: 13px; margin-top: 24px;">
+                Обновлено: Декабрь 2024
+            </p>
+        </div>
+    </div>
 </body>
 </html>
