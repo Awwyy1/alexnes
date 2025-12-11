@@ -66,6 +66,66 @@
       });
     </script>
 
+    <!-- Form Submit Handler -->
+    <script>
+        function submitContactForm(e) {
+            e.preventDefault();
+
+            var form = document.getElementById('contactForm');
+            var submitBtn = form.querySelector('button[type="submit"]');
+            var originalText = submitBtn.textContent;
+
+            // Show loading
+            submitBtn.textContent = 'Отправка...';
+            submitBtn.disabled = true;
+
+            // Collect form data
+            var formData = new FormData(form);
+
+            // Send via fetch
+            fetch('https://formsubmit.co/ajax/hello@alexnes.com', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                if (data.success) {
+                    form.reset();
+                    // Show success popup
+                    var popup = document.getElementById('successPopup');
+                    if (popup) {
+                        popup.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                } else {
+                    throw new Error('Form error');
+                }
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+                // Show error popup or message
+                var popup = document.getElementById('successPopup');
+                if (popup) {
+                    popup.querySelector('h3').textContent = 'Ошибка отправки';
+                    popup.querySelector('p').textContent = 'Попробуй ещё раз или напиши напрямую в Telegram.';
+                    popup.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            })
+            .finally(function() {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+
+            return false;
+        }
+    </script>
+
     <style>
         :root {
             --black: #0a0a0a;
@@ -2246,11 +2306,8 @@
                     </ul>
                 </div>
                 <div class="contact-form fade-in">
-                    <form id="contactForm" action="https://formsubmit.co/ajax/hello@alexnes.com" method="POST">
-                        <!-- FormSubmit configuration -->
+                    <form id="contactForm" onsubmit="return submitContactForm(event)">
                         <input type="hidden" name="_subject" value="Новая заявка с сайта AlexNes">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="table">
                         <input type="text" name="_honey" style="display:none">
 
                         <div class="form-group">
@@ -2572,48 +2629,13 @@
         }
 
         function closeSuccessPopup() {
-            document.getElementById('successPopup').classList.remove('active');
+            var popup = document.getElementById('successPopup');
+            popup.classList.remove('active');
             document.body.style.overflow = '';
+            // Reset to default text
+            popup.querySelector('h3').textContent = 'Заявка отправлена!';
+            popup.querySelector('p').textContent = 'Спасибо за обращение. Я свяжусь с тобой в ближайшее время, чтобы обсудить детали.';
         }
-
-        // Form submission with AJAX
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const form = this;
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-
-            // Show loading state
-            submitBtn.textContent = 'Отправка...';
-            submitBtn.disabled = true;
-
-            const formData = new FormData(form);
-
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    form.reset();
-                    showSuccessPopup();
-                } else {
-                    throw new Error('Ошибка отправки');
-                }
-            })
-            .catch(error => {
-                alert('Произошла ошибка. Попробуй ещё раз или напиши напрямую в Telegram.');
-                console.error('Form error:', error);
-            })
-            .finally(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            });
-        });
 
         // Close success popup on overlay click
         document.getElementById('successPopup').addEventListener('click', function(e) {
