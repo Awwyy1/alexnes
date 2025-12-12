@@ -900,49 +900,153 @@
         .testimonials {
             background: var(--black);
         }
-        
+
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
             margin-top: 60px;
         }
-        
+
+        @media (max-width: 1024px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .testimonial-card {
             background: var(--coal);
-            padding: 48px;
+            padding: 32px;
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
-        
-        .testimonial-quote {
-            font-family: var(--font-main);
-            font-size: 100px;
-            font-weight: 200;
-            color: var(--dark-gray);
-            position: absolute;
-            top: 20px;
-            left: 30px;
-            line-height: 1;
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
         }
-        
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--dark-gray);
+            flex-shrink: 0;
+        }
+
+        .testimonial-avatar-placeholder {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--dark-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 2px solid var(--mid-gray);
+        }
+
+        .testimonial-avatar-placeholder svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--mid-gray);
+            fill: none;
+        }
+
+        .testimonial-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.02em;
+        }
+
         .testimonial-text {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 300;
-            color: var(--off-white);
-            line-height: 1.9;
-            margin-bottom: 32px;
+            color: var(--light-gray);
+            line-height: 1.8;
             position: relative;
             z-index: 2;
         }
-        
-        .testimonial-author {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--mid-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
+
+        .testimonial-text-preview {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
-        
+
+        .testimonial-text-full {
+            display: none;
+        }
+
+        .testimonial-card.expanded .testimonial-text-preview {
+            display: none;
+        }
+
+        .testimonial-card.expanded .testimonial-text-full {
+            display: block;
+        }
+
+        .testimonial-toggle {
+            background: none;
+            border: none;
+            color: var(--mid-gray);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0;
+            margin-top: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .testimonial-toggle:hover {
+            color: var(--white);
+        }
+
+        .testimonial-toggle svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card.expanded .testimonial-toggle svg {
+            transform: rotate(180deg);
+        }
+
+        /* Neon Theme - Testimonials */
+        [data-theme="neon"] .testimonial-avatar {
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        [data-theme="neon"] .testimonial-avatar-placeholder {
+            border-color: rgba(139, 92, 246, 0.4);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        [data-theme="neon"] .testimonial-avatar-placeholder svg {
+            stroke: #8B5CF6;
+        }
+
+        [data-theme="neon"] .testimonial-toggle:hover {
+            color: #A855F7;
+        }
+
         /* CTA Section */
         .cta {
             background: linear-gradient(180deg, var(--black) 0%, var(--coal) 50%, var(--black) 100%);
@@ -2236,15 +2340,106 @@
                 <h2 class="section-title">Истории <strong>изменений</strong></h2>
             </div>
             <div class="testimonials-grid">
+                <!-- Андрей Тиванюк -->
                 <div class="testimonial-card fade-in">
-                    <div class="testimonial-quote">"</div>
-                    <p class="testimonial-text">Алекс — первый человек, который не читал мне нотации. Он просто понимал. После 10 лет попыток бросить, именно с ним я наконец-то это сделал. 2 года трезвости.</p>
-                    <div class="testimonial-author">Андрей, 38 лет</div>
+                    <div class="testimonial-header">
+                        <img src="images/avatars/avatar-andrey.jpg" alt="Андрей Тиванюк" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="testimonial-avatar-placeholder" style="display:none;">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+                        </div>
+                        <div class="testimonial-author">Андрей Тиванюк</div>
+                    </div>
+                    <p class="testimonial-text testimonial-text-preview">Всем привет пишу свой отзыв про своего друга и наставника Саныча. Мой путь в употребление начался очень давно и был долгим , но сегодня не об этом. 2019 году я попал на реабилитацию высохшим,солевым,беззубым наркоманом. Я был в полном отчаянье и не понимал даже на секунду что выход есть...</p>
+                    <p class="testimonial-text testimonial-text-full">Всем привет пишу свой отзыв про своего друга и наставника Саныча. Мой путь в употребление начался очень давно и был долгим , но сегодня не об этом. 2019 году я попал на реабилитацию высохшим,солевым,беззубым наркоманом. Я был в полном отчаянье и не понимал даже на секунду что выход есть. Но благодаря маме я попал на реабилитацию и через 3 дня увидел там консультанта по имени Александер. Пока его не было на смене все о нем говорили и ждали. Ну и мне было интересно кто же он. И вот я его увидел первое мнение строгий, надменный человек. Но потом когда узнал его ближе я понял что этот человек добрый и может сочувствовать други и помогать. Шли дни и месяца и понимание что он пример для подражания и для стратегии выздоровления. Я начинал больше его слушать и слышать. А когда узнал его личную историю она сыграла ключевую роль в моем выздоровление я понимал если он смог то и смогу. Хотя в меня не кто не верил что я смогу. Но на данный момент у меня почти 7 лет трезвости и я могу сказать с уверенностью что огромный процент в моих 7 годах благодаря Санычу. В важные моменты когда я мог сойти с этой дорожки он меня возвращал и ставил на место, я злился ненавидел,но сейчас когда опора для выздоровления являюсь я сам тогда этой опорой был он без лишних преувеличений. Когда я был еще слаб в выздоровлении он провел меня по этому пути. В данный момент мы дружим и я сам себе опора но когда-то!!! Саныч человек профессионал в своей сфере и знает что такое зависимость и что с ним делать. Для меня он был и есть вторым шагом анонимных наркоманов.</p>
+                    <button class="testimonial-toggle" onclick="toggleTestimonial(this)">
+                        <span>Читать полностью</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
                 </div>
+
+                <!-- Макс Толмачев -->
                 <div class="testimonial-card fade-in">
-                    <div class="testimonial-quote">"</div>
-                    <p class="testimonial-text">Я думала, что со мной что-то не так. Алекс показал, что зависимость мужа — не моя вина. Теперь я знаю, как помогать ему, не разрушая себя.</p>
-                    <div class="testimonial-author">Мария, созависимость</div>
+                    <div class="testimonial-header">
+                        <img src="images/avatars/avatar-max.jpg" alt="Макс Толмачев" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="testimonial-avatar-placeholder" style="display:none;">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+                        </div>
+                        <div class="testimonial-author">Макс Толмачев</div>
+                    </div>
+                    <p class="testimonial-text testimonial-text-preview">Приближаются праздники Новый год, а для меня здесь кроится куда более значимая дата, отсчета новой жизни, 6й трезвый год. в каких запоях в это время я был 6 лет назад и в каких красках проходила тогда жизнь в употреблении на грани выживания страшно думать...</p>
+                    <p class="testimonial-text testimonial-text-full">Приближаются праздники Новый год, а для меня здесь кроится куда более значимая дата, отсчета новой жизни, 6й трезвый год. в каких запоях в это время я был 6 лет назад и в каких красках проходила тогда жизнь в употреблении на грани выживания страшно думать, но все помню, надо помнить. Чудным образом я попал в РЦ. За пару дней пришел в себя, все понял, и собирался убираться от туда)) Благо, Сан Саныч как раз вернулся с выходных, уникальный специалист, который как говорится «Развернул мне фары». Простая понятная фраза. Но невероятно сложный процесс. Хорошо, что к тому времени, у меня уже был опыт в попытках бросать и я не питал таких иллюзий к себе. Самое сложное и необходимое - доверие. Саныч стал тем человеком - которому можно довериться и вообще учится делать это. Сумасшедшая харизма, умение мотивировать и профессиональные навыки, подкупало. Его не удивить тем что люди стыдятся и прячут внутри, страдая и переживая самостоятельно, Наоборот беря весь свой багаж страхов, установок и прочего добра он помог мне учится принимать самого себя. В этом долгом кропотливом процессе участвовали и другие специалисты, каждому я Благодарен, со многими теплые отношения до сих пор, не буду здесь перечислять, отдельно отмечу важность «зацепить» замотивировать уязвимого человека, помочь ему поверить, что-то можно изменить! А это мало кто может, ведь зависимый это априори человек не доверяющий, подозревающий. Еще хочу отметить что процесс выздоровления с 0 таблеток и прочих препаратов и тд. (до этого у меня были попытки бросать таким образом) Т.е. максимально чистая, трушная, открытая работа над собой как есть. Без иллюзий и прикрас. Сан Саныч лучший!</p>
+                    <button class="testimonial-toggle" onclick="toggleTestimonial(this)">
+                        <span>Читать полностью</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                </div>
+
+                <!-- Саша -->
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-header">
+                        <img src="images/avatars/avatar-sasha.jpg" alt="Саша" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="testimonial-avatar-placeholder" style="display:none;">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+                        </div>
+                        <div class="testimonial-author">Саша</div>
+                    </div>
+                    <p class="testimonial-text testimonial-text-preview">Привет,меня зовут Александр на сегодняшний день я трезвый 2 дня 2 недели 6 месяцев 5 лет. И в этих цифрах очень большую роль сыграл Александр Александрович. До Александра у меня было много реабилитаций,попыток самостоятельно бросить...</p>
+                    <p class="testimonial-text testimonial-text-full">Привет,меня зовут Александр на сегодняшний день я трезвый 2 дня 2 недели 6 месяцев 5 лет. И в этих цифрах очень большую роль сыграл Александр Александрович. До Александра у меня было много реабилитаций,попыток самостоятельно бросить,которые заканчивались неудачей. Попавши к нему он сказал что хуже не будет,стоит попробовать исправиться. Но я отнесся к этому не с доверием,потому что я был в зависимости и не кому не доверял. Но спустя некоторое время смотря на эго опыт,что можно жить и не употреблять в любом возрасте,начал прислушиваться к эго рекомендациям,которые были очень не приятные болезненные,но правильные. Каждый месяц я говорил,что я всё понял с меня хватит,но в нужный момент он разворачивал мне фары и говорил,что ты делал по своему давай сделаем по моему. В некоторые моменты я обижался,злился,не разговаривал. Но благодаря этому я остаюсь до сих пор трезвый. Саныч спасибо,что ты был всегда рядом и стал для меня родным человечком в моей жизни</p>
+                    <button class="testimonial-toggle" onclick="toggleTestimonial(this)">
+                        <span>Читать полностью</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                </div>
+
+                <!-- Айшат -->
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-header">
+                        <img src="images/avatars/avatar-ayshat.jpg" alt="Айшат" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="testimonial-avatar-placeholder" style="display:none;">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+                        </div>
+                        <div class="testimonial-author">Айшат</div>
+                    </div>
+                    <p class="testimonial-text testimonial-text-preview">Иногда в жизни случается не просто боль-случается точка невозврата. Момент, после которого ты уже не та, кем была. Пять лет назад я пережила развод с самым близким человеком . Когда всё рухнуло, рухнула и я...</p>
+                    <p class="testimonial-text testimonial-text-full">Иногда в жизни случается не просто боль-случается точка невозврата. Момент, после которого ты уже не та, кем была. Пять лет назад я пережила развод с самым близким человеком . Когда всё рухнуло, рухнула и я. Я не знала, как жить дальше, где взять силы. И тогда появился Саша. С первой нашей встречи я почувствовала, что человек умеет «держать за руку так» ,что тебе не нужно говорить ни слова. Он видел мою боль настолько, что казалось, будто смотрит вглубь моей души, туда, куда не решалась заглянуть даже я. Открываясь ему, я впервые за долгое время чувствовала не стыд, не страх, не попытку быть «хорошей девочкой», а себя настоящую. И именно эту настоящую меня он и начал собирать по частям. Панические атаки ушли так же тихо, как когда-то пришли. Я снова научилась просыпаться утром без комка в груди, и впервые за годы увидела, что жизнь может быть другой, живой, теплой, наполненной смыслом. Я изменилась настолько глубоко, что изменилась даже биология. Пришли в норму анализы, которые всю жизнь были «плохими». Как будто тело перестало бороться за моё выживание, потому что больше не нужно было выживать. Можно было жить. Саша помог мне вырастить характер там, где раньше было только желание быть удобной. Помог выстроить границы там, где я всегда позволяла переступать. Помог найти голос там, где я много лет молчала. Я стала собой. И это самое ценное. Он был рядом в любые моменты. В 3 часа ночи, когда душа болела так, что хотелось исчезнуть, и в самые обычные дни, когда нужно было просто услышать -ты справишься. Саша давал мне чувство опоры в самые страшные времена. Давал ясность там, где внутри было только страх и беспомощность. Это редкость, встретить специалиста, который не работает по часам, а живёт своей миссией. Редкость встретить человека, которому ты можешь доверить всё и при этом не бояться быть слабой. Редкость, встретить человека, который умеет исцелять не техникой, а сердцем. И я безмерно благодарна ему. Не просто за помощь, а за то, что однажды он стал моим светом, когда я была в полной темноте. Сегодня , спустя 5 лет терапии, я так же могу обратиться к Саше, в моменты, когда жизнь продолжает подбрасывать мне новые испытания. И каждый раз, когда мне нужен взгляд со стороны, Саша остаётся человеком, который готов поддержать не за деньги, не «по записи», а по-человечески, по-настоящему. Я не знаю, как выразить это словами. Но если коротко Саша не просто изменил мою жизнь. Он вернул мне меня</p>
+                    <button class="testimonial-toggle" onclick="toggleTestimonial(this)">
+                        <span>Читать полностью</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                </div>
+
+                <!-- Анна Шевченко -->
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-header">
+                        <img src="images/avatars/avatar-anna.jpg" alt="Анна Шевченко" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="testimonial-avatar-placeholder" style="display:none;">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+                        </div>
+                        <div class="testimonial-author">Анна Шевченко</div>
+                    </div>
+                    <p class="testimonial-text testimonial-text-preview">Хочу от всей души поблагодарить и порекомендовать этого человека. Это человек, с которым легко, спокойно и даже можно улыбаться, когда, казалось бы, совсем не до смеха. Поддержка, понимание, чувство юмора...</p>
+                    <p class="testimonial-text testimonial-text-full">Хочу от всей души поблагодарить и порекомендовать этого человека. Это человек, с которым легко, спокойно и даже можно улыбаться, когда, казалось бы, совсем не до смеха. Поддержка, понимание, чувство юмора и умение быть рядом в нужный момент — всё это я получила в работе с ним . Спасибо за терпение, искренность и веру в меня . Я не устану повторять если бы в первый день приехал кто то другой , не было бы моих 7 лет . За что я очень тебе благодарна. Ты смог убедить меня в то ,что все возможно. И даже сейчас я всегда знаю что у меня есть человек которому я могу позвонить в любое и он возьмет трубку , поддержит и поможет . Спасибо тебе за всё . Люблю и уважаю</p>
+                    <button class="testimonial-toggle" onclick="toggleTestimonial(this)">
+                        <span>Читать полностью</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                </div>
+
+                <!-- Дави -->
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-header">
+                        <img src="images/avatars/avatar-davi.jpg" alt="Дави" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <div class="testimonial-avatar-placeholder" style="display:none;">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
+                        </div>
+                        <div class="testimonial-author">Дави</div>
+                    </div>
+                    <p class="testimonial-text testimonial-text-preview">Знаю Александра Александровича уже много лет. Встретились мы в самый тяжёлый момент моей жизни, когда я был в глубокой зависимости от химии. Он тогда не просто помог выбраться — он перевернул моё понимание себя...</p>
+                    <p class="testimonial-text testimonial-text-full">Знаю Александра Александровича уже много лет. Встретились мы в самый тяжёлый момент моей жизни, когда я был в глубокой зависимости от химии. Он тогда не просто помог выбраться — он перевернул моё понимание себя и жизни. Со временем он стал для меня не просто специалистом, а настоящим другом. И самое важное — я понял, что он невероятно сильный тренер по личностному росту. От него всегда хочется получать новую информацию, советы, понимание, потому что он объясняет всё по делу, честно, глубоко и так, что реально доходит. Я видел, как он помог многим моим знакомым — каждому по-своему, без шаблонов. У него есть этот редкий талант: видеть в человеке потенциал и вытягивать его наружу. Хотелось бы, чтобы таких людей было в мире намного больше. Сейчас я с уверенностью рекомендую его всем. Он помогает не просто справиться с зависимостью, а расти, меняться, становиться сильнее. Человек, которому можно доверять и у которого хочется учиться.</p>
+                    <button class="testimonial-toggle" onclick="toggleTestimonial(this)">
+                        <span>Читать полностью</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -2679,6 +2874,20 @@
         document.getElementById('successPopup').addEventListener('click', function(e) {
             if (e.target === this) closeSuccessPopup();
         });
+
+        // Testimonial toggle
+        function toggleTestimonial(btn) {
+            var card = btn.closest('.testimonial-card');
+            var isExpanded = card.classList.contains('expanded');
+
+            if (isExpanded) {
+                card.classList.remove('expanded');
+                btn.querySelector('span').textContent = 'Читать полностью';
+            } else {
+                card.classList.add('expanded');
+                btn.querySelector('span').textContent = 'Свернуть';
+            }
+        }
     </script>
 
     <!-- Privacy Policy Modal -->
