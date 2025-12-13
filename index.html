@@ -1305,6 +1305,47 @@
             fill: none;
         }
 
+        /* Ambient Sound Toggle */
+        .sound-toggle {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--dark-gray);
+            background: transparent;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--mid-gray);
+            transition: all 0.3s ease;
+            margin-left: 8px;
+        }
+
+        .sound-toggle:hover {
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        .sound-toggle.active {
+            border-color: var(--white);
+            color: var(--white);
+        }
+
+        .sound-toggle svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        [data-theme="neon"] .sound-toggle:hover,
+        [data-theme="neon"] .sound-toggle.active {
+            border-color: #8B5CF6;
+            color: #8B5CF6;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+        }
+
         /* Cal.com button styles - ensure buttons look like links */
         button.btn {
             background: transparent;
@@ -2603,6 +2644,10 @@
                     <a href="https://youtube.com/@aiexnes659" target="_blank" aria-label="YouTube">
                         <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
                     </a>
+                    <!-- Ambient Sound Toggle -->
+                    <button class="sound-toggle" id="soundToggle" onclick="toggleAmbientSound()" aria-label="Ambient sound">
+                        <svg viewBox="0 0 24 24"><path d="M2 10v4M6 6v12M10 3v18M14 8v8M18 5v14M22 9v6"/></svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -2880,6 +2925,64 @@
             } else {
                 card.classList.add('expanded');
                 btn.querySelector('span').textContent = 'Свернуть';
+            }
+        }
+
+        // Ambient Sound - Low frequency hum using Web Audio API
+        var ambientAudioContext = null;
+        var ambientOscillator = null;
+        var ambientGain = null;
+        var ambientIsPlaying = false;
+
+        function toggleAmbientSound() {
+            var btn = document.getElementById('soundToggle');
+
+            if (ambientIsPlaying) {
+                // Stop sound with fade out
+                if (ambientGain) {
+                    ambientGain.gain.exponentialRampToValueAtTime(0.0001, ambientAudioContext.currentTime + 0.5);
+                    setTimeout(function() {
+                        if (ambientOscillator) {
+                            ambientOscillator.stop();
+                            ambientOscillator = null;
+                        }
+                    }, 500);
+                }
+                ambientIsPlaying = false;
+                btn.classList.remove('active');
+            } else {
+                // Start sound
+                if (!ambientAudioContext) {
+                    ambientAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+                }
+
+                // Create oscillator for low frequency hum
+                ambientOscillator = ambientAudioContext.createOscillator();
+                ambientGain = ambientAudioContext.createGain();
+
+                // Very low frequency sine wave (~55Hz - low A note)
+                ambientOscillator.type = 'sine';
+                ambientOscillator.frequency.setValueAtTime(55, ambientAudioContext.currentTime);
+
+                // Add subtle modulation for organic feel
+                var lfo = ambientAudioContext.createOscillator();
+                var lfoGain = ambientAudioContext.createGain();
+                lfo.frequency.setValueAtTime(0.1, ambientAudioContext.currentTime);
+                lfoGain.gain.setValueAtTime(2, ambientAudioContext.currentTime);
+                lfo.connect(lfoGain);
+                lfoGain.connect(ambientOscillator.frequency);
+                lfo.start();
+
+                // Very quiet volume (0.015 = barely audible)
+                ambientGain.gain.setValueAtTime(0.0001, ambientAudioContext.currentTime);
+                ambientGain.gain.exponentialRampToValueAtTime(0.015, ambientAudioContext.currentTime + 1);
+
+                ambientOscillator.connect(ambientGain);
+                ambientGain.connect(ambientAudioContext.destination);
+                ambientOscillator.start();
+
+                ambientIsPlaying = true;
+                btn.classList.add('active');
             }
         }
     </script>
