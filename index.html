@@ -1597,10 +1597,6 @@
             padding-bottom: clamp(80px, 12vw, 160px);
         }
 
-        .carousel-header {
-            text-align: center;
-            margin-bottom: 48px;
-        }
 
         .carousel-container {
             position: relative;
@@ -1954,6 +1950,7 @@
                 <li><a href="#journey">Путь</a></li>
                 <li><a href="#services">Услуги</a></li>
                 <li><a href="#approach">Подход</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
                 <li><a href="#contact">Контакт</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()">
@@ -1970,6 +1967,7 @@
         <a href="#journey" onclick="toggleMenu()">Путь</a>
         <a href="#services" onclick="toggleMenu()">Услуги</a>
         <a href="#approach" onclick="toggleMenu()">Подход</a>
+        <a href="#reviews" onclick="toggleMenu()">Отзывы</a>
         <a href="#contact" onclick="toggleMenu()">Контакт</a>
         <!-- Theme Toggle for Mobile -->
         <div class="mobile-theme-toggle">
@@ -2333,7 +2331,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials">
+    <section class="testimonials" id="reviews">
         <div class="container">
             <div class="fade-in" style="text-align: center; max-width: 700px; margin: 0 auto;">
                 <span class="section-label">Отзывы</span>
@@ -2446,12 +2444,8 @@
     </section>
 
     <!-- Reviews Carousel Section -->
-    <section class="reviews-carousel" id="reviews">
+    <section class="reviews-carousel">
         <div class="container">
-            <div class="carousel-header fade-in">
-                <span class="section-label">Отзывы клиентов</span>
-                <h2 class="section-title">Реальные <strong>истории</strong></h2>
-            </div>
             <div class="carousel-container fade-in">
                 <div class="carousel-track">
                     <div class="carousel-slides" id="carouselSlides">
