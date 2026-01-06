@@ -2535,7 +2535,7 @@
                 <!-- Андрей Тиванюк -->
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-header">
-                        <img src="images/avatars/avatar-andrey.jpg" alt="Андрей Тиванюк" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <img src="images/avatars/avatar-andrey.jpg" alt="Андрей Тиванюк" class="testimonial-avatar">
                         <div class="testimonial-avatar-placeholder" style="display:none;">
                             <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
                         </div>
@@ -2552,7 +2552,7 @@
                 <!-- Макс Толмачев -->
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-header">
-                        <img src="images/avatars/avatar-max.jpg" alt="Макс Толмачев" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <img src="images/avatars/avatar-max.jpg" alt="Макс Толмачев" class="testimonial-avatar">
                         <div class="testimonial-avatar-placeholder" style="display:none;">
                             <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
                         </div>
@@ -2569,7 +2569,7 @@
                 <!-- Саша -->
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-header">
-                        <img src="images/avatars/avatar-sasha.jpg" alt="Саша" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <img src="images/avatars/avatar-sasha.jpg" alt="Саша" class="testimonial-avatar">
                         <div class="testimonial-avatar-placeholder" style="display:none;">
                             <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
                         </div>
@@ -2586,7 +2586,7 @@
                 <!-- Айшат -->
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-header">
-                        <img src="images/avatars/avatar-ayshat.jpg" alt="Айшат" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <img src="images/avatars/avatar-ayshat.jpg" alt="Айшат" class="testimonial-avatar">
                         <div class="testimonial-avatar-placeholder" style="display:none;">
                             <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
                         </div>
@@ -2603,7 +2603,7 @@
                 <!-- Анна Шевченко -->
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-header">
-                        <img src="images/avatars/avatar-anna.jpg" alt="Анна Шевченко" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <img src="images/avatars/avatar-anna.jpg" alt="Анна Шевченко" class="testimonial-avatar">
                         <div class="testimonial-avatar-placeholder" style="display:none;">
                             <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
                         </div>
@@ -2620,7 +2620,7 @@
                 <!-- Мари -->
                 <div class="testimonial-card fade-in">
                     <div class="testimonial-header">
-                        <img src="images/avatars/avatar-davi.jpg" alt="Мари" class="testimonial-avatar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                        <img src="images/avatars/avatar-davi.jpg" alt="Мари" class="testimonial-avatar">
                         <div class="testimonial-avatar-placeholder" style="display:none;">
                             <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-7 8-7s8 3 8 7"/></svg>
                         </div>
@@ -2837,6 +2837,20 @@
             const savedTheme = getTheme();
             setTheme(savedTheme);
         })();
+
+        // Handle avatar image errors securely
+        document.addEventListener('DOMContentLoaded', function() {
+            const avatarImages = document.querySelectorAll('.testimonial-avatar');
+            avatarImages.forEach(function(img) {
+                img.addEventListener('error', function() {
+                    this.style.display = 'none';
+                    const placeholder = this.nextElementSibling;
+                    if (placeholder && placeholder.classList.contains('testimonial-avatar-placeholder')) {
+                        placeholder.style.display = 'flex';
+                    }
+                });
+            });
+        });
 
         // Navigation scroll effect
         const nav = document.querySelector('nav');
