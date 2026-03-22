@@ -218,7 +218,7 @@
 
         /* Blog Hero */
         .blog-hero {
-            padding: 160px 0 80px;
+            padding: 40px 0 80px;
             text-align: center;
         }
 
@@ -228,6 +228,44 @@
             color: var(--white);
             letter-spacing: 0.05em;
             margin-bottom: 16px;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            padding: 100px 0 0;
+        }
+
+        .breadcrumbs ul {
+            list-style: none;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .breadcrumbs li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .breadcrumbs a {
+            color: var(--mid-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumbs a:hover {
+            color: var(--white);
+        }
+
+        .breadcrumbs .separator {
+            color: var(--dark-gray);
+            font-size: 11px;
+        }
+
+        .breadcrumbs .current {
+            color: var(--light-gray);
         }
 
         .blog-hero p {
@@ -514,8 +552,8 @@
             <ul class="nav-links">
                 <li><a href="index.html#about">Об Алексе</a></li>
                 <li><a href="index.html#services">Услуги</a></li>
-                <li><a href="index.html#contact">Контакт</a></li>
                 <li><a href="blog.html" style="color: var(--white);">Блог</a></li>
+                <li><a href="index.html#contact">Контакт</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()">
                 <span></span>
@@ -530,8 +568,19 @@
         <a href="index.html" onclick="toggleMenu()">Главная</a>
         <a href="index.html#about" onclick="toggleMenu()">Об Алексе</a>
         <a href="index.html#services" onclick="toggleMenu()">Услуги</a>
-        <a href="index.html#contact" onclick="toggleMenu()">Контакт</a>
         <a href="blog.html" onclick="toggleMenu()">Блог</a>
+        <a href="index.html#contact" onclick="toggleMenu()">Контакт</a>
+    </div>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><span class="separator">/</span></li>
+                <li><span class="current">Блог</span></li>
+            </ul>
+        </div>
     </div>
 
     <!-- Blog Hero -->
