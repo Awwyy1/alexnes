@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Как не потерять себя, помогая зависимому — о границах, поддержке и терапии для близких.">
+    <title>Как не потерять себя, помогая зависимому — AlexNes</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0a0a0a; --coal: #1a1a1a; --dark-gray: #2a2a2a; --mid-gray: #666666;
+            --light-gray: #b0b0b0; --off-white: #f0f0f0; --white: #ffffff;
+            --font-main: 'Montserrat', -apple-system, sans-serif;
+            --btn-radius: 0; --accent-primary: var(--white); --glow-color: rgba(255,255,255,0.15);
+        }
+        [data-theme="neon"] {
+            --black: #0c0a1a; --coal: #13102a; --dark-gray: #1e1a3a; --mid-gray: #6b7280;
+            --light-gray: #9ca3af; --off-white: #e5e7eb; --white: #f9fafb;
+            --btn-radius: 50px; --accent-primary: #8B5CF6; --glow-color: rgba(139,92,246,0.3);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); background: var(--black); color: var(--light-gray); line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 0; transition: all 0.4s ease; background: transparent; }
+        nav.scrolled { background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); padding: 16px 0; }
+        [data-theme="neon"] nav.scrolled { background: rgba(12,10,26,0.95); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 18px; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.05em; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--white); }
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+        .mobile-menu-btn span { width: 24px; height: 1px; background: var(--white); transition: all 0.3s ease; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); z-index: 99; flex-direction: column; justify-content: center; align-items: center; gap: 32px; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--white); text-decoration: none; font-size: 24px; font-weight: 300; letter-spacing: 0.1em; }
+        .article-header { padding: 160px 0 48px; max-width: 760px; margin: 0 auto; }
+        .article-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-primary); margin-bottom: 20px; }
+        [data-theme="classic"] .article-tag { color: var(--light-gray); }
+        .article-header h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 600; color: var(--white); line-height: 1.3; margin-bottom: 16px; }
+        .article-content { max-width: 760px; margin: 0 auto; padding-bottom: 80px; }
+        .placeholder-notice { text-align: center; padding: 80px 0; }
+        .placeholder-notice p { font-size: 18px; color: var(--mid-gray); }
+        .article-back { display: inline-block; color: var(--white); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--mid-gray); padding: 14px 32px; border-radius: var(--btn-radius); transition: all 0.3s ease; margin-bottom: 80px; }
+        .article-back:hover { border-color: var(--white); background: var(--white); color: var(--black); }
+        [data-theme="neon"] .article-back:hover { border-color: var(--accent-primary); background: var(--accent-primary); color: var(--white); box-shadow: 0 0 30px var(--glow-color); }
+        footer { background: var(--black); padding: 60px 0 40px; border-top: 1px solid var(--dark-gray); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+        .footer-logo { font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: 0.15em; text-transform: uppercase; }
+        .footer-tagline { font-size: 13px; font-weight: 300; color: var(--mid-gray); margin-top: 8px; }
+        .footer-links { display: flex; gap: 32px; list-style: none; }
+        .footer-links a { color: var(--mid-gray); text-decoration: none; font-size: 13px; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--dark-gray); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-copyright { font-size: 12px; font-weight: 300; color: var(--mid-gray); }
+        .footer-social { display: flex; gap: 16px; }
+        .footer-social a { width: 40px; height: 40px; border: 1px solid var(--dark-gray); display: flex; align-items: center; justify-content: center; color: var(--mid-gray); transition: all 0.3s ease; }
+        .footer-social a:hover { border-color: var(--white); color: var(--white); }
+        .footer-social svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .article-header { padding: 120px 24px 32px; }
+            .article-content { padding: 0 24px 60px; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-inner">
+            <a href="../index.html" class="logo">AlexNes</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#about">Об Алексе</a></li>
+                <li><a href="../index.html#services">Услуги</a></li>
+                <li><a href="../index.html#contact">Контакт</a></li>
+                <li><a href="../blog.html">Блог</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html" onclick="toggleMenu()">Главная</a>
+        <a href="../index.html#about" onclick="toggleMenu()">Об Алексе</a>
+        <a href="../index.html#services" onclick="toggleMenu()">Услуги</a>
+        <a href="../index.html#contact" onclick="toggleMenu()">Контакт</a>
+        <a href="../blog.html" onclick="toggleMenu()">Блог</a>
+    </div>
+
+    <div class="article-header container">
+        <span class="article-tag">Семья</span>
+        <h1>Как не потерять себя, помогая зависимому</h1>
+    </div>
+
+    <div class="article-content container">
+        <div class="placeholder-notice">
+            <p>Статья готовится к публикации</p>
+        </div>
+        <a href="../blog.html" class="article-back">&larr; Назад к блогу</a>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div>
+                    <div class="footer-logo">AlexNes</div>
+                    <p class="footer-tagline">Терапия зависимостей. Реальный опыт. Настоящая помощь.</p>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="../index.html#about">Об Алексе</a></li>
+                    <li><a href="../index.html#services">Услуги</a></li>
+                    <li><a href="../index.html#contact">Контакт</a></li>
+                    <li><a href="../blog.html">Блог</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 AlexNes. Все права защищены.</p>
+                <div class="footer-social">
+                    <a href="https://t.me/nesterealex" target="_blank" aria-label="Telegram"><svg viewBox="0 0 24 24"><path d="M21 5L2 12.5l7 1M21 5l-2 14-8-6.5M21 5L9 13.5m0 0V19l3.5-3.5"/></svg></a>
+                    <a href="https://instagram.com/alex.nes.161" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1"/></svg></a>
+                    <a href="https://youtube.com/@aiexnes659" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function getTheme() { return localStorage.getItem('theme') || 'neon'; }
+        function setTheme(theme) { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); }
+        (function() { setTheme(getTheme()); })();
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
+        function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); document.querySelector('.mobile-menu-btn').classList.toggle('active'); }
+    </script>
+</body>
+</html>
