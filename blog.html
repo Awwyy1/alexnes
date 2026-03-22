@@ -252,7 +252,6 @@
             position: relative;
             overflow: hidden;
             transition: all 0.5s var(--ease-out-expo);
-            border-radius: var(--btn-radius) > 0 ? 16px : 0;
         }
 
         .blog-card::before {
@@ -268,6 +267,7 @@
             opacity: 0.3;
             transition: opacity 0.3s ease;
             border-radius: inherit;
+            pointer-events: none;
         }
 
         .blog-card:hover {
