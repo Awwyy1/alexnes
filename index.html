@@ -6,6 +6,23 @@
     <meta name="description" content="AlexNes — терапия зависимостей, основанная на реальном жизненном опыте. 11 лет трезвости. Реальный путь. Настоящая помощь.">
     <title>AlexNes — Терапия зависимостей | Реальный опыт. Настоящая помощь.</title>
     <link rel="canonical" href="https://www.alexnes.com/" />
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.alexnes.com/">
+    <meta property="og:title" content="AlexNes — Терапия зависимостей | Реальный опыт. Настоящая помощь.">
+    <meta property="og:description" content="Терапия зависимостей, основанная на реальном жизненном опыте. 11 лет трезвости. Индивидуальные консультации.">
+    <meta property="og:image" content="https://www.alexnes.com/favicon.svg">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="AlexNes">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="AlexNes — Терапия зависимостей">
+    <meta name="twitter:description" content="Терапия зависимостей, основанная на реальном жизненном опыте. 11 лет трезвости.">
+    <meta name="twitter:image" content="https://www.alexnes.com/favicon.svg">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -2162,7 +2179,7 @@
                 <li><a href="blog.html">Блог</a></li>
                 <li><a href="#contact">Контакт</a></li>
             </ul>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -2181,13 +2198,14 @@
         <a href="#contact" onclick="toggleMenu()">Контакт</a>
         <!-- Theme Toggle for Mobile -->
         <div class="mobile-theme-toggle">
-            <div class="theme-toggle" onclick="toggleTheme()">
+            <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Переключить тему">
                 <span class="theme-toggle-label" id="mobileThemeLabel">Classic</span>
                 <div class="theme-toggle-switch"></div>
             </div>
         </div>
     </div>
 
+    <main>
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-bg"></div>
@@ -2781,6 +2799,8 @@
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -2799,7 +2819,7 @@
             <div class="footer-bottom">
                 <p class="footer-copyright">© 2025 AlexNes. Все права защищены.</p>
                 <!-- Theme Toggle for Desktop -->
-                <div class="theme-toggle" onclick="toggleTheme()">
+                <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Переключить тему">
                     <span class="theme-toggle-label" id="desktopThemeLabel">Classic</span>
                     <div class="theme-toggle-switch"></div>
                 </div>
@@ -2884,6 +2904,9 @@
             const burgerBtn = document.querySelector('.mobile-menu-btn');
             menu.classList.toggle('active');
             burgerBtn.classList.toggle('active');
+            const isOpen = menu.classList.contains('active');
+            burgerBtn.setAttribute('aria-expanded', isOpen);
+            burgerBtn.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
         }
 
         // Scroll animations

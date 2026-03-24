@@ -5,7 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Почему важно доверять специалистам в терапии зависимости и не пытаться контролировать процесс выздоровления самостоятельно.">
     <title>Вы когда приходите к хирургу, тоже руководите процессом? — AlexNes</title>
+    <link rel="canonical" href="https://www.alexnes.com/blog/article-4.html" />
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.alexnes.com/blog/article-4.html">
+    <meta property="og:title" content="Вы когда приходите к хирургу, тоже руководите процессом? — AlexNes">
+    <meta property="og:description" content="Почему важно доверять специалистам в терапии зависимости и не пытаться контролировать процесс выздоровления.">
+    <meta property="og:image" content="https://www.alexnes.com/favicon.svg">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="AlexNes">
+    <meta property="article:author" content="AlexNes">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Доверие к специалистам в терапии зависимости">
+    <meta name="twitter:description" content="Почему важно доверять специалистам и не пытаться контролировать процесс выздоровления.">
+    <meta name="twitter:image" content="https://www.alexnes.com/favicon.svg">
+
+    <!-- JSON-LD Article Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Article",
+                "headline": "Вы когда приходите к хирургу, тоже руководите процессом?",
+                "description": "Почему важно доверять специалистам в терапии зависимости и не пытаться контролировать процесс выздоровления.",
+                "url": "https://www.alexnes.com/blog/article-4.html",
+                "author": {
+                    "@type": "Person",
+                    "name": "AlexNes",
+                    "url": "https://www.alexnes.com"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "AlexNes",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://www.alexnes.com/favicon.svg"
+                    }
+                },
+                "mainEntityOfPage": "https://www.alexnes.com/blog/article-4.html",
+                "inLanguage": "ru-RU",
+                "articleSection": "Доверие"
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://www.alexnes.com/" },
+                    { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://www.alexnes.com/blog.html" },
+                    { "@type": "ListItem", "position": 3, "name": "Доверие к специалистам" }
+                ]
+            }
+        ]
+    }
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="apple-touch-icon" href="../favicon.svg">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9MGJNMBVG"></script>
@@ -101,7 +161,7 @@
                 <li><a href="../blog.html">Блог</a></li>
                 <li><a href="../index.html#contact">Контакт</a></li>
             </ul>
-            <button class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
         </div>
     </nav>
     <div class="mobile-menu" id="mobileMenu">
@@ -112,15 +172,16 @@
         <a href="../index.html#contact" onclick="toggleMenu()">Контакт</a>
     </div>
 
-    <div class="breadcrumbs container">
+    <main>
+    <nav class="breadcrumbs container" aria-label="Хлебные крошки">
         <ul>
             <li><a href="../index.html">Главная</a></li>
             <li><span class="separator">/</span></li>
             <li><a href="../blog.html">Блог</a></li>
             <li><span class="separator">/</span></li>
-            <li><span class="current">Доверие к специалистам</span></li>
+            <li><span class="current" aria-current="page">Доверие к специалистам</span></li>
         </ul>
-    </div>
+    </nav>
 
     <div class="article-header container">
         <span class="article-tag">Доверие</span>
@@ -156,6 +217,7 @@
         <a href="../blog.html" class="article-back">&larr; Назад к блогу</a>
 
     </div>
+    </main>
 
     <footer>
         <div class="container">
@@ -188,7 +250,15 @@
         (function() { setTheme(getTheme()); })();
         const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });
-        function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); document.querySelector('.mobile-menu-btn').classList.toggle('active'); }
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const btn = document.querySelector('.mobile-menu-btn');
+            menu.classList.toggle('active');
+            btn.classList.toggle('active');
+            const isOpen = menu.classList.contains('active');
+            btn.setAttribute('aria-expanded', isOpen);
+            btn.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+        }
     </script>
 </body>
 </html>
