@@ -135,7 +135,7 @@
         }
 
         /* Navigation */
-        nav {
+        nav:not(.breadcrumbs) {
             position: fixed;
             top: 0;
             left: 0;
@@ -146,13 +146,13 @@
             background: var(--black);
         }
 
-        nav.scrolled {
+        nav:not(.breadcrumbs).scrolled {
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             padding: 16px 0;
         }
 
-        [data-theme="neon"] nav.scrolled {
+        [data-theme="neon"] nav:not(.breadcrumbs).scrolled {
             background: rgba(12, 10, 26, 0.95);
         }
 
