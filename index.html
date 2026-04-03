@@ -35,6 +35,7 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-D9MGJNMBVG');
+        gtag('config', 'AW-18060459277');
     </script>
 
     <!-- Microsoft Clarity -->
@@ -2881,6 +2882,17 @@
             const savedTheme = getTheme();
             setTheme(savedTheme);
         })();
+
+        // Google Ads: track WhatsApp button clicks as conversions
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href*="wa.me"]').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-18060459277/DSA7CNG05pQcEI368qND'
+                    });
+                });
+            });
+        });
 
         // Handle avatar image errors securely
         document.addEventListener('DOMContentLoaded', function() {
