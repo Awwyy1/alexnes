@@ -3108,8 +3108,13 @@
         }
 
         // Close modal on overlay click
-        document.getElementById('privacyModal').addEventListener('click', function(e) {
-            if (e.target === this) closePrivacy();
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('privacyModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) closePrivacy();
+                });
+            }
         });
 
         // Close modal on Escape key
