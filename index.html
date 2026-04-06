@@ -201,6 +201,76 @@
     }
     </script>
 
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Как проходит первая консультация?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Первая встреча - это знакомство. Вы рассказываете свою ситуацию, я оцениваю, чем могу помочь. Без давления, без обязательств. Обычно длится 60 минут. После первой консультации вы решаете, хотите ли продолжать." }
+            },
+            {
+                "@type": "Question",
+                "name": "Чем ваш подход отличается от классических психологов?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Я сам прошёл через зависимость и уже более 11 лет живу трезво. Это не теория из учебника - это реальный опыт. Я знаю, как думает зависимый, как он манипулирует, чего боится. Это позволяет работать на другом уровне доверия." }
+            },
+            {
+                "@type": "Question",
+                "name": "Консультации проходят онлайн или очно?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Только онлайн. Это позволяет работать с клиентами из любой точки мира. Нужен только телефон или компьютер и стабильный интернет." }
+            },
+            {
+                "@type": "Question",
+                "name": "Сколько нужно консультаций, чтобы увидеть результат?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Зависит от ситуации. Кто-то чувствует изменения после первой встречи, кому-то нужно несколько месяцев регулярной работы. Зависимость формировалась годами - быстрого волшебства не будет, но первые сдвиги обычно заметны в течение первого месяца." }
+            },
+            {
+                "@type": "Question",
+                "name": "Вы используете медикаменты в работе?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Нет. Моя работа - это терапия без таблеток и препаратов. Чистая работа над собой, над мышлением, поведением и эмоциями." }
+            },
+            {
+                "@type": "Question",
+                "name": "Что делать, если близкий человек в запое/срыве прямо сейчас?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Напишите мне в WhatsApp. Я на связи и готов помочь в кризисной ситуации. Вместе определим, что делать прямо сейчас и какие шаги предпринять дальше." }
+            },
+            {
+                "@type": "Question",
+                "name": "Сколько стоит консультация?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Индивидуальная консультация - €70 за 60 минут. Также есть групповая терапия, работа с созависимостью и другие форматы." }
+            },
+            {
+                "@type": "Question",
+                "name": "Гарантируете ли вы результат?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Гарантировать трезвость невозможно - это зависит от самого человека. Но я гарантирую свою вовлечённость, честность и поддержку на каждом этапе. У моих клиентов 5-7 лет трезвости - это говорит само за себя." }
+            },
+            {
+                "@type": "Question",
+                "name": "Как записаться на консультацию?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Напишите мне в WhatsApp - это самый быстрый способ. Мы договоримся об удобном времени и формате. Никаких анкет и бюрократии." }
+            },
+            {
+                "@type": "Question",
+                "name": "Вы работаете с родственниками зависимых?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Да, и это одно из ключевых направлений. Часто именно близкие обращаются первыми. Я помогаю разобраться в ситуации, перестать быть спасателем и выстроить границы, которые дадут зависимому возможность взять ответственность на себя." }
+            },
+            {
+                "@type": "Question",
+                "name": "Можно ли обратиться анонимно?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Да. Полная конфиденциальность. Я не передаю информацию о клиентах третьим лицам. Вы можете представиться любым именем." }
+            },
+            {
+                "@type": "Question",
+                "name": "Что если я уже проходил реабилитацию и сорвался?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Срыв - это не приговор и не провал. Многие мои клиенты приходили после нескольких неудачных попыток. Важно не сколько раз ты упал, а что ты встаёшь и пробуешь по-другому. Мы разберём, почему произошёл срыв, и выстроим новую стратегию." }
+            }
+        ]
+    }
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1230,6 +1300,57 @@
 
         [data-theme="neon"] .testimonial-toggle:hover {
             color: #A855F7;
+        }
+
+        /* FAQ Section */
+        .faq { padding: 120px 0; background: var(--black); }
+        .faq .section-label { display: block; text-align: center; margin-bottom: 16px; }
+        .faq h2 { text-align: center; font-size: clamp(28px, 4vw, 42px); font-weight: 600; color: var(--white); margin-bottom: 60px; }
+        .faq-list { max-width: 760px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--dark-gray); }
+        .faq-item:first-child { border-top: 1px solid var(--dark-gray); }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            font-family: var(--font-main);
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--white);
+            letter-spacing: 0.02em;
+            transition: color 0.3s ease;
+        }
+        .faq-question:hover { color: var(--accent-primary); }
+        [data-theme="classic"] .faq-question:hover { color: var(--light-gray); }
+        .faq-question svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--mid-gray);
+            stroke-width: 1.5;
+            fill: none;
+            flex-shrink: 0;
+            margin-left: 16px;
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-question svg { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+        .faq-item.active .faq-answer { max-height: 500px; }
+        .faq-answer p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--light-gray);
+            font-weight: 300;
+            padding-bottom: 24px;
         }
 
         /* CTA Section */
@@ -2727,6 +2848,137 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <span class="section-label">FAQ</span>
+            <h2>Часто задаваемые вопросы</h2>
+            <div class="faq-list fade-in">
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Как проходит первая консультация?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Первая встреча - это знакомство. Вы рассказываете свою ситуацию, я оцениваю, чем могу помочь. Без давления, без обязательств. Обычно длится 60 минут. После первой консультации вы решаете, хотите ли продолжать.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Чем ваш подход отличается от классических психологов?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Я сам прошёл через зависимость и уже более 11 лет живу трезво. Это не теория из учебника - это реальный опыт. Я знаю, как думает зависимый, как он манипулирует, чего боится. Это позволяет работать на другом уровне доверия.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Консультации проходят онлайн или очно?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Только онлайн. Это позволяет работать с клиентами из любой точки мира. Нужен только телефон или компьютер и стабильный интернет.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Сколько нужно консультаций, чтобы увидеть результат?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Зависит от ситуации. Кто-то чувствует изменения после первой встречи, кому-то нужно несколько месяцев регулярной работы. Зависимость формировалась годами - быстрого волшебства не будет, но первые сдвиги обычно заметны в течение первого месяца.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Вы используете медикаменты в работе?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Нет. Моя работа - это терапия без таблеток и препаратов. Чистая работа над собой, над мышлением, поведением и эмоциями. Как говорит один из моих клиентов - "0 таблеток".</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Что делать, если близкий человек в запое/срыве прямо сейчас?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Напишите мне в WhatsApp. Я на связи и готов помочь в кризисной ситуации. Вместе определим, что делать прямо сейчас и какие шаги предпринять дальше.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Сколько стоит консультация?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Индивидуальная консультация - €70 за 60 минут. Также есть групповая терапия, работа с созависимостью и другие форматы. Подробнее в разделе «Услуги» выше.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Гарантируете ли вы результат?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Гарантировать трезвость невозможно - это зависит от самого человека. Но я гарантирую свою вовлечённость, честность и поддержку на каждом этапе. У моих клиентов 5-7 лет трезвости - это говорит само за себя.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Как записаться на консультацию?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Напишите мне в WhatsApp - это самый быстрый способ. Мы договоримся об удобном времени и формате. Никаких анкет и бюрократии.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Вы работаете с родственниками зависимых?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Да, и это одно из ключевых направлений. Часто именно близкие обращаются первыми. Я помогаю разобраться в ситуации, перестать быть "спасателем" и выстроить границы, которые дадут зависимому возможность взять ответственность на себя.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Можно ли обратиться анонимно?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Да. Полная конфиденциальность. Я не передаю информацию о клиентах третьим лицам. Вы можете представиться любым именем.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Что если я уже проходил реабилитацию и сорвался?</span>
+                        <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Срыв - это не приговор и не провал. Многие мои клиенты приходили после нескольких неудачных попыток. Важно не сколько раз ты упал, а что ты встаёшь и пробуешь по-другому. Мы разберём, почему произошёл срыв, и выстроим новую стратегию.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="cta">
         <div class="cta-glow"></div>
@@ -3148,6 +3400,12 @@
         document.getElementById('successPopup').addEventListener('click', function(e) {
             if (e.target === this) closeSuccessPopup();
         });
+
+        // FAQ toggle
+        function toggleFaq(btn) {
+            var item = btn.closest('.faq-item');
+            item.classList.toggle('active');
+        }
 
         // Testimonial toggle
         function toggleTestimonial(btn) {
