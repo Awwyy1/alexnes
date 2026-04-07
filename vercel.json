@@ -1,4 +1,10 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/yandex_7e21a34334727962.html",
+      "destination": "/yandex_7e21a34334727962.html"
+    }
+  ]
 }
