@@ -784,7 +784,6 @@
             gap: 60px;
             margin-top: 80px;
             padding-top: 40px;
-            padding-bottom: 24px;
             border-top: 1px solid var(--dark-gray);
             opacity: 0;
             animation: fade-in-up 1s var(--ease-out-expo) 1s forwards;
@@ -1756,10 +1755,6 @@
                 gap: 32px;
             }
 
-            .hero-stat.sobriety-stat {
-                padding-bottom: 20px;
-            }
-            
             .services-grid {
                 grid-template-columns: 1fr;
             }
@@ -1971,72 +1966,6 @@
         [data-theme="neon"] ::selection {
             background: #8B5CF6;
             color: #ffffff;
-        }
-
-        /* Scroll Progress Bar */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            width: 0%;
-            background: var(--white);
-            z-index: 9999;
-            pointer-events: none;
-        }
-
-        .scroll-progress::after {
-            content: '';
-            position: absolute;
-            right: -1px;
-            top: -3px;
-            width: 6px;
-            height: 9px;
-            border-radius: 50%;
-            background: inherit;
-            box-shadow: 0 0 10px var(--white), 0 0 20px var(--white);
-            opacity: 0.8;
-        }
-
-        [data-theme="neon"] .scroll-progress {
-            background: linear-gradient(90deg, #8B5CF6, #A855F7, #10B981);
-        }
-
-        [data-theme="neon"] .scroll-progress::after {
-            box-shadow: 0 0 10px #8B5CF6, 0 0 25px #8B5CF6;
-        }
-
-        /* Sobriety Counter */
-        .hero-stat.sobriety-stat {
-            position: relative;
-        }
-
-        .sobriety-detail {
-            position: absolute;
-            left: 0;
-            top: 100%;
-            margin-top: 8px;
-            font-size: clamp(10px, 1.1vw, 12px);
-            font-weight: 400;
-            color: var(--mid-gray);
-            letter-spacing: 0.04em;
-            font-variant-numeric: tabular-nums;
-            white-space: nowrap;
-            opacity: 0.7;
-        }
-
-        @keyframes sobriety-tick {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        .sobriety-sep {
-            animation: sobriety-tick 1s ease-in-out infinite;
-            margin: 0 1px;
-        }
-
-        [data-theme="neon"] .sobriety-detail {
-            color: rgba(139, 92, 246, 0.5);
         }
 
         /* Neon Theme - CTA pulse animation */
@@ -2399,9 +2328,6 @@
     </style>
 </head>
 <body>
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-
     <!-- Navigation -->
     <nav>
         <div class="container nav-inner">
@@ -2468,12 +2394,9 @@
                     <a href="#services" class="btn btn-secondary">Узнать программы</a>
                 </div>
                 <div class="hero-stats">
-                    <div class="hero-stat sobriety-stat">
-                        <div class="hero-stat-value" id="sobrietyYears">11</div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">11+</div>
                         <div class="hero-stat-label">лет трезвости</div>
-                        <div class="sobriety-detail" id="sobrietyDetail">
-                            <span id="sobrietyMonths">—</span> мес · <span id="sobrietyDays">—</span> дн · <span class="sobriety-time"><span id="sobrietyHours">--</span><span class="sobriety-sep">:</span><span id="sobrietyMinutes">--</span><span class="sobriety-sep">:</span><span id="sobrietySeconds">--</span></span>
-                        </div>
                     </div>
                     <div class="hero-stat">
                         <div class="hero-stat-value">100+</div>
@@ -3597,80 +3520,6 @@
             }
         }
 
-        // === Scroll Progress Bar ===
-        (function() {
-            var progressBar = document.getElementById('scrollProgress');
-            if (!progressBar) return;
-
-            function updateProgress() {
-                var scrollTop = window.scrollY || document.documentElement.scrollTop;
-                var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-                var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-                progressBar.style.width = progress + '%';
-            }
-
-            window.addEventListener('scroll', updateProgress, { passive: true });
-            updateProgress();
-        })();
-
-        // === Sobriety Counter ===
-        (function() {
-            var SOBRIETY_START = new Date(2014, 10, 7, 0, 0, 0); // November 7, 2014
-
-            var elYears = document.getElementById('sobrietyYears');
-            var elMonths = document.getElementById('sobrietyMonths');
-            var elDays = document.getElementById('sobrietyDays');
-            var elHours = document.getElementById('sobrietyHours');
-            var elMinutes = document.getElementById('sobrietyMinutes');
-            var elSeconds = document.getElementById('sobrietySeconds');
-
-            if (!elYears) return;
-
-            function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-            function calcDiff(now) {
-                var years = now.getFullYear() - SOBRIETY_START.getFullYear();
-                var months = now.getMonth() - SOBRIETY_START.getMonth();
-                var days = now.getDate() - SOBRIETY_START.getDate();
-                var hours = now.getHours();
-                var minutes = now.getMinutes();
-                var seconds = now.getSeconds();
-
-                if (days < 0) {
-                    months--;
-                    var prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-                    days += prevMonth.getDate();
-                }
-                if (months < 0) {
-                    years--;
-                    months += 12;
-                }
-
-                return {
-                    years: years,
-                    months: months,
-                    days: days,
-                    hours: hours,
-                    minutes: minutes,
-                    seconds: seconds
-                };
-            }
-
-            function update() {
-                var now = new Date();
-                var d = calcDiff(now);
-
-                elYears.textContent = d.years;
-                elMonths.textContent = d.months;
-                elDays.textContent = d.days;
-                elHours.textContent = pad(d.hours);
-                elMinutes.textContent = pad(d.minutes);
-                elSeconds.textContent = pad(d.seconds);
-            }
-
-            update();
-            setInterval(update, 1000);
-        })();
     </script>
 
     <!-- Privacy Policy Modal -->
