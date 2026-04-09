@@ -1,6 +1,17 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/blog/article-1", "destination": "/blog/kogda-v-vash-dom-prishyol-ubijca", "permanent": true },
+    { "source": "/blog/article-2", "destination": "/blog/smirenie-eto-ne-podchinenie", "permanent": true },
+    { "source": "/blog/article-3", "destination": "/blog/ottolknutsya-ot-dna", "permanent": true },
+    { "source": "/blog/article-4", "destination": "/blog/vy-kogda-prihodite-k-hirurgu", "permanent": true },
+    { "source": "/blog/article-5", "destination": "/blog/narkoman-iz-prilichnoj-semi", "permanent": true },
+    { "source": "/blog/article-6", "destination": "/blog/kak-sekonomit-na-reabilitacii", "permanent": true },
+    { "source": "/blog/article-7", "destination": "/blog/zhivoj-ili-myortvyj", "permanent": true },
+    { "source": "/blog/article-8", "destination": "/blog/narkoman-eto-ne-vsegda-tot", "permanent": true },
+    { "source": "/blog/article-9", "destination": "/blog/davajte-dejstvovat-zaodno", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
