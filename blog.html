@@ -98,7 +98,7 @@
         }
 
         /* Navigation */
-        nav {
+        nav:not(.breadcrumbs) {
             position: fixed;
             top: 0;
             left: 0;
@@ -109,13 +109,13 @@
             background: transparent;
         }
 
-        nav.scrolled {
+        nav:not(.breadcrumbs).scrolled {
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(20px);
             padding: 16px 0;
         }
 
-        [data-theme="neon"] nav.scrolled {
+        [data-theme="neon"] nav:not(.breadcrumbs).scrolled {
             background: rgba(12, 10, 26, 0.95);
         }
 
@@ -776,7 +776,7 @@
         (function() { setTheme(getTheme()); })();
 
         // Nav scroll
-        const nav = document.querySelector('nav');
+        const nav = document.querySelector('nav:not(.breadcrumbs)');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 nav.classList.add('scrolled');
