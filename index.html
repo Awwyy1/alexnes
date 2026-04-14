@@ -1139,7 +1139,32 @@
             color: var(--mid-gray);
             font-weight: 400;
         }
-        
+
+        .btn-details {
+            font-family: var(--font-main);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--light-gray);
+            text-decoration: none;
+            border: 1px solid var(--mid-gray);
+            padding: 6px 14px;
+            border-radius: var(--btn-radius);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            margin-left: auto;
+        }
+        .btn-details:hover {
+            border-color: var(--white);
+            color: var(--white);
+        }
+        [data-theme="neon"] .btn-details:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: 0 0 20px var(--glow-color);
+        }
+
         /* Approach Section */
         .approach {
             background: var(--coal);
@@ -2857,11 +2882,8 @@
                         <li>Проработка глубинных страхов</li>
                         <li>Восстановление чувства безопасности</li>
                     </ul>
-                    <div class="service-price">€70 <span>/ сессия</span></div>
-                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                        <a href="trevoga-i-panicheskie-ataki" class="btn btn-secondary">Подробнее</a>
-                        <a href="https://wa.me/491626027760" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Записаться</a>
-                    </div>
+                    <div class="service-price" style="display: flex; align-items: center; gap: 16px;">€70 <span>/ сессия</span> <a href="trevoga-i-panicheskie-ataki" class="btn-details">Подробнее</a></div>
+                    <a href="https://wa.me/491626027760" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Записаться</a>
                 </div>
 
                 <!-- Trauma & PTSD -->
