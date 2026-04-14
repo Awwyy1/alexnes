@@ -1141,6 +1141,17 @@
             font-weight: 400;
         }
 
+        .service-price-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            margin-top: auto;
+        }
+        .service-price-row .service-price {
+            margin-bottom: 0;
+        }
+
         .btn-details {
             font-family: var(--font-main);
             font-size: 10px;
@@ -2883,7 +2894,10 @@
                         <li>Проработка глубинных страхов</li>
                         <li>Восстановление чувства безопасности</li>
                     </ul>
-                    <div class="service-price" style="display: flex; align-items: baseline; gap: 16px;"><span>€70 <span>/ сессия</span></span> <a href="trevoga-i-panicheskie-ataki" class="btn-details">Подробнее</a></div>
+                    <div class="service-price-row">
+                        <div class="service-price">€70 <span>/ сессия</span></div>
+                        <a href="trevoga-i-panicheskie-ataki" class="btn-details">Подробнее</a>
+                    </div>
                     <a href="https://wa.me/491626027760" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Записаться</a>
                 </div>
 
