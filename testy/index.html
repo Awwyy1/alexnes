@@ -72,13 +72,16 @@
         .tests-catalog h1 { font-size:clamp(28px,4vw,42px);font-weight:600;color:var(--white);line-height:1.3;margin-bottom:16px; }
         .tests-catalog p { font-size:16px;color:var(--light-gray);font-weight:300;max-width:560px;margin:0 auto 40px; }
         .tests-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
-        .test-card { display:block;padding:32px;border:1px solid var(--dark-gray);border-radius:var(--btn-radius);cursor:pointer;transition:all 0.3s ease;text-align:left;text-decoration:none; }
+        .test-card { display:block;padding:32px;border:1px solid var(--dark-gray);border-radius:var(--btn-radius);cursor:pointer;transition:all 0.3s ease;text-align:left;text-decoration:none;position:relative; }
         .test-card:hover { border-color:var(--mid-gray);transform:translateY(-2px); }
         [data-theme="neon"] .test-card:hover { border-color:var(--accent-primary);box-shadow:0 4px 20px var(--glow-color); }
         .test-card-tag { font-size:10px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-primary);margin-bottom:12px; }
         [data-theme="classic"] .test-card-tag { color:var(--mid-gray); }
         .test-card-title { font-size:18px;font-weight:600;color:var(--white);margin-bottom:10px; }
-        .test-card-desc { font-size:14px;color:var(--mid-gray);line-height:1.5; }
+        .test-card-desc { font-size:14px;color:var(--mid-gray);line-height:1.5;padding-bottom:28px; }
+        .test-card-btn { position:absolute;bottom:14px;right:16px;font-size:9px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid-gray);border:1px solid var(--dark-gray);padding:4px 12px;border-radius:var(--btn-radius);transition:all 0.3s ease; }
+        .test-card:hover .test-card-btn { border-color:var(--white);color:var(--white); }
+        [data-theme="neon"] .test-card:hover .test-card-btn { border-color:var(--accent-secondary);color:var(--accent-secondary);box-shadow:0 0 12px rgba(16,185,129,0.3); }
         @media (max-width:600px) { .tests-grid { grid-template-columns:1fr; } }
         footer { background:var(--black);padding:60px 0 40px;border-top:1px solid var(--dark-gray); }
         .footer-inner { display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px; }
@@ -148,16 +151,19 @@
                 <div class="test-card-tag">20 вопросов · 3 минуты</div>
                 <div class="test-card-title">Самооценка и границы</div>
                 <div class="test-card-desc">Насколько ты умеешь быть на своей стороне, говорить «нет» и не терять себя в отношениях</div>
+                <span class="test-card-btn">Тест →</span>
             </a>
             <a class="test-card" href="/testy/sozavisimost">
                 <div class="test-card-tag">20 вопросов · 3 минуты</div>
                 <div class="test-card-title">Созависимость</div>
                 <div class="test-card-desc">Насколько жизнь близкого человека управляет твоей. Для тех, кто рядом с зависимым</div>
+                <span class="test-card-btn">Тест →</span>
             </a>
             <a class="test-card" href="/testy/parnaya-terapiya">
                 <div class="test-card-tag">15 вопросов · 2 минуты</div>
                 <div class="test-card-title">Парная терапия</div>
                 <div class="test-card-desc">Отношения не разрушаются в один день. Они разрушаются в тишине, когда всё важное остаётся невысказанным</div>
+                <span class="test-card-btn">Тест →</span>
             </a>
         </div>
     </div>
