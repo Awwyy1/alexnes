@@ -214,6 +214,8 @@
             </div>
         </div>
     </footer>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
     <script>
     function getTheme(){return localStorage.getItem('theme')||'neon'}
     function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t)}
@@ -296,6 +298,14 @@
         document.getElementById('resultBody').innerHTML=body;
         window.scrollTo({top:0,behavior:'smooth'});
     }
+    firebase.initializeApp({
+        apiKey:"AIzaSyBm09evqf9hCCmqKwPD-HAt0kO5dDzIPxM",
+        databaseURL:"https://realalexnes-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId:"realalexnes"
+    });
+    setTimeout(function(){
+        firebase.database().ref('counters/samoocenka').transaction(function(v){return(v||0)+1});
+    },180000);
     </script>
 </body>
 </html>

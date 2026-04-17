@@ -79,7 +79,10 @@
         [data-theme="classic"] .test-card-tag { color:var(--mid-gray); }
         .test-card-title { font-size:18px;font-weight:600;color:var(--white);margin-bottom:10px; }
         .test-card-desc { font-size:14px;color:var(--mid-gray);line-height:1.5;padding-bottom:28px; }
-        .test-card-btn { position:absolute;bottom:14px;right:16px;font-size:9px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid-gray);border:1px solid var(--dark-gray);padding:4px 12px;border-radius:var(--btn-radius);transition:all 0.3s ease; }
+        .test-card-bottom { display:flex;align-items:center;justify-content:space-between;position:absolute;bottom:14px;left:32px;right:16px; }
+        .test-card-counter { font-size:11px;font-weight:400;color:var(--mid-gray);letter-spacing:0.02em;transition:color 0.3s ease; }
+        .test-card-counter span { font-weight:600;color:var(--light-gray); }
+        .test-card-btn { font-size:9px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid-gray);border:1px solid var(--dark-gray);padding:4px 12px;border-radius:var(--btn-radius);transition:all 0.3s ease; }
         .test-card:hover .test-card-btn { border-color:var(--white);color:var(--white); }
         [data-theme="neon"] .test-card:hover .test-card-btn { border-color:var(--accent-secondary);color:var(--accent-secondary);box-shadow:0 0 12px rgba(16,185,129,0.3); }
         @media (max-width:600px) { .tests-grid { grid-template-columns:1fr; } }
@@ -151,19 +154,28 @@
                 <div class="test-card-tag">20 вопросов · 3 минуты</div>
                 <div class="test-card-title">Самооценка и границы</div>
                 <div class="test-card-desc">Насколько ты умеешь быть на своей стороне, говорить «нет» и не терять себя в отношениях</div>
-                <span class="test-card-btn">Тест →</span>
+                <div class="test-card-bottom">
+                    <div class="test-card-counter">прошли <span id="count-samoocenka">—</span> чел.</div>
+                    <span class="test-card-btn">Тест →</span>
+                </div>
             </a>
             <a class="test-card" href="/testy/sozavisimost">
                 <div class="test-card-tag">20 вопросов · 3 минуты</div>
                 <div class="test-card-title">Созависимость</div>
                 <div class="test-card-desc">Насколько жизнь близкого человека управляет твоей. Для тех, кто рядом с зависимым</div>
-                <span class="test-card-btn">Тест →</span>
+                <div class="test-card-bottom">
+                    <div class="test-card-counter">прошли <span id="count-sozavisimost">—</span> чел.</div>
+                    <span class="test-card-btn">Тест →</span>
+                </div>
             </a>
             <a class="test-card" href="/testy/parnaya-terapiya">
                 <div class="test-card-tag">15 вопросов · 2 минуты</div>
                 <div class="test-card-title">Парная терапия</div>
                 <div class="test-card-desc">Отношения не разрушаются в один день. Они разрушаются в тишине, когда всё важное остаётся невысказанным</div>
-                <span class="test-card-btn">Тест →</span>
+                <div class="test-card-bottom">
+                    <div class="test-card-counter">прошли <span id="count-parnaya">—</span> чел.</div>
+                    <span class="test-card-btn">Тест →</span>
+                </div>
             </a>
         </div>
     </div>
@@ -192,6 +204,8 @@
             </div>
         </div>
     </footer>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
     <script>
     function getTheme(){return localStorage.getItem('theme')||'neon'}
     function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t)}
@@ -199,6 +213,25 @@
     var nav=document.querySelector('nav');
     window.addEventListener('scroll',function(){if(window.scrollY>50){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}});
     function toggleMenu(){var m=document.getElementById('mobileMenu'),b=document.querySelector('.mobile-menu-btn');m.classList.toggle('active');b.classList.toggle('active');var o=m.classList.contains('active');b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Закрыть меню':'Открыть меню')}
+
+    firebase.initializeApp({
+        apiKey:"AIzaSyBm09evqf9hCCmqKwPD-HAt0kO5dDzIPxM",
+        authDomain:"realalexnes.firebaseapp.com",
+        databaseURL:"https://realalexnes-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId:"realalexnes",
+        storageBucket:"realalexnes.firebasestorage.app",
+        messagingSenderId:"563090683165",
+        appId:"1:563090683165:web:d3e1bd21eeab906e9a1df4"
+    });
+    var db=firebase.database();
+    var tests=['samoocenka','sozavisimost','parnaya'];
+    tests.forEach(function(t){
+        db.ref('counters/'+t).on('value',function(snap){
+            var v=snap.val()||0;
+            var el=document.getElementById('count-'+t);
+            if(el) el.textContent=v;
+        });
+    });
     </script>
 </body>
 </html>
