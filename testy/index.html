@@ -79,12 +79,13 @@
         [data-theme="classic"] .test-card-tag { color:var(--mid-gray); }
         .test-card-title { font-size:18px;font-weight:600;color:var(--white);margin-bottom:10px; }
         .test-card-desc { font-size:14px;color:var(--mid-gray);line-height:1.5;padding-bottom:28px; }
-        .test-card-bottom { display:flex;align-items:center;justify-content:space-between;position:absolute;bottom:14px;left:32px;right:16px; }
+        .test-card-bottom { display:flex;align-items:center;justify-content:space-between;position:absolute;bottom:16px;left:32px;right:24px; }
         .test-card-counter { font-size:11px;font-weight:400;color:var(--mid-gray);letter-spacing:0.02em;transition:color 0.3s ease; }
         .test-card-counter span { font-weight:600;color:var(--light-gray); }
-        .test-card-btn { font-size:9px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid-gray);border:1px solid var(--dark-gray);padding:4px 12px;border-radius:var(--btn-radius);transition:all 0.3s ease; }
-        .test-card:hover .test-card-btn { border-color:var(--white);color:var(--white); }
-        [data-theme="neon"] .test-card:hover .test-card-btn { border-color:var(--accent-secondary);color:var(--accent-secondary);box-shadow:0 0 12px rgba(16,185,129,0.3); }
+        .test-card-btn { font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent-secondary);border:1px solid var(--accent-secondary);padding:5px 14px;border-radius:var(--btn-radius);transition:all 0.3s ease; }
+        [data-theme="classic"] .test-card-btn { color:var(--light-gray);border-color:var(--mid-gray); }
+        .test-card:hover .test-card-btn { box-shadow:0 0 12px rgba(16,185,129,0.3); }
+        [data-theme="classic"] .test-card:hover .test-card-btn { border-color:var(--white);color:var(--white); }
         @media (max-width:600px) { .tests-grid { grid-template-columns:1fr; } }
         footer { background:var(--black);padding:60px 0 40px;border-top:1px solid var(--dark-gray); }
         .footer-inner { display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px; }
