@@ -305,7 +305,7 @@
     });
     setTimeout(function(){
         firebase.database().ref('counters/sozavisimost').transaction(function(v){return(v||0)+1});
-    },10000);
+    },15000);
     </script>
 </body>
 </html>
