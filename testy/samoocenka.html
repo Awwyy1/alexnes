@@ -305,7 +305,7 @@
     });
     setTimeout(function(){
         firebase.database().ref('counters/samoocenka').transaction(function(v){return(v||0)+1});
-    },10000);
+    },180000);
     </script>
 </body>
 </html>

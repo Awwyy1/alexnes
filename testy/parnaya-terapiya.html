@@ -299,7 +299,7 @@
     });
     setTimeout(function(){
         firebase.database().ref('counters/parnaya').transaction(function(v){return(v||0)+1});
-    },10000);
+    },180000);
     </script>
 </body>
 </html>
