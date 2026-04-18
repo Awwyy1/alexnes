@@ -192,9 +192,18 @@
             <a class="test-card" href="/testy/vygoranie">
                 <div class="test-card-tag">20 вопросов · 3 минуты</div>
                 <div class="test-card-title">Выгорание</div>
-                <div class="test-card-desc">Ты устал(а) или уже выгорел(а). Истощение, потеря смысла, работа на автомате</div>
+                <div class="test-card-desc">Усталость, потеря интереса, раздражительность. Когда отдых больше не помогает</div>
                 <div class="test-card-bottom">
                     <div class="test-card-counter">прошли <span id="count-vygoranie">—</span> чел.</div>
+                    <span class="test-card-btn">Тест →</span>
+                </div>
+            </a>
+            <a class="test-card" href="/testy/vnutrennij-kritik">
+                <div class="test-card-tag">20 вопросов · 3 минуты</div>
+                <div class="test-card-title">Внутренний критик</div>
+                <div class="test-card-desc">Самосаботаж, обесценивание, страх ошибки. Голос, который говорит «ты недостаточно»</div>
+                <div class="test-card-bottom">
+                    <div class="test-card-counter">прошли <span id="count-kritik">—</span> чел.</div>
                     <span class="test-card-btn">Тест →</span>
                 </div>
             </a>
@@ -245,7 +254,7 @@
         appId:"1:563090683165:web:d3e1bd21eeab906e9a1df4"
     });
     var db=firebase.database();
-    var tests=['samoocenka','sozavisimost','parnaya','trevozhnost','vygoranie'];
+    var tests=['samoocenka','sozavisimost','parnaya','trevozhnost','vygoranie','kritik'];
     tests.forEach(function(t){
         db.ref('counters/'+t).on('value',function(snap){
             var v=snap.val()||0;
