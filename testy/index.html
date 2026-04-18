@@ -179,6 +179,17 @@
                 </div>
             </a>
         </div>
+        <div class="tests-grid" style="margin-top:24px">
+            <a class="test-card" href="/testy/trevozhnost">
+                <div class="test-card-tag">20 вопросов · 3 минуты</div>
+                <div class="test-card-title">Тревожность</div>
+                <div class="test-card-desc">Насколько тревога управляет твоей жизнью. Бессонница, контроль, паника, избегание</div>
+                <div class="test-card-bottom">
+                    <div class="test-card-counter">прошли <span id="count-trevozhnost">—</span> чел.</div>
+                    <span class="test-card-btn">Тест →</span>
+                </div>
+            </a>
+        </div>
     </div>
     </main>
     <footer>
@@ -225,7 +236,7 @@
         appId:"1:563090683165:web:d3e1bd21eeab906e9a1df4"
     });
     var db=firebase.database();
-    var tests=['samoocenka','sozavisimost','parnaya'];
+    var tests=['samoocenka','sozavisimost','parnaya','trevozhnost'];
     tests.forEach(function(t){
         db.ref('counters/'+t).on('value',function(snap){
             var v=snap.val()||0;
