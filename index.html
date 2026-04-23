@@ -2401,6 +2401,73 @@
         [data-theme="neon"] .success-popup-icon svg {
             stroke: #8B5CF6;
         }
+
+        /* Sobriety Banner */
+        .sobriety-banner {
+            padding: 80px 0;
+            background: var(--black);
+        }
+        .sobriety-banner-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 48px 32px;
+            border: 1px solid var(--dark-gray);
+            border-radius: var(--btn-radius);
+            transition: border-color 0.3s ease;
+        }
+        .sobriety-banner-inner:hover {
+            border-color: var(--mid-gray);
+        }
+        [data-theme="neon"] .sobriety-banner-inner {
+            border-color: rgba(139,92,246,0.2);
+        }
+        [data-theme="neon"] .sobriety-banner-inner:hover {
+            border-color: rgba(139,92,246,0.4);
+        }
+        .sobriety-banner-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+        .sobriety-banner h3 {
+            font-size: clamp(20px, 3vw, 26px);
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .sobriety-banner p {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--light-gray);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+        .sobriety-banner-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-secondary);
+            border: 1px solid var(--accent-secondary);
+            border-radius: var(--btn-radius);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .sobriety-banner-btn:hover {
+            background: var(--accent-secondary);
+            color: var(--black);
+        }
+        [data-theme="classic"] .sobriety-banner-btn {
+            color: var(--white);
+            border-color: var(--white);
+        }
+        [data-theme="classic"] .sobriety-banner-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
     </style>
 </head>
 <body>
@@ -2416,6 +2483,7 @@
                 <li><a href="#services">Услуги</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="testy">Тесты</a></li>
+                <li><a href="trezvost">Трезвость</a></li>
                 <li><a href="video">Видео</a></li>
                 <li><a href="blog">Блог</a></li>
                 <li><a href="#contact">Контакт</a></li>
@@ -2437,6 +2505,7 @@
         <a href="#services" onclick="toggleMenu()">Услуги</a>
         <a href="#faq" onclick="toggleMenu()">FAQ</a>
         <a href="testy" onclick="toggleMenu()">Тесты</a>
+        <a href="trezvost" onclick="toggleMenu()">Трезвость</a>
         <a href="video" onclick="toggleMenu()">Видео</a>
         <a href="blog" onclick="toggleMenu()">Блог</a>
         <a href="#contact" onclick="toggleMenu()">Контакт</a>
@@ -3193,6 +3262,18 @@
                     data-cal-config='{"layout":"month_view","theme":"dark"}'
                 >Записаться на консультацию</button> -->
                 <a href="https://wa.me/491626027760" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Записаться на консультацию</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobriety Banner -->
+    <section class="sobriety-banner">
+        <div class="container">
+            <div class="sobriety-banner-inner fade-in">
+                <div class="sobriety-banner-icon">&#9201;</div>
+                <h3>Считаешь дни трезвости?</h3>
+                <p>Анонимный счётчик. Без регистрации. Только ты и твой путь.</p>
+                <a href="trezvost" class="sobriety-banner-btn">Начать отсчёт</a>
             </div>
         </div>
     </section>
