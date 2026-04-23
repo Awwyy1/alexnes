@@ -72,7 +72,8 @@
         }
 
         html { scroll-behavior: smooth; }
-        body { font-family: var(--font-main); background: var(--black); color: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--black); color: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, button, input, a { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
         /* Nav */
@@ -97,7 +98,7 @@
         .mobile-menu a { color: var(--white); text-decoration: none; font-size: 18px; font-weight: 300; letter-spacing: 0.1em; }
 
         /* Breadcrumbs */
-        .breadcrumbs { padding: 100px 0 0; }
+        .breadcrumbs { padding: 90px 0 0; }
         .breadcrumbs ul { display: flex; align-items: center; gap: 8px; list-style: none; }
         .breadcrumbs a { color: var(--mid-gray); text-decoration: none; font-size: 13px; font-weight: 400; transition: color 0.3s ease; }
         .breadcrumbs a:hover { color: var(--white); }
@@ -149,6 +150,7 @@
         }
         [data-theme="neon"] .counter-box { border-color: rgba(139,92,246,0.2); background: rgba(139,92,246,0.03); }
         .counter-number {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: clamp(64px, 10vw, 96px);
             font-weight: 700;
             color: var(--white);
@@ -395,16 +397,19 @@
         @media (max-width: 768px) {
             .mobile-menu-btn { display: flex; }
             .nav-links { display: none; }
-            .breadcrumbs { padding: 80px 0 0; }
-            .sobriety-hero { padding: 24px 0 20px; }
-            .sobriety-hero h1 { font-size: 26px; }
-            .sobriety-hero p { font-size: 14px; }
-            .setup-section { padding: 20px 0 40px; }
-            .setup-title { font-size: 22px; }
-            .setup-desc { font-size: 14px; }
-            .counter-section { padding: 20px 0 40px; }
-            .counter-box { margin-left: 16px; margin-right: 16px; padding: 36px 24px; }
-            .counter-number { font-size: 64px; }
+            .breadcrumbs { padding: 60px 0 0; }
+            .sobriety-hero { padding: 12px 0 16px; }
+            .sobriety-hero .section-label { margin-bottom: 8px; font-size: 10px; }
+            .sobriety-hero h1 { font-size: 22px; margin-bottom: 8px; }
+            .sobriety-hero p { font-size: 13px; }
+            .setup-section { padding: 16px 0 32px; }
+            .setup-title { font-size: 20px; }
+            .setup-desc { font-size: 13px; margin-bottom: 24px; }
+            .counter-section { padding: 16px 0 32px; }
+            .counter-box { margin-left: 16px; margin-right: 16px; padding: 28px 20px; }
+            .counter-number { font-size: 56px; }
+            .counter-label { font-size: 16px; }
+            .checkin-btn { padding: 14px 32px; font-size: 12px; }
             .milestones-section { padding: 20px 0 40px; }
             .milestones-grid { gap: 10px; }
             .milestone { padding: 10px 16px; font-size: 13px; }
