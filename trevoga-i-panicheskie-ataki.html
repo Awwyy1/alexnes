@@ -131,8 +131,8 @@
         [data-theme="neon"] nav:not(.breadcrumbs).scrolled { background: rgba(12,10,26,0.95); }
         .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 18px; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; }
-        .nav-links { display: flex; gap: 32px; list-style: none; }
-        .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.05em; position: relative; transition: color 0.3s ease; }
+        .nav-links { display: flex; gap: 24px; list-style: none; }
+        .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 12px; font-weight: 400; letter-spacing: 0.03em; position: relative; transition: color 0.3s ease; }
         .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--white); transition: width 0.3s ease; }
         .nav-links a:hover { color: var(--white); }
         .nav-links a:hover::after { width: 100%; }
@@ -144,10 +144,10 @@
         .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
 
         /* Mobile Menu */
-        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); z-index: 99; flex-direction: column; justify-content: center; align-items: center; gap: 32px; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); z-index: 99; flex-direction: column; justify-content: center; align-items: center; gap: 10px; padding-top: 50px; }
         [data-theme="neon"] .mobile-menu { background: rgba(12,10,26,0.98); }
         .mobile-menu.active { display: flex; }
-        .mobile-menu a { color: var(--white); text-decoration: none; font-size: 24px; font-weight: 300; letter-spacing: 0.1em; }
+        .mobile-menu a { color: var(--white); text-decoration: none; font-size: 18px; font-weight: 300; letter-spacing: 0.1em; }
 
         /* Article */
         .article-header { padding: 40px 0 48px; max-width: 760px; margin: 0 auto; }
