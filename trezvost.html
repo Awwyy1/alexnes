@@ -42,7 +42,9 @@
         gtag('config', 'G-D9MGJNMBVG');
         gtag('config', 'AW-18060459277');
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -78,8 +80,8 @@
         nav.scrolled { background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-family: var(--font-main); font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; }
-        .nav-links { display: flex; gap: 32px; list-style: none; }
-        .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.05em; position: relative; transition: color 0.3s ease; }
+        .nav-links { display: flex; gap: 24px; list-style: none; }
+        .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 12px; font-weight: 400; letter-spacing: 0.03em; position: relative; transition: color 0.3s ease; }
         .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--white); transition: width 0.3s ease; }
         .nav-links a:hover { color: var(--white); }
         .nav-links a:hover::after { width: 100%; }
@@ -89,10 +91,10 @@
         .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
         .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
         .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
-        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); z-index: 99; flex-direction: column; justify-content: center; align-items: center; gap: 32px; }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); z-index: 99; flex-direction: column; justify-content: center; align-items: center; gap: 10px; padding-top: 50px; }
         [data-theme="neon"] .mobile-menu { background: rgba(12,10,26,0.98); }
         .mobile-menu.active { display: flex; }
-        .mobile-menu a { color: var(--white); text-decoration: none; font-size: 24px; font-weight: 300; letter-spacing: 0.1em; }
+        .mobile-menu a { color: var(--white); text-decoration: none; font-size: 18px; font-weight: 300; letter-spacing: 0.1em; }
 
         /* Breadcrumbs */
         .breadcrumbs { padding: 100px 0 0; }
@@ -393,12 +395,26 @@
         @media (max-width: 768px) {
             .mobile-menu-btn { display: flex; }
             .nav-links { display: none; }
+            .breadcrumbs { padding: 80px 0 0; }
+            .sobriety-hero { padding: 24px 0 20px; }
+            .sobriety-hero h1 { font-size: 26px; }
+            .sobriety-hero p { font-size: 14px; }
+            .setup-section { padding: 20px 0 40px; }
+            .setup-title { font-size: 22px; }
+            .setup-desc { font-size: 14px; }
+            .counter-section { padding: 20px 0 40px; }
+            .counter-box { margin-left: 16px; margin-right: 16px; padding: 36px 24px; }
+            .counter-number { font-size: 64px; }
+            .milestones-section { padding: 20px 0 40px; }
+            .milestones-grid { gap: 10px; }
+            .milestone { padding: 10px 16px; font-size: 13px; }
+            .quote-section { padding: 20px 0 40px; }
+            .quote-box { padding: 28px 20px; }
+            .quote-text { font-size: 16px; }
+            .actions-section { padding: 10px 0 60px; }
             .footer-inner { flex-direction: column; text-align: center; }
             .footer-links { flex-wrap: wrap; justify-content: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
-            .counter-box { margin-left: 16px; margin-right: 16px; padding: 36px 24px; }
-            .milestones-grid { gap: 10px; }
-            .milestone { padding: 10px 16px; font-size: 13px; }
         }
 
         /* Confirm dialog */
