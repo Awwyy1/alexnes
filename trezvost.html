@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Анонимный счётчик дней трезвости. Считай дни, отмечай вехи, двигайся вперёд. Только ты и твой путь.">
+    <title>Счётчик трезвости — AlexNes</title>
+    <link rel="canonical" href="https://alexnes.com/trezvost" />
+    <link rel="alternate" hreflang="ru" href="https://alexnes.com/trezvost" />
+    <link rel="alternate" hreflang="x-default" href="https://alexnes.com/trezvost" />
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alexnes.com/trezvost">
+    <meta property="og:title" content="Счётчик трезвости — AlexNes">
+    <meta property="og:description" content="Анонимный счётчик дней трезвости. Считай дни, отмечай вехи, двигайся вперёд.">
+    <meta property="og:image" content="https://alexnes.com/favicon.svg">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="AlexNes">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Счётчик трезвости — AlexNes">
+    <meta name="twitter:description" content="Анонимный счётчик дней трезвости. Считай дни, отмечай вехи, двигайся вперёд.">
+    <meta name="twitter:image" content="https://alexnes.com/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Счётчик трезвости",
+        "description": "Анонимный счётчик дней трезвости. Считай дни, отмечай вехи, двигайся вперёд.",
+        "url": "https://alexnes.com/trezvost",
+        "isPartOf": { "@id": "https://alexnes.com/#website" }
+    }
+    </script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9MGJNMBVG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D9MGJNMBVG');
+        gtag('config', 'AW-18060459277');
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        [data-theme="classic"] {
+            --black: #0a0a0a;
+            --dark-gray: #2a2a2a;
+            --mid-gray: #666666;
+            --light-gray: #b0b0b0;
+            --white: #ffffff;
+            --font-main: 'Montserrat', -apple-system, sans-serif;
+            --btn-radius: 0;
+            --accent-primary: var(--white);
+            --accent-secondary: var(--mid-gray);
+        }
+
+        [data-theme="neon"] {
+            --black: #0c0a1a;
+            --dark-gray: #1e1a3a;
+            --mid-gray: #6b7280;
+            --light-gray: #9ca3af;
+            --white: #f9fafb;
+            --btn-radius: 50px;
+            --accent-primary: #8B5CF6;
+            --accent-secondary: #10B981;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-main); background: var(--black); color: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Nav */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: linear-gradient(to bottom, var(--black) 0%, transparent 100%); transition: background 0.4s ease; }
+        nav.scrolled { background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-main); font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 13px; font-weight: 400; letter-spacing: 0.05em; position: relative; transition: color 0.3s ease; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--white); transition: width 0.3s ease; }
+        .nav-links a:hover { color: var(--white); }
+        .nav-links a:hover::after { width: 100%; }
+        [data-theme="neon"] .nav-links a::after { background: var(--accent-primary); }
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+        .mobile-menu-btn span { width: 24px; height: 1px; background: var(--white); transition: all 0.3s ease; }
+        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); z-index: 99; flex-direction: column; justify-content: center; align-items: center; gap: 32px; }
+        [data-theme="neon"] .mobile-menu { background: rgba(12,10,26,0.98); }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu a { color: var(--white); text-decoration: none; font-size: 24px; font-weight: 300; letter-spacing: 0.1em; }
+
+        /* Breadcrumbs */
+        .breadcrumbs { padding: 100px 0 0; }
+        .breadcrumbs ul { display: flex; align-items: center; gap: 8px; list-style: none; }
+        .breadcrumbs a { color: var(--mid-gray); text-decoration: none; font-size: 13px; font-weight: 400; transition: color 0.3s ease; }
+        .breadcrumbs a:hover { color: var(--white); }
+        .breadcrumbs .separator { color: var(--dark-gray); font-size: 12px; }
+        .breadcrumbs .current { color: var(--light-gray); font-size: 13px; font-weight: 400; }
+
+        /* Hero */
+        .sobriety-hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        .sobriety-hero .section-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-secondary);
+            margin-bottom: 16px;
+        }
+        [data-theme="classic"] .sobriety-hero .section-label { color: var(--mid-gray); }
+        .sobriety-hero h1 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        .sobriety-hero p {
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--light-gray);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* Counter */
+        .counter-section {
+            padding: 40px 0 60px;
+            text-align: center;
+        }
+        .counter-box {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 48px 32px;
+            border: 1px solid var(--dark-gray);
+            border-radius: var(--btn-radius);
+            position: relative;
+        }
+        [data-theme="neon"] .counter-box { border-color: rgba(139,92,246,0.2); background: rgba(139,92,246,0.03); }
+        .counter-number {
+            font-size: clamp(64px, 10vw, 96px);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        [data-theme="neon"] .counter-number { color: var(--accent-primary); }
+        .counter-label {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--light-gray);
+            margin-bottom: 8px;
+        }
+        .counter-start-date {
+            font-size: 13px;
+            font-weight: 300;
+            color: var(--mid-gray);
+            margin-bottom: 32px;
+        }
+
+        /* Check-in button */
+        .checkin-btn {
+            display: inline-block;
+            padding: 16px 48px;
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid var(--accent-secondary);
+            color: var(--accent-secondary);
+            background: transparent;
+            border-radius: var(--btn-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .checkin-btn:hover {
+            background: var(--accent-secondary);
+            color: var(--black);
+        }
+        [data-theme="classic"] .checkin-btn { border-color: var(--white); color: var(--white); }
+        [data-theme="classic"] .checkin-btn:hover { background: var(--white); color: var(--black); }
+        .checkin-btn.checked {
+            background: var(--accent-secondary);
+            color: var(--black);
+            pointer-events: none;
+        }
+        [data-theme="classic"] .checkin-btn.checked { background: var(--white); color: var(--black); }
+
+        /* Setup state */
+        .setup-section {
+            padding: 40px 0 60px;
+            text-align: center;
+            display: none;
+        }
+        .setup-section.active { display: block; }
+        .counter-section.hidden { display: none; }
+        .setup-title {
+            font-size: clamp(22px, 3vw, 32px);
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .setup-desc {
+            font-size: 15px;
+            font-weight: 300;
+            color: var(--light-gray);
+            margin-bottom: 32px;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .date-input-wrap {
+            max-width: 280px;
+            margin: 0 auto 24px;
+        }
+        .date-input-wrap input {
+            width: 100%;
+            padding: 14px 20px;
+            font-family: var(--font-main);
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--white);
+            background: transparent;
+            border: 1px solid var(--dark-gray);
+            border-radius: var(--btn-radius);
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .date-input-wrap input:focus { border-color: var(--accent-primary); }
+        [data-theme="neon"] .date-input-wrap input:focus { border-color: var(--accent-primary); }
+        .start-btn {
+            display: inline-block;
+            padding: 14px 40px;
+            font-family: var(--font-main);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid var(--white);
+            color: var(--white);
+            background: transparent;
+            border-radius: var(--btn-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .start-btn:hover { background: var(--white); color: var(--black); }
+        [data-theme="neon"] .start-btn { border-color: var(--accent-primary); color: var(--accent-primary); }
+        [data-theme="neon"] .start-btn:hover { background: var(--accent-primary); color: var(--black); }
+
+        /* Milestones */
+        .milestones-section {
+            padding: 40px 0 60px;
+        }
+        .milestones-title {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--mid-gray);
+            margin-bottom: 32px;
+        }
+        .milestones-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .milestone {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border: 1px solid var(--dark-gray);
+            border-radius: var(--btn-radius);
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--mid-gray);
+            transition: all 0.3s ease;
+        }
+        .milestone.reached {
+            border-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+        }
+        [data-theme="classic"] .milestone.reached { border-color: var(--white); color: var(--white); }
+        .milestone-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1.5px solid var(--dark-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .milestone.reached .milestone-icon {
+            border-color: var(--accent-secondary);
+            background: var(--accent-secondary);
+        }
+        [data-theme="classic"] .milestone.reached .milestone-icon { border-color: var(--white); background: var(--white); }
+        .milestone.reached .milestone-icon svg { display: block; }
+        .milestone-icon svg {
+            display: none;
+            width: 10px;
+            height: 10px;
+            stroke: var(--black);
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        /* Quote */
+        .quote-section {
+            padding: 40px 0 60px;
+            text-align: center;
+        }
+        .quote-box {
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 40px 32px;
+            border-top: 1px solid var(--dark-gray);
+            border-bottom: 1px solid var(--dark-gray);
+        }
+        .quote-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--mid-gray);
+            margin-bottom: 20px;
+        }
+        .quote-text {
+            font-size: 18px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--light-gray);
+            line-height: 1.6;
+        }
+
+        /* Actions */
+        .actions-section {
+            padding: 20px 0 80px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .action-link {
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--mid-gray);
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid var(--dark-gray);
+            border-radius: var(--btn-radius);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: none;
+        }
+        .action-link:hover { border-color: var(--light-gray); color: var(--light-gray); }
+
+        /* Footer */
+        footer { background: var(--black); padding: 60px 0 40px; border-top: 1px solid var(--dark-gray); }
+        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+        .footer-logo { font-size: 20px; font-weight: 700; color: var(--white); letter-spacing: 0.15em; text-transform: uppercase; }
+        .footer-tagline { font-size: 13px; font-weight: 300; color: var(--mid-gray); margin-top: 8px; }
+        .footer-links { display: flex; gap: 32px; list-style: none; }
+        .footer-links a { color: var(--mid-gray); text-decoration: none; font-size: 13px; font-weight: 400; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--dark-gray); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-copyright { font-size: 12px; font-weight: 300; color: var(--mid-gray); }
+        .footer-social { display: flex; gap: 16px; }
+        .footer-social a { width: 40px; height: 40px; border: 1px solid var(--dark-gray); display: flex; align-items: center; justify-content: center; color: var(--mid-gray); transition: all 0.3s ease; }
+        .footer-social a:hover { border-color: var(--white); color: var(--white); }
+        [data-theme="neon"] .footer-social a:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+        .footer-social svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1.5; fill: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: flex; }
+            .nav-links { display: none; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .counter-box { margin-left: 16px; margin-right: 16px; padding: 36px 24px; }
+            .milestones-grid { gap: 10px; }
+            .milestone { padding: 10px 16px; font-size: 13px; }
+        }
+
+        /* Confirm dialog */
+        .confirm-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .confirm-overlay.active { display: flex; }
+        .confirm-box {
+            background: var(--black);
+            border: 1px solid var(--dark-gray);
+            border-radius: var(--btn-radius);
+            padding: 40px 32px;
+            max-width: 400px;
+            text-align: center;
+        }
+        [data-theme="neon"] .confirm-box { border-color: rgba(139,92,246,0.3); }
+        .confirm-box h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+        .confirm-box p {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--light-gray);
+            margin-bottom: 28px;
+        }
+        .confirm-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .confirm-yes, .confirm-no {
+            font-family: var(--font-main);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            padding: 12px 28px;
+            border-radius: var(--btn-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid var(--dark-gray);
+            background: transparent;
+            color: var(--light-gray);
+        }
+        .confirm-yes:hover { border-color: var(--white); color: var(--white); }
+        .confirm-no { border-color: var(--mid-gray); color: var(--mid-gray); }
+        .confirm-no:hover { border-color: var(--light-gray); color: var(--light-gray); }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-inner">
+            <a href="/" class="logo">AlexNes</a>
+            <ul class="nav-links">
+                <li><a href="/#about">Об Алексе</a></li>
+                <li><a href="/#services">Услуги</a></li>
+                <li><a href="/testy">Тесты</a></li>
+                <li><a href="/trezvost">Трезвость</a></li>
+                <li><a href="/video">Видео</a></li>
+                <li><a href="/blog">Блог</a></li>
+                <li><a href="/#contact">Контакт</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/" onclick="toggleMenu()">Главная</a>
+        <a href="/#about" onclick="toggleMenu()">Об Алексе</a>
+        <a href="/#services" onclick="toggleMenu()">Услуги</a>
+        <a href="/testy" onclick="toggleMenu()">Тесты</a>
+        <a href="/trezvost" onclick="toggleMenu()">Трезвость</a>
+        <a href="/video" onclick="toggleMenu()">Видео</a>
+        <a href="/blog" onclick="toggleMenu()">Блог</a>
+        <a href="/#contact" onclick="toggleMenu()">Контакт</a>
+    </div>
+
+    <main>
+    <nav class="breadcrumbs container" aria-label="Хлебные крошки">
+        <ul>
+            <li><a href="/">Главная</a></li>
+            <li><span class="separator">/</span></li>
+            <li><span class="current" aria-current="page">Счётчик трезвости</span></li>
+        </ul>
+    </nav>
+
+    <section class="sobriety-hero">
+        <div class="container">
+            <span class="section-label">День за днём</span>
+            <h1>Счётчик трезвости</h1>
+            <p>Анонимно. Без регистрации. Данные хранятся только в твоём браузере — никто, кроме тебя, их не видит.</p>
+        </div>
+    </section>
+
+    <!-- Setup: shown when no start date -->
+    <section class="setup-section" id="setupSection">
+        <div class="container">
+            <div class="setup-title">Когда начался твой путь?</div>
+            <p class="setup-desc">Выбери дату начала трезвости. Можешь указать сегодня или любой день в прошлом.</p>
+            <div class="date-input-wrap">
+                <input type="date" id="startDateInput">
+            </div>
+            <button class="start-btn" onclick="saveStartDate()">Начать отсчёт</button>
+        </div>
+    </section>
+
+    <!-- Counter: shown when start date exists -->
+    <section class="counter-section hidden" id="counterSection">
+        <div class="container">
+            <div class="counter-box">
+                <div class="counter-number" id="dayCount">0</div>
+                <div class="counter-label" id="dayLabel">дней</div>
+                <div class="counter-start-date" id="startDateDisplay"></div>
+                <button class="checkin-btn" id="checkinBtn" onclick="doCheckin()">Я трезв(а) сегодня</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones -->
+    <section class="milestones-section hidden" id="milestonesSection">
+        <div class="container">
+            <div class="milestones-title">Твои вехи</div>
+            <div class="milestones-grid" id="milestonesGrid">
+                <div class="milestone" data-days="1">
+                    <div class="milestone-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+                    <span>1 день</span>
+                </div>
+                <div class="milestone" data-days="7">
+                    <div class="milestone-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+                    <span>7 дней</span>
+                </div>
+                <div class="milestone" data-days="30">
+                    <div class="milestone-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+                    <span>30 дней</span>
+                </div>
+                <div class="milestone" data-days="90">
+                    <div class="milestone-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+                    <span>90 дней</span>
+                </div>
+                <div class="milestone" data-days="180">
+                    <div class="milestone-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+                    <span>Полгода</span>
+                </div>
+                <div class="milestone" data-days="365">
+                    <div class="milestone-icon"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+                    <span>Год</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote from Alex -->
+    <section class="quote-section hidden" id="quoteSection">
+        <div class="container">
+            <div class="quote-box">
+                <div class="quote-label">Слово от Алекса</div>
+                <div class="quote-text" id="quoteText"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Actions -->
+    <div class="actions-section hidden" id="actionsSection">
+        <button class="action-link" onclick="showReset()">Начать заново</button>
+        <a class="action-link" href="https://wa.me/491626027760" target="_blank" rel="noopener noreferrer">Мне сложно — написать Алексу</a>
+    </div>
+    </main>
+
+    <!-- Confirm Reset Dialog -->
+    <div class="confirm-overlay" id="confirmOverlay">
+        <div class="confirm-box">
+            <h3>Начать заново?</h3>
+            <p>Счётчик обнулится. Это нормально. Главное — что ты снова здесь.</p>
+            <div class="confirm-buttons">
+                <button class="confirm-yes" onclick="doReset()">Да, начать заново</button>
+                <button class="confirm-no" onclick="hideReset()">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div>
+                    <div class="footer-logo">AlexNes</div>
+                    <p class="footer-tagline">Терапия зависимостей. Реальный опыт. Настоящая помощь.</p>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="/#about">Об Алексе</a></li>
+                    <li><a href="/#services">Услуги</a></li>
+                    <li><a href="/#contact">Контакт</a></li>
+                    <li><a href="/blog">Блог</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2025 AlexNes. Все права защищены.</p>
+                <div class="footer-social">
+                    <a href="https://t.me/nesterealex" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                        <svg viewBox="0 0 24 24"><path d="M21 5L2 12.5l7 1M21 5l-2 14-8-6.5M21 5L9 13.5m0 0V19l3.5-3.5"/></svg>
+                    </a>
+                    <a href="https://instagram.com/alex.nes.161" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@aiexnes659" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme
+        function getTheme() { return localStorage.getItem('theme') || 'neon'; }
+        function setTheme(theme) { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); }
+        (function() { setTheme(getTheme()); })();
+
+        // Nav scroll
+        var navEl = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) { navEl.classList.add('scrolled'); } else { navEl.classList.remove('scrolled'); }
+        });
+
+        // Mobile menu
+        function toggleMenu() {
+            var menu = document.getElementById('mobileMenu');
+            var btn = document.querySelector('.mobile-menu-btn');
+            menu.classList.toggle('active');
+            btn.classList.toggle('active');
+            var isOpen = menu.classList.contains('active');
+            btn.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        // Quotes from Alex
+        var quotes = [
+            "Сегодня достаточно. Завтра подумаешь о завтра.",
+            "Ты не обязан быть сильным каждый день. Достаточно не сдаваться.",
+            "Трезвость — это не отсутствие желания выпить. Это выбор, который ты делаешь каждое утро.",
+            "Один день — это много. Один день — это всё, что у тебя есть. И этого хватает.",
+            "Не считай, сколько осталось. Считай, сколько уже прошёл.",
+            "Срыв — это не конец. Это поворот. Главное — снова повернуть в свою сторону.",
+            "Тебе не нужно одобрение, чтобы выздоравливать. Тебе нужна только честность с собой.",
+            "Каждый трезвый день — это не подвиг. Это выбор. И он твой.",
+            "Путь не становится легче. Ты становишься сильнее.",
+            "Ты здесь. Ты трезв. Остальное решаемо."
+        ];
+
+        var KEY_START = 'sobriety_start';
+        var KEY_CHECKIN = 'sobriety_checkin';
+
+        function getStartDate() {
+            var d = localStorage.getItem(KEY_START);
+            return d ? new Date(d) : null;
+        }
+
+        function getLastCheckin() {
+            return localStorage.getItem(KEY_CHECKIN);
+        }
+
+        function todayStr() {
+            var d = new Date();
+            return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+        }
+
+        function daysBetween(start, end) {
+            var s = new Date(start.getFullYear(), start.getMonth(), start.getDate());
+            var e = new Date(end.getFullYear(), end.getMonth(), end.getDate());
+            return Math.floor((e - s) / 86400000);
+        }
+
+        function dayWord(n) {
+            var mod10 = n % 10;
+            var mod100 = n % 100;
+            if (mod100 >= 11 && mod100 <= 19) return 'дней';
+            if (mod10 === 1) return 'день';
+            if (mod10 >= 2 && mod10 <= 4) return 'дня';
+            return 'дней';
+        }
+
+        function formatDateRu(d) {
+            var months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+            return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+        }
+
+        function showSetup() {
+            document.getElementById('setupSection').classList.add('active');
+            document.getElementById('counterSection').classList.add('hidden');
+            document.getElementById('milestonesSection').classList.add('hidden');
+            document.getElementById('quoteSection').classList.add('hidden');
+            document.getElementById('actionsSection').classList.add('hidden');
+            var inp = document.getElementById('startDateInput');
+            inp.value = todayStr();
+            inp.max = todayStr();
+        }
+
+        function showCounter() {
+            document.getElementById('setupSection').classList.remove('active');
+            document.getElementById('counterSection').classList.remove('hidden');
+            document.getElementById('milestonesSection').classList.remove('hidden');
+            document.getElementById('quoteSection').classList.remove('hidden');
+            document.getElementById('actionsSection').classList.remove('hidden');
+
+            var start = getStartDate();
+            var days = daysBetween(start, new Date());
+            if (days < 0) days = 0;
+
+            document.getElementById('dayCount').textContent = days;
+            document.getElementById('dayLabel').textContent = dayWord(days);
+            document.getElementById('startDateDisplay').textContent = 'Начало: ' + formatDateRu(start);
+
+            // Check-in state
+            var btn = document.getElementById('checkinBtn');
+            if (getLastCheckin() === todayStr()) {
+                btn.textContent = 'Отмечено на сегодня';
+                btn.classList.add('checked');
+            } else {
+                btn.textContent = 'Я трезв(а) сегодня';
+                btn.classList.remove('checked');
+            }
+
+            // Milestones
+            var milestones = document.querySelectorAll('.milestone');
+            for (var i = 0; i < milestones.length; i++) {
+                var req = parseInt(milestones[i].getAttribute('data-days'));
+                if (days >= req) {
+                    milestones[i].classList.add('reached');
+                } else {
+                    milestones[i].classList.remove('reached');
+                }
+            }
+
+            // Random quote
+            var idx = days % quotes.length;
+            document.getElementById('quoteText').textContent = '“' + quotes[idx] + '”';
+        }
+
+        function saveStartDate() {
+            var val = document.getElementById('startDateInput').value;
+            if (!val) return;
+            var chosen = new Date(val);
+            var today = new Date();
+            today.setHours(0,0,0,0);
+            chosen.setHours(0,0,0,0);
+            if (chosen > today) return;
+            localStorage.setItem(KEY_START, val);
+            showCounter();
+        }
+
+        function doCheckin() {
+            localStorage.setItem(KEY_CHECKIN, todayStr());
+            var btn = document.getElementById('checkinBtn');
+            btn.textContent = 'Отмечено на сегодня';
+            btn.classList.add('checked');
+        }
+
+        function showReset() {
+            document.getElementById('confirmOverlay').classList.add('active');
+        }
+        function hideReset() {
+            document.getElementById('confirmOverlay').classList.remove('active');
+        }
+        function doReset() {
+            localStorage.removeItem(KEY_START);
+            localStorage.removeItem(KEY_CHECKIN);
+            hideReset();
+            showSetup();
+        }
+
+        // Init
+        if (getStartDate()) {
+            showCounter();
+        } else {
+            showSetup();
+        }
+    </script>
+</body>
+</html>
