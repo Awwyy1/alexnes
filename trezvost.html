@@ -21,18 +21,32 @@
     <meta name="twitter:title" content="Счётчик трезвости — AlexNes">
     <meta name="twitter:description" content="Анонимный счётчик дней трезвости. Считай дни, отмечай вехи, двигайся вперёд.">
     <meta name="twitter:image" content="https://alexnes.com/favicon.svg">
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="favicon.svg">
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Счётчик трезвости",
-        "description": "Анонимный счётчик дней трезвости. Считай дни, отмечай вехи, двигайся вперёд.",
-        "url": "https://alexnes.com/trezvost",
-        "isPartOf": { "@id": "https://alexnes.com/#website" }
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "name": "Счётчик трезвости",
+                "description": "Анонимный счётчик дней трезвости. Считай дни, отмечай вехи, двигайся вперёд.",
+                "url": "https://alexnes.com/trezvost",
+                "isPartOf": { "@id": "https://alexnes.com/#website" }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://alexnes.com/" },
+                    { "@type": "ListItem", "position": 2, "name": "Счётчик трезвости" }
+                ]
+            }
+        ]
     }
     </script>
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9MGJNMBVG"></script>
     <script>
@@ -42,45 +56,62 @@
         gtag('config', 'G-D9MGJNMBVG');
         gtag('config', 'AW-18060459277');
     </script>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        [data-theme="classic"] {
+    <style>
+        :root {
             --black: #0a0a0a;
+            --coal: #1a1a1a;
             --dark-gray: #2a2a2a;
             --mid-gray: #666666;
             --light-gray: #b0b0b0;
+            --off-white: #f0f0f0;
             --white: #ffffff;
             --font-main: 'Montserrat', -apple-system, sans-serif;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             --btn-radius: 0;
             --accent-primary: var(--white);
             --accent-secondary: var(--mid-gray);
+            --glow-color: rgba(255, 255, 255, 0.15);
         }
 
         [data-theme="neon"] {
             --black: #0c0a1a;
+            --coal: #13102a;
             --dark-gray: #1e1a3a;
             --mid-gray: #6b7280;
             --light-gray: #9ca3af;
+            --off-white: #e5e7eb;
             --white: #f9fafb;
             --btn-radius: 50px;
             --accent-primary: #8B5CF6;
             --accent-secondary: #10B981;
+            --glow-color: rgba(139, 92, 246, 0.3);
         }
 
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--black); color: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-        h1, h2, h3, button, input, a { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--black);
+            color: var(--light-gray);
+            line-height: 1.7;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
 
-        /* Nav */
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: linear-gradient(to bottom, var(--black) 0%, transparent 100%); transition: background 0.4s ease; }
-        nav.scrolled { background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
-        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: var(--font-main); font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; }
+        /* Navigation — copied from terapiya-travmy */
+        nav:not(.breadcrumbs) { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 0; transition: all 0.4s ease; background: var(--black); }
+        nav:not(.breadcrumbs).scrolled { background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); padding: 16px 0; }
+        [data-theme="neon"] nav:not(.breadcrumbs).scrolled { background: rgba(12,10,26,0.95); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 18px; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; }
         .nav-links { display: flex; gap: 24px; list-style: none; }
         .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 12px; font-weight: 400; letter-spacing: 0.03em; position: relative; transition: color 0.3s ease; }
         .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--white); transition: width 0.3s ease; }
@@ -92,65 +123,41 @@
         .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
         .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
         .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+        /* Mobile Menu */
         .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); z-index: 99; flex-direction: column; justify-content: center; align-items: center; gap: 10px; padding-top: 50px; }
         [data-theme="neon"] .mobile-menu { background: rgba(12,10,26,0.98); }
         .mobile-menu.active { display: flex; }
         .mobile-menu a { color: var(--white); text-decoration: none; font-size: 18px; font-weight: 300; letter-spacing: 0.1em; }
 
         /* Breadcrumbs */
-        .breadcrumbs { padding: 90px 0 0; }
-        .breadcrumbs ul { display: flex; align-items: center; gap: 8px; list-style: none; }
-        .breadcrumbs a { color: var(--mid-gray); text-decoration: none; font-size: 13px; font-weight: 400; transition: color 0.3s ease; }
+        .breadcrumbs { padding: 140px 0 0; max-width: 760px; margin: 0 auto; }
+        .breadcrumbs ul { list-style: none; display: flex; gap: 8px; align-items: center; font-size: 13px; }
+        .breadcrumbs li { display: flex; align-items: center; gap: 8px; }
+        .breadcrumbs a { color: var(--mid-gray); text-decoration: none; transition: color 0.3s ease; }
         .breadcrumbs a:hover { color: var(--white); }
-        .breadcrumbs .separator { color: var(--dark-gray); font-size: 12px; }
-        .breadcrumbs .current { color: var(--light-gray); font-size: 13px; font-weight: 400; }
+        .breadcrumbs .separator { color: var(--dark-gray); font-size: 11px; }
+        .breadcrumbs .current { color: var(--light-gray); }
 
-        /* Hero */
-        .sobriety-hero {
-            padding: 60px 0 40px;
-            text-align: center;
-        }
-        .sobriety-hero .section-label {
-            display: block;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent-secondary);
-            margin-bottom: 16px;
-        }
-        [data-theme="classic"] .sobriety-hero .section-label { color: var(--mid-gray); }
-        .sobriety-hero h1 {
-            font-size: clamp(28px, 4vw, 42px);
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 16px;
-            line-height: 1.2;
-        }
-        .sobriety-hero p {
-            font-size: 16px;
-            font-weight: 300;
-            color: var(--light-gray);
-            max-width: 520px;
-            margin: 0 auto;
-        }
+        /* Page-specific styles */
+        .page-header { padding: 40px 0 16px; max-width: 760px; margin: 0 auto; text-align: center; }
+        .page-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-primary); margin-bottom: 20px; }
+        [data-theme="classic"] .page-tag { color: var(--light-gray); }
+        .page-header h1 { font-family: var(--font-main); font-size: clamp(28px, 4vw, 42px); font-weight: 600; color: var(--white); line-height: 1.3; margin-bottom: 16px; }
+        .page-header p { font-size: 16px; font-weight: 300; color: var(--light-gray); max-width: 520px; margin: 0 auto; }
 
         /* Counter */
-        .counter-section {
-            padding: 40px 0 60px;
-            text-align: center;
-        }
+        .counter-section { padding: 40px 0 60px; text-align: center; }
         .counter-box {
             max-width: 400px;
             margin: 0 auto;
             padding: 48px 32px;
             border: 1px solid var(--dark-gray);
             border-radius: var(--btn-radius);
-            position: relative;
         }
         [data-theme="neon"] .counter-box { border-color: rgba(139,92,246,0.2); background: rgba(139,92,246,0.03); }
         .counter-number {
-            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: var(--font-main);
             font-size: clamp(64px, 10vw, 96px);
             font-weight: 700;
             color: var(--white);
@@ -158,18 +165,8 @@
             margin-bottom: 4px;
         }
         [data-theme="neon"] .counter-number { color: var(--accent-primary); }
-        .counter-label {
-            font-size: 18px;
-            font-weight: 300;
-            color: var(--light-gray);
-            margin-bottom: 8px;
-        }
-        .counter-start-date {
-            font-size: 13px;
-            font-weight: 300;
-            color: var(--mid-gray);
-            margin-bottom: 32px;
-        }
+        .counter-label { font-size: 18px; font-weight: 300; color: var(--light-gray); margin-bottom: 8px; }
+        .counter-start-date { font-size: 13px; font-weight: 300; color: var(--mid-gray); margin-bottom: 32px; }
 
         /* Check-in button */
         .checkin-btn {
@@ -187,46 +184,19 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        .checkin-btn:hover {
-            background: var(--accent-secondary);
-            color: var(--black);
-        }
+        .checkin-btn:hover { background: var(--accent-secondary); color: var(--black); }
         [data-theme="classic"] .checkin-btn { border-color: var(--white); color: var(--white); }
         [data-theme="classic"] .checkin-btn:hover { background: var(--white); color: var(--black); }
-        .checkin-btn.checked {
-            background: var(--accent-secondary);
-            color: var(--black);
-            pointer-events: none;
-        }
+        .checkin-btn.checked { background: var(--accent-secondary); color: var(--black); pointer-events: none; }
         [data-theme="classic"] .checkin-btn.checked { background: var(--white); color: var(--black); }
 
         /* Setup state */
-        .setup-section {
-            padding: 40px 0 60px;
-            text-align: center;
-            display: none;
-        }
+        .setup-section { padding: 40px 0 60px; text-align: center; display: none; }
         .setup-section.active { display: block; }
         .counter-section.hidden { display: none; }
-        .setup-title {
-            font-size: clamp(22px, 3vw, 32px);
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 12px;
-        }
-        .setup-desc {
-            font-size: 15px;
-            font-weight: 300;
-            color: var(--light-gray);
-            margin-bottom: 32px;
-            max-width: 420px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .date-input-wrap {
-            max-width: 280px;
-            margin: 0 auto 24px;
-        }
+        .setup-title { font-family: var(--font-main); font-size: clamp(22px, 3vw, 32px); font-weight: 600; color: var(--white); margin-bottom: 12px; }
+        .setup-desc { font-size: 15px; font-weight: 300; color: var(--light-gray); margin-bottom: 32px; max-width: 420px; margin-left: auto; margin-right: auto; }
+        .date-input-wrap { max-width: 280px; margin: 0 auto 24px; }
         .date-input-wrap input {
             width: 100%;
             padding: 14px 20px;
@@ -242,7 +212,6 @@
             transition: border-color 0.3s ease;
         }
         .date-input-wrap input:focus { border-color: var(--accent-primary); }
-        [data-theme="neon"] .date-input-wrap input:focus { border-color: var(--accent-primary); }
         .start-btn {
             display: inline-block;
             padding: 14px 40px;
@@ -263,119 +232,68 @@
         [data-theme="neon"] .start-btn:hover { background: var(--accent-primary); color: var(--black); }
 
         /* Milestones */
-        .milestones-section {
-            padding: 40px 0 60px;
-        }
-        .milestones-title {
-            text-align: center;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--mid-gray);
-            margin-bottom: 32px;
-        }
-        .milestones-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        .milestones-section { padding: 40px 0 60px; }
+        .milestones-title { text-align: center; font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 32px; }
+        .milestones-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; max-width: 600px; margin: 0 auto; }
         .milestone {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            display: flex; align-items: center; gap: 10px;
             padding: 12px 20px;
             border: 1px solid var(--dark-gray);
             border-radius: var(--btn-radius);
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--mid-gray);
+            font-size: 14px; font-weight: 400; color: var(--mid-gray);
             transition: all 0.3s ease;
         }
-        .milestone.reached {
-            border-color: var(--accent-secondary);
-            color: var(--accent-secondary);
-        }
+        .milestone.reached { border-color: var(--accent-secondary); color: var(--accent-secondary); }
         [data-theme="classic"] .milestone.reached { border-color: var(--white); color: var(--white); }
         .milestone-icon {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
+            width: 18px; height: 18px; border-radius: 50%;
             border: 1.5px solid var(--dark-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
-        .milestone.reached .milestone-icon {
-            border-color: var(--accent-secondary);
-            background: var(--accent-secondary);
-        }
+        .milestone.reached .milestone-icon { border-color: var(--accent-secondary); background: var(--accent-secondary); }
         [data-theme="classic"] .milestone.reached .milestone-icon { border-color: var(--white); background: var(--white); }
         .milestone.reached .milestone-icon svg { display: block; }
-        .milestone-icon svg {
-            display: none;
-            width: 10px;
-            height: 10px;
-            stroke: var(--black);
-            stroke-width: 2.5;
-            fill: none;
-        }
+        .milestone-icon svg { display: none; width: 10px; height: 10px; stroke: var(--black); stroke-width: 2.5; fill: none; }
 
         /* Quote */
-        .quote-section {
-            padding: 40px 0 60px;
-            text-align: center;
-        }
-        .quote-box {
-            max-width: 560px;
-            margin: 0 auto;
-            padding: 40px 32px;
-            border-top: 1px solid var(--dark-gray);
-            border-bottom: 1px solid var(--dark-gray);
-        }
-        .quote-label {
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--mid-gray);
-            margin-bottom: 20px;
-        }
-        .quote-text {
-            font-size: 18px;
-            font-weight: 300;
-            font-style: italic;
-            color: var(--light-gray);
-            line-height: 1.6;
-        }
+        .quote-section { padding: 40px 0 60px; text-align: center; }
+        .quote-box { max-width: 560px; margin: 0 auto; padding: 40px 32px; border-top: 1px solid var(--dark-gray); border-bottom: 1px solid var(--dark-gray); }
+        .quote-label { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 20px; }
+        .quote-text { font-size: 18px; font-weight: 300; font-style: italic; color: var(--light-gray); line-height: 1.6; }
 
         /* Actions */
         .actions-section {
-            padding: 20px 0 80px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            padding: 20px 0 80px; text-align: center;
+            display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
         }
         .action-link {
-            font-family: var(--font-main);
-            font-size: 13px;
-            font-weight: 400;
-            color: var(--mid-gray);
-            text-decoration: none;
-            padding: 10px 20px;
-            border: 1px solid var(--dark-gray);
-            border-radius: var(--btn-radius);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            background: none;
+            font-family: var(--font-main); font-size: 13px; font-weight: 400;
+            color: var(--mid-gray); text-decoration: none;
+            padding: 10px 20px; border: 1px solid var(--dark-gray);
+            border-radius: var(--btn-radius); transition: all 0.3s ease;
+            cursor: pointer; background: none;
         }
         .action-link:hover { border-color: var(--light-gray); color: var(--light-gray); }
+
+        /* Hidden helper */
+        .hidden { display: none; }
+
+        /* Confirm dialog */
+        .confirm-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; }
+        .confirm-overlay.active { display: flex; }
+        .confirm-box { background: var(--black); border: 1px solid var(--dark-gray); border-radius: var(--btn-radius); padding: 40px 32px; max-width: 400px; text-align: center; }
+        [data-theme="neon"] .confirm-box { border-color: rgba(139,92,246,0.3); }
+        .confirm-box h3 { font-family: var(--font-main); font-size: 20px; font-weight: 600; color: var(--white); margin-bottom: 12px; }
+        .confirm-box p { font-size: 14px; font-weight: 300; color: var(--light-gray); margin-bottom: 28px; }
+        .confirm-buttons { display: flex; gap: 12px; justify-content: center; }
+        .confirm-yes, .confirm-no {
+            font-family: var(--font-main); font-size: 13px; font-weight: 500; letter-spacing: 0.05em;
+            padding: 12px 28px; border-radius: var(--btn-radius); cursor: pointer;
+            transition: all 0.3s ease; border: 1px solid var(--dark-gray); background: transparent; color: var(--light-gray);
+        }
+        .confirm-yes:hover { border-color: var(--white); color: var(--white); }
+        .confirm-no { border-color: var(--mid-gray); color: var(--mid-gray); }
+        .confirm-no:hover { border-color: var(--light-gray); color: var(--light-gray); }
 
         /* Footer */
         footer { background: var(--black); padding: 60px 0 40px; border-top: 1px solid var(--dark-gray); }
@@ -395,99 +313,34 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .mobile-menu-btn { display: flex; }
             .nav-links { display: none; }
-            .breadcrumbs { padding: 60px 0 0; }
-            .sobriety-hero { padding: 12px 0 16px; }
-            .sobriety-hero .section-label { margin-bottom: 8px; font-size: 10px; }
-            .sobriety-hero h1 { font-size: 22px; margin-bottom: 8px; }
-            .sobriety-hero p { font-size: 13px; }
-            .setup-section { padding: 16px 0 32px; }
-            .setup-title { font-size: 20px; }
-            .setup-desc { font-size: 13px; margin-bottom: 24px; }
-            .counter-section { padding: 16px 0 32px; }
-            .counter-box { margin-left: 16px; margin-right: 16px; padding: 28px 20px; }
-            .counter-number { font-size: 56px; }
-            .counter-label { font-size: 16px; }
-            .checkin-btn { padding: 14px 32px; font-size: 12px; }
-            .milestones-section { padding: 20px 0 40px; }
+            .mobile-menu-btn { display: flex; }
+            .page-header { padding: 32px 24px 16px; }
+            .counter-box { margin: 0 16px; padding: 36px 24px; }
             .milestones-grid { gap: 10px; }
             .milestone { padding: 10px 16px; font-size: 13px; }
-            .quote-section { padding: 20px 0 40px; }
             .quote-box { padding: 28px 20px; }
             .quote-text { font-size: 16px; }
-            .actions-section { padding: 10px 0 60px; }
+            .actions-section { padding: 10px 24px 60px; }
             .footer-inner { flex-direction: column; text-align: center; }
             .footer-links { flex-wrap: wrap; justify-content: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
         }
-
-        /* Confirm dialog */
-        .confirm-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-        .confirm-overlay.active { display: flex; }
-        .confirm-box {
-            background: var(--black);
-            border: 1px solid var(--dark-gray);
-            border-radius: var(--btn-radius);
-            padding: 40px 32px;
-            max-width: 400px;
-            text-align: center;
-        }
-        [data-theme="neon"] .confirm-box { border-color: rgba(139,92,246,0.3); }
-        .confirm-box h3 {
-            font-size: 20px;
-            font-weight: 600;
-            color: var(--white);
-            margin-bottom: 12px;
-        }
-        .confirm-box p {
-            font-size: 14px;
-            font-weight: 300;
-            color: var(--light-gray);
-            margin-bottom: 28px;
-        }
-        .confirm-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-        }
-        .confirm-yes, .confirm-no {
-            font-family: var(--font-main);
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            padding: 12px 28px;
-            border-radius: var(--btn-radius);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid var(--dark-gray);
-            background: transparent;
-            color: var(--light-gray);
-        }
-        .confirm-yes:hover { border-color: var(--white); color: var(--white); }
-        .confirm-no { border-color: var(--mid-gray); color: var(--mid-gray); }
-        .confirm-no:hover { border-color: var(--light-gray); color: var(--light-gray); }
     </style>
 </head>
 <body>
+
+    <!-- Navigation -->
     <nav>
         <div class="container nav-inner">
             <a href="/" class="logo">AlexNes</a>
             <ul class="nav-links">
                 <li><a href="/#about">Об Алексе</a></li>
                 <li><a href="/#services">Услуги</a></li>
-                <li><a href="/testy">Тесты</a></li>
-                <li><a href="/trezvost">Трезвость</a></li>
-                <li><a href="/video">Видео</a></li>
-                <li><a href="/blog">Блог</a></li>
+                <li><a href="testy">Тесты</a></li>
+                <li><a href="trezvost">Трезвость</a></li>
+                <li><a href="video">Видео</a></li>
+                <li><a href="blog">Блог</a></li>
                 <li><a href="/#contact">Контакт</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -498,18 +351,20 @@
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="/" onclick="toggleMenu()">Главная</a>
         <a href="/#about" onclick="toggleMenu()">Об Алексе</a>
         <a href="/#services" onclick="toggleMenu()">Услуги</a>
-        <a href="/testy" onclick="toggleMenu()">Тесты</a>
-        <a href="/trezvost" onclick="toggleMenu()">Трезвость</a>
-        <a href="/video" onclick="toggleMenu()">Видео</a>
-        <a href="/blog" onclick="toggleMenu()">Блог</a>
+        <a href="testy" onclick="toggleMenu()">Тесты</a>
+        <a href="trezvost" onclick="toggleMenu()">Трезвость</a>
+        <a href="video" onclick="toggleMenu()">Видео</a>
+        <a href="blog" onclick="toggleMenu()">Блог</a>
         <a href="/#contact" onclick="toggleMenu()">Контакт</a>
     </div>
 
     <main>
+    <!-- Breadcrumbs -->
     <nav class="breadcrumbs container" aria-label="Хлебные крошки">
         <ul>
             <li><a href="/">Главная</a></li>
@@ -518,13 +373,12 @@
         </ul>
     </nav>
 
-    <section class="sobriety-hero">
-        <div class="container">
-            <span class="section-label">День за днём</span>
-            <h1>Счётчик трезвости</h1>
-            <p>Анонимно. Без регистрации. Данные хранятся только в твоём браузере — никто, кроме тебя, их не видит.</p>
-        </div>
-    </section>
+    <!-- Page Header -->
+    <div class="page-header container">
+        <span class="page-tag">День за днём</span>
+        <h1>Счётчик трезвости</h1>
+        <p>Анонимно. Без регистрации. Данные хранятся только в твоём браузере — никто, кроме тебя, их не видит.</p>
+    </div>
 
     <!-- Setup: shown when no start date -->
     <section class="setup-section" id="setupSection">
@@ -612,6 +466,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-inner">
@@ -623,7 +478,7 @@
                     <li><a href="/#about">Об Алексе</a></li>
                     <li><a href="/#services">Услуги</a></li>
                     <li><a href="/#contact">Контакт</a></li>
-                    <li><a href="/blog">Блог</a></li>
+                    <li><a href="blog">Блог</a></li>
                 </ul>
             </div>
             <div class="footer-bottom">
@@ -650,20 +505,20 @@
         (function() { setTheme(getTheme()); })();
 
         // Nav scroll
-        var navEl = document.querySelector('nav');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) { navEl.classList.add('scrolled'); } else { navEl.classList.remove('scrolled'); }
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
         });
 
         // Mobile menu
         function toggleMenu() {
-            var menu = document.getElementById('mobileMenu');
-            var btn = document.querySelector('.mobile-menu-btn');
+            const menu = document.getElementById('mobileMenu');
+            const btn = document.querySelector('.mobile-menu-btn');
             menu.classList.toggle('active');
             btn.classList.toggle('active');
-            var isOpen = menu.classList.contains('active');
+            const isOpen = menu.classList.contains('active');
             btn.setAttribute('aria-expanded', isOpen);
-            document.body.style.overflow = isOpen ? 'hidden' : '';
+            btn.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
         }
 
         // Quotes from Alex
@@ -743,7 +598,6 @@
             document.getElementById('dayLabel').textContent = dayWord(days);
             document.getElementById('startDateDisplay').textContent = 'Начало: ' + formatDateRu(start);
 
-            // Check-in state
             var btn = document.getElementById('checkinBtn');
             if (getLastCheckin() === todayStr()) {
                 btn.textContent = 'Отмечено на сегодня';
@@ -753,7 +607,6 @@
                 btn.classList.remove('checked');
             }
 
-            // Milestones
             var milestones = document.querySelectorAll('.milestone');
             for (var i = 0; i < milestones.length; i++) {
                 var req = parseInt(milestones[i].getAttribute('data-days'));
@@ -764,7 +617,6 @@
                 }
             }
 
-            // Random quote
             var idx = days % quotes.length;
             document.getElementById('quoteText').textContent = '“' + quotes[idx] + '”';
         }
@@ -808,5 +660,6 @@
             showSetup();
         }
     </script>
+
 </body>
 </html>
