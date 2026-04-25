@@ -424,12 +424,9 @@
             btn.disabled = true;
             btn.textContent = 'Отправляю...';
 
-            fetch('https://script.google.com/macros/s/AKfycbznSLp-HCJ7atWGykUAw6XLD6GzPVjBpXj7ffRCBDq20PxZlJFSkDPhTEZnITV4U5uNIw/exec', {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ question: text })
-            }).then(function() {
+            var url = 'https://script.google.com/macros/s/AKfycbznSLp-HCJ7atWGykUAw6XLD6GzPVjBpXj7ffRCBDq20PxZlJFSkDPhTEZnITV4U5uNIw/exec?question=' + encodeURIComponent(text);
+
+            fetch(url, { mode: 'no-cors' }).then(function() {
                 document.getElementById('formBox').style.display = 'none';
                 document.getElementById('successMsg').classList.add('active');
             }).catch(function() {
