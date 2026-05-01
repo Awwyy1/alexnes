@@ -1796,18 +1796,66 @@
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-            
+
             .about-image {
                 max-width: 500px;
             }
-            
+
             .approach-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
+
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
+            }
+
+            /* Tablet: уменьшаем отступы секций */
+            section, .services, .approach, .testimonials, .journey, .faq, .cta, .contact {
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+
+            /* Tablet: services-grid — одна колонка если карточки не помещаются */
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Tablet: timeline в одну колонку */
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                padding-left: 60px;
+            }
+
+            .timeline-item::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                grid-column: 1;
+                text-align: left;
+                padding: 0;
+            }
+
+            /* Tablet: contact form padding */
+            .contact-form {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            /* Hamburger уже на 900px — навбар с 10+ ссылками не помещается */
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
             }
         }
         
