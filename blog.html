@@ -33,6 +33,22 @@
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9MGJNMBVG"></script>
     <script>
+        // Privacy Modal
+        function openPrivacy(e) {
+            if (e) e.preventDefault();
+            var m = document.getElementById('privacyModal');
+            if (m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        }
+        function closePrivacy() {
+            var m = document.getElementById('privacyModal');
+            if (m) { m.classList.remove('active'); document.body.style.overflow = ''; }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('privacyModal');
+            if (modal) modal.addEventListener('click', function(e) { if (e.target === this) closePrivacy(); });
+        });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePrivacy(); });
+
         // Theme Management
         function getTheme() { return localStorage.getItem('theme') || 'neon'; }
         function setTheme(theme) {
@@ -611,6 +627,20 @@
         .theme-toggle:hover .theme-toggle-switch { border-color: var(--white); }
         [data-theme="neon"] .theme-toggle:hover .theme-toggle-switch { border-color: #A855F7; box-shadow: 0 0 20px rgba(139,92,246,0.4); }
         .mobile-theme-toggle { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--dark-gray); }
+    
+        /* Privacy Modal */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 20px; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content { background: var(--coal); max-width: 700px; max-height: 80vh; overflow-y: auto; padding: 48px; position: relative; border: 1px solid var(--dark-gray); }
+        .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--mid-gray); font-size: 28px; cursor: pointer; transition: color 0.3s ease; line-height: 1; }
+        .modal-close:hover { color: var(--white); }
+        .modal-content h3 { font-size: 24px; font-weight: 600; color: var(--white); margin-bottom: 24px; }
+        .modal-content p { font-size: 15px; font-weight: 300; color: var(--light-gray); line-height: 1.8; margin-bottom: 16px; }
+        .modal-content ul { list-style: none; margin: 16px 0; }
+        .modal-content ul li { font-size: 14px; color: var(--light-gray); padding: 8px 0; padding-left: 20px; position: relative; }
+        .modal-content ul li::before { content: ''; position: absolute; left: 0; top: 14px; width: 6px; height: 6px; background: var(--accent-primary); border-radius: 50%; }
+        [data-theme="neon"] .modal-content { border-color: rgba(139,92,246,0.3); }
+        [data-theme="neon"] .modal-content ul li::before { background: #8B5CF6; }
     </style>
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
@@ -903,8 +933,9 @@
                 <ul class="footer-links">
                     <li><a href="/#about">Об Алексе</a></li>
                     <li><a href="/#services">Услуги</a></li>
+                    <li><a href="/blog">Блог</a></li>
                     <li><a href="/#contact">Контакт</a></li>
-                    <li><a href="blog">Блог</a></li>
+                    <li><a href="#" onclick="openPrivacy(event)">Политика конфиденциальности</a></li>
                 </ul>
             </div>
             <div class="footer-bottom">
@@ -960,6 +991,32 @@
             btn.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
         }
     </script>
+
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePrivacy()" aria-label="Закрыть">&times;</button>
+            <h3>Политика конфиденциальности</h3>
+            <p>Ваша конфиденциальность — мой абсолютный приоритет. Все обращения и консультации строго конфиденциальны.</p>
+            <p><strong>Гарантии конфиденциальности:</strong></p>
+            <ul>
+                <li>Все личные данные, истории и обращения остаются строго между нами</li>
+                <li>Информация никогда не передаётся третьим лицам без вашего согласия</li>
+                <li>Записи консультаций не ведутся без вашего разрешения</li>
+                <li>Ваша личность и факт обращения не разглашаются</li>
+                <li>Все коммуникации (мессенджеры, email, звонки) защищены</li>
+            </ul>
+            <p><strong>Сбор данных:</strong></p>
+            <ul>
+                <li>Сайт собирает только данные, которые вы добровольно предоставляете через форму обратной связи</li>
+                <li>Для улучшения работы сайта используются сервисы аналитики (Google Analytics, Microsoft Clarity)</li>
+                <li>Шрифты загружаются с серверов Google Fonts</li>
+                <li>Запись на консультацию через сервис Cal.com (серверы в ЕС)</li>
+            </ul>
+            <p style="color: var(--mid-gray); font-size: 13px; margin-top: 24px;">Обновлено: Март 2026</p>
+        </div>
+    </div>
 
 </body>
 </html>
