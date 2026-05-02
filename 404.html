@@ -8,6 +8,21 @@
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#0a0a0a">
 
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alexnes.com/404">
+    <meta property="og:title" content="404 — Страница не найдена | AlexNes">
+    <meta property="og:description" content="Запрашиваемая страница не найдена. Вернитесь на главную сайта AlexNes.">
+    <meta property="og:image" content="https://alexnes.com/images/alex.jpg">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="AlexNes">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="404 — Страница не найдена | AlexNes">
+    <meta name="twitter:description" content="Запрашиваемая страница не найдена.">
+    <meta name="twitter:image" content="https://alexnes.com/images/alex.jpg">
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="favicon.svg">
@@ -496,7 +511,11 @@
             <ul class="nav-links">
                 <li><a href="/#about">Об Алексе</a></li>
                 <li><a href="/#services">Услуги</a></li>
-                <li><a href="blog">Блог</a></li>
+                <li><a href="/testy">Тесты</a></li>
+                <li><a href="/trezvost">Трезвость</a></li>
+                <li><a href="/voprosy">Вопросы</a></li>
+                <li><a href="/video">Видео</a></li>
+                <li><a href="/blog">Блог</a></li>
                 <li><a href="/#contact">Контакт</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -509,11 +528,20 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="/" onclick="toggleMenu()">Главная</a>
         <a href="/#about" onclick="toggleMenu()">Об Алексе</a>
         <a href="/#services" onclick="toggleMenu()">Услуги</a>
-        <a href="blog" onclick="toggleMenu()">Блог</a>
+        <a href="/testy" onclick="toggleMenu()">Тесты</a>
+        <a href="/trezvost" onclick="toggleMenu()">Трезвость</a>
+        <a href="/voprosy" onclick="toggleMenu()">Вопросы</a>
+        <a href="/video" onclick="toggleMenu()">Видео</a>
+        <a href="/blog" onclick="toggleMenu()">Блог</a>
         <a href="/#contact" onclick="toggleMenu()">Контакт</a>
+        <div class="mobile-theme-toggle">
+            <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Переключить тему">
+                <span class="theme-toggle-label" id="mobileThemeLabel">Classic</span>
+                <div class="theme-toggle-switch"></div>
+            </div>
+        </div>
     </div>
 
     <main class="error-page">
