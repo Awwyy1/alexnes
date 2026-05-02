@@ -105,6 +105,9 @@
         .nav-links { display: flex; gap: 28px; list-style: none; }
         .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; transition: color 0.3s ease; }
         .nav-links a:hover { color: var(--white); }
+        .nav-links a.active { color: var(--white); }
+        .nav-links a.active::after { width: 100%; }
+        .mobile-menu a.active { color: var(--accent-primary, var(--white)); }
         .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
         .mobile-menu-btn span { width: 24px; height: 1px; background: var(--white); transition: all 0.3s ease; }
         .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); z-index: 99; flex-direction: column; justify-content: center; align-items: center; gap: 32px; }
@@ -196,7 +199,7 @@
                 <li><a href="/trezvost">Трезвость</a></li>
                 <li><a href="/voprosy">Вопросы</a></li>
                 <li><a href="/video">Видео</a></li>
-                <li><a href="/blog">Блог</a></li>
+                <li><a href="/blog" class="active">Блог</a></li>
                 <li><a href="/#contact">Контакт</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
@@ -209,7 +212,7 @@
         <a href="/trezvost" onclick="toggleMenu()">Трезвость</a>
         <a href="/voprosy" onclick="toggleMenu()">Вопросы</a>
         <a href="/video" onclick="toggleMenu()">Видео</a>
-        <a href="/blog" onclick="toggleMenu()">Блог</a>
+        <a href="/blog" onclick="toggleMenu()" class="active">Блог</a>
         <a href="/#contact" onclick="toggleMenu()">Контакт</a>
     </div>
 

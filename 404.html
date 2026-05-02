@@ -147,6 +147,9 @@
         .nav-links a:hover::after {
             width: 100%;
         }
+        .nav-links a.active { color: var(--white); }
+        .nav-links a.active::after { width: 100%; }
+        .mobile-menu a.active { color: var(--accent-primary, var(--white)); }
 
         [data-theme="neon"] .nav-links a::after {
             background: var(--accent-primary);

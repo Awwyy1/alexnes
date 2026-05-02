@@ -219,6 +219,9 @@
         .nav-links a:hover::after {
             width: 100%;
         }
+        .nav-links a.active { color: var(--white); }
+        .nav-links a.active::after { width: 100%; }
+        .mobile-menu a.active { color: var(--accent-primary, var(--white)); }
 
         [data-theme="neon"] .nav-links a::after {
             background: var(--accent-primary);
@@ -766,7 +769,7 @@
                 <li><a href="/trezvost">Трезвость</a></li>
                 <li><a href="/voprosy">Вопросы</a></li>
                 <li><a href="/video">Видео</a></li>
-                <li><a href="/blog">Блог</a></li>
+                <li><a href="/blog" class="active">Блог</a></li>
                 <li><a href="/#contact">Контакт</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -785,7 +788,7 @@
         <a href="/trezvost" onclick="toggleMenu()">Трезвость</a>
         <a href="/voprosy" onclick="toggleMenu()">Вопросы</a>
         <a href="/video" onclick="toggleMenu()">Видео</a>
-        <a href="/blog" onclick="toggleMenu()">Блог</a>
+        <a href="/blog" onclick="toggleMenu()" class="active">Блог</a>
         <a href="/#contact" onclick="toggleMenu()">Контакт</a>
     </div>
 

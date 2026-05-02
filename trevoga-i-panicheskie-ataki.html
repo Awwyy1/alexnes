@@ -136,6 +136,9 @@
         .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--white); transition: width 0.3s ease; }
         .nav-links a:hover { color: var(--white); }
         .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--white); }
+        .nav-links a.active::after { width: 100%; }
+        .mobile-menu a.active { color: var(--accent-primary, var(--white)); }
         [data-theme="neon"] .nav-links a::after { background: var(--accent-primary); }
         .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
         .mobile-menu-btn span { width: 24px; height: 1px; background: var(--white); transition: all 0.3s ease; }
@@ -256,7 +259,7 @@
             <a href="/" class="logo">AlexNes</a>
             <ul class="nav-links">
                 <li><a href="/#about">Об Алексе</a></li>
-                <li><a href="/#services">Услуги</a></li>
+                <li><a href="/#services" class="active">Услуги</a></li>
                 <li><a href="/testy">Тесты</a></li>
                 <li><a href="/trezvost">Трезвость</a></li>
                 <li><a href="/voprosy">Вопросы</a></li>
@@ -275,7 +278,7 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="/#about" onclick="toggleMenu()">Об Алексе</a>
-        <a href="/#services" onclick="toggleMenu()">Услуги</a>
+        <a href="/#services" onclick="toggleMenu()" class="active">Услуги</a>
         <a href="/testy" onclick="toggleMenu()">Тесты</a>
         <a href="/trezvost" onclick="toggleMenu()">Трезвость</a>
         <a href="/voprosy" onclick="toggleMenu()">Вопросы</a>
@@ -290,7 +293,7 @@
         <ul>
             <li><a href="/">Главная</a></li>
             <li><span class="separator">/</span></li>
-            <li><a href="/#services">Услуги</a></li>
+            <li><a href="/#services" class="active">Услуги</a></li>
             <li><span class="separator">/</span></li>
             <li><span class="current" aria-current="page">Тревога и панические атаки</span></li>
         </ul>
@@ -398,7 +401,7 @@
                 </div>
                 <ul class="footer-links">
                     <li><a href="/#about">Об Алексе</a></li>
-                    <li><a href="/#services">Услуги</a></li>
+                    <li><a href="/#services" class="active">Услуги</a></li>
                     <li><a href="/#contact">Контакт</a></li>
                     <li><a href="blog">Блог</a></li>
                 </ul>
