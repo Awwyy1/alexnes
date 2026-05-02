@@ -131,8 +131,8 @@
         [data-theme="neon"] nav:not(.breadcrumbs).scrolled { background: rgba(12,10,26,0.95); }
         .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; }
-        .nav-links { display: flex; gap: 24px; list-style: none; }
-        .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 12px; font-weight: 400; letter-spacing: 0.03em; position: relative; transition: color 0.3s ease; }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; position: relative; transition: color 0.3s ease; }
         .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--white); transition: width 0.3s ease; }
         .nav-links a:hover { color: var(--white); }
         .nav-links a:hover::after { width: 100%; }
@@ -257,11 +257,11 @@
             <ul class="nav-links">
                 <li><a href="/#about">Об Алексе</a></li>
                 <li><a href="/#services">Услуги</a></li>
-                <li><a href="testy">Тесты</a></li>
-                <li><a href="trezvost">Трезвость</a></li>
-                <li><a href="voprosy">Вопросы</a></li>
-                <li><a href="video">Видео</a></li>
-                <li><a href="blog">Блог</a></li>
+                <li><a href="/testy">Тесты</a></li>
+                <li><a href="/trezvost">Трезвость</a></li>
+                <li><a href="/voprosy">Вопросы</a></li>
+                <li><a href="/video">Видео</a></li>
+                <li><a href="/blog">Блог</a></li>
                 <li><a href="/#contact">Контакт</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -274,14 +274,13 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="/" onclick="toggleMenu()">Главная</a>
         <a href="/#about" onclick="toggleMenu()">Об Алексе</a>
         <a href="/#services" onclick="toggleMenu()">Услуги</a>
-        <a href="testy" onclick="toggleMenu()">Тесты</a>
-        <a href="trezvost" onclick="toggleMenu()">Трезвость</a>
-        <a href="voprosy" onclick="toggleMenu()">Вопросы</a>
-        <a href="video" onclick="toggleMenu()">Видео</a>
-        <a href="blog" onclick="toggleMenu()">Блог</a>
+        <a href="/testy" onclick="toggleMenu()">Тесты</a>
+        <a href="/trezvost" onclick="toggleMenu()">Трезвость</a>
+        <a href="/voprosy" onclick="toggleMenu()">Вопросы</a>
+        <a href="/video" onclick="toggleMenu()">Видео</a>
+        <a href="/blog" onclick="toggleMenu()">Блог</a>
         <a href="/#contact" onclick="toggleMenu()">Контакт</a>
     </div>
 
