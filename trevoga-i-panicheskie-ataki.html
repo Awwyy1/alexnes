@@ -240,6 +240,17 @@
             .footer-links { flex-wrap: wrap; justify-content: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
         }
+    
+        /* Theme Toggle */
+        .theme-toggle { display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+        .theme-toggle-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-gray); transition: color 0.3s ease; }
+        .theme-toggle-switch { position: relative; width: 52px; height: 28px; background: var(--dark-gray); border-radius: 14px; padding: 3px; transition: all 0.3s ease; border: 1px solid var(--mid-gray); }
+        .theme-toggle-switch::before { content: ''; position: absolute; width: 20px; height: 20px; background: var(--white); border-radius: 50%; top: 3px; left: 3px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        [data-theme="neon"] .theme-toggle-switch { background: linear-gradient(135deg, #8B5CF6, #7C3AED); border-color: #8B5CF6; }
+        [data-theme="neon"] .theme-toggle-switch::before { left: 27px; box-shadow: 0 2px 8px rgba(139,92,246,0.5); }
+        .theme-toggle:hover .theme-toggle-switch { border-color: var(--white); }
+        [data-theme="neon"] .theme-toggle:hover .theme-toggle-switch { border-color: #A855F7; box-shadow: 0 0 20px rgba(139,92,246,0.4); }
+        .mobile-theme-toggle { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--dark-gray); }
     </style>
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
@@ -408,6 +419,10 @@
             </div>
             <div class="footer-bottom">
                 <p class="footer-copyright">&copy; 2025 AlexNes. Все права защищены.</p>
+                                <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Переключить тему">
+                    <span class="theme-toggle-label" id="desktopThemeLabel">Classic</span>
+                    <div class="theme-toggle-switch"></div>
+                </div>
                 <div class="footer-social">
                     <a href="https://t.me/nesterealex" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
                         <svg viewBox="0 0 24 24"><path d="M21 5L2 12.5l7 1M21 5l-2 14-8-6.5M21 5L9 13.5m0 0V19l3.5-3.5"/></svg>
@@ -424,9 +439,24 @@
     </footer>
 
     <script>
-        // Theme
+                // Theme Management
         function getTheme() { return localStorage.getItem('theme') || 'neon'; }
-        function setTheme(theme) { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); }
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            updateThemeLabels(theme);
+        }
+        function toggleTheme() {
+            const newTheme = getTheme() === 'classic' ? 'neon' : 'classic';
+            setTheme(newTheme);
+        }
+        function updateThemeLabels(theme) {
+            const label = theme === 'classic' ? 'Classic' : 'Neon';
+            const desktopLabel = document.getElementById('desktopThemeLabel');
+            const mobileLabel = document.getElementById('mobileThemeLabel');
+            if (desktopLabel) desktopLabel.textContent = label;
+            if (mobileLabel) mobileLabel.textContent = label;
+        }
         (function() { setTheme(getTheme()); })();
 
         // Nav scroll
