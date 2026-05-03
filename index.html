@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://alexnes.com/">
     <meta property="og:title" content="AlexNes — Терапия зависимостей | Реальный опыт. Настоящая помощь.">
     <meta property="og:description" content="Терапия зависимостей, основанная на реальном жизненном опыте. 11 лет трезвости. Индивидуальные консультации.">
-    <meta property="og:image" content="https://alexnes.com/favicon.svg">
+    <meta property="og:image" content="https://alexnes.com/images/alex.jpg">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="AlexNes">
 
@@ -24,7 +24,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="AlexNes — Терапия зависимостей">
     <meta name="twitter:description" content="Терапия зависимостей, основанная на реальном жизненном опыте. 11 лет трезвости.">
-    <meta name="twitter:image" content="https://alexnes.com/favicon.svg">
+    <meta name="twitter:image" content="https://alexnes.com/images/alex.jpg">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -62,7 +62,7 @@
                 "description": "Терапия зависимостей, основанная на реальном жизненном опыте. 11 лет трезвости. Индивидуальные консультации, терапия созависимости, превентивные консультации.",
                 "url": "https://alexnes.com",
                 "logo": "https://alexnes.com/favicon.svg",
-                "image": "https://alexnes.com/favicon.svg",
+                "image": "https://alexnes.com/images/alex.jpg",
                 "telephone": "+491626027760",
                 "email": "ask@alexnes.com",
                 "priceRange": "€€",
@@ -585,7 +585,6 @@
             font-size: 12px;
             font-weight: 500;
             letter-spacing: 0.05em;
-            text-transform: uppercase;
             position: relative;
             transition: color 0.3s ease;
         }
@@ -608,6 +607,9 @@
         .nav-links a:hover::after {
             width: 100%;
         }
+        .nav-links a.active { color: var(--white); }
+        .nav-links a.active::after { width: 100%; }
+        .mobile-menu a.active { color: var(--accent-primary, var(--white)); }
         
         .mobile-menu-btn {
             display: none;
@@ -2525,16 +2527,12 @@
             <a href="#" class="logo">AlexNes</a>
             <ul class="nav-links">
                 <li><a href="#about">Об Алексе</a></li>
-                <li><a href="#journey">Путь</a></li>
-                <li><a href="#approach">Подход</a></li>
-                <li><a href="#reviews">Отзывы</a></li>
                 <li><a href="#services">Услуги</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="testy">Тесты</a></li>
-                <li><a href="trezvost">Трезвость</a></li>
-                <li><a href="voprosy">Вопросы</a></li>
-                <li><a href="video">Видео</a></li>
-                <li><a href="blog">Блог</a></li>
+                <li><a href="/testy">Тесты</a></li>
+                <li><a href="/trezvost">Трезвость</a></li>
+                <li><a href="/voprosy">Вопросы</a></li>
+                <li><a href="/video">Видео</a></li>
+                <li><a href="/blog">Блог</a></li>
                 <li><a href="#contact">Контакт</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -2548,22 +2546,14 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#about" onclick="toggleMenu()">Об Алексе</a>
-        <a href="#journey" onclick="toggleMenu()">Путь</a>
-        <a href="#approach" onclick="toggleMenu()">Подход</a>
-        <a href="#reviews" onclick="toggleMenu()">Отзывы</a>
         <a href="#services" onclick="toggleMenu()">Услуги</a>
-        <a href="#faq" onclick="toggleMenu()">FAQ</a>
-        <a href="testy" onclick="toggleMenu()">Тесты</a>
-        <a href="trezvost" onclick="toggleMenu()">Трезвость</a>
-        <a href="voprosy" onclick="toggleMenu()">Вопросы</a>
-        <a href="video" onclick="toggleMenu()">Видео</a>
-        <a href="blog" onclick="toggleMenu()">Блог</a>
+        <a href="/testy" onclick="toggleMenu()">Тесты</a>
+        <a href="/trezvost" onclick="toggleMenu()">Трезвость</a>
+        <a href="/voprosy" onclick="toggleMenu()">Вопросы</a>
+        <a href="/video" onclick="toggleMenu()">Видео</a>
+        <a href="/blog" onclick="toggleMenu()">Блог</a>
         <a href="#contact" onclick="toggleMenu()">Контакт</a>
-        <!-- Theme Toggle for Mobile -->
-        <div class="mobile-theme-toggle">
-            <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Переключить тему">
-                <span class="theme-toggle-label" id="mobileThemeLabel">Classic</span>
-                <div class="theme-toggle-switch"></div>
+    </div>
             </div>
         </div>
     </div>
@@ -3409,6 +3399,7 @@
                 <ul class="footer-links">
                     <li><a href="#about">Об Алексе</a></li>
                     <li><a href="#services">Услуги</a></li>
+                    <li><a href="/blog">Блог</a></li>
                     <li><a href="#contact">Контакт</a></li>
                     <li><a href="#" onclick="openPrivacy(event)">Политика конфиденциальности</a></li>
                 </ul>

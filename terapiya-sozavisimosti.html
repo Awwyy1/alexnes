@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://alexnes.com/terapiya-sozavisimosti">
     <meta property="og:title" content="Терапия созависимости — AlexNes">
     <meta property="og:description" content="Когда чужая жизнь стала важнее твоей. Терапия созависимости для близких зависимых. Онлайн, из любой точки мира.">
-    <meta property="og:image" content="https://alexnes.com/favicon.svg">
+    <meta property="og:image" content="https://alexnes.com/images/alex.jpg">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="AlexNes">
 
@@ -24,7 +24,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Терапия созависимости — AlexNes">
     <meta name="twitter:description" content="Когда чужая жизнь стала важнее твоей. Терапия созависимости для близких зависимых.">
-    <meta name="twitter:image" content="https://alexnes.com/favicon.svg">
+    <meta name="twitter:image" content="https://alexnes.com/images/alex.jpg">
 
     <!-- JSON-LD Schema -->
     <script type="application/ld+json">
@@ -69,6 +69,22 @@
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9MGJNMBVG"></script>
     <script>
+        // Privacy Modal
+        function openPrivacy(e) {
+            if (e) e.preventDefault();
+            var m = document.getElementById('privacyModal');
+            if (m) { m.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        }
+        function closePrivacy() {
+            var m = document.getElementById('privacyModal');
+            if (m) { m.classList.remove('active'); document.body.style.overflow = ''; }
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('privacyModal');
+            if (modal) modal.addEventListener('click', function(e) { if (e.target === this) closePrivacy(); });
+        });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closePrivacy(); });
+
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -123,19 +139,22 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
 
         /* Navigation */
         nav:not(.breadcrumbs) { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 0; transition: all 0.4s ease; background: var(--black); }
         nav:not(.breadcrumbs).scrolled { background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); padding: 16px 0; }
         [data-theme="neon"] nav:not(.breadcrumbs).scrolled { background: rgba(12,10,26,0.95); }
-        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 18px; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; }
-        .nav-links { display: flex; gap: 24px; list-style: none; }
-        .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 12px; font-weight: 400; letter-spacing: 0.03em; position: relative; transition: color 0.3s ease; }
+        .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
+        .nav-links a { color: var(--light-gray); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.05em; position: relative; transition: color 0.3s ease; }
         .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--white); transition: width 0.3s ease; }
         .nav-links a:hover { color: var(--white); }
         .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--white); }
+        .nav-links a.active::after { width: 100%; }
+        .mobile-menu a.active { color: var(--accent-primary, var(--white)); }
         [data-theme="neon"] .nav-links a::after { background: var(--accent-primary); }
         .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
         .mobile-menu-btn span { width: 24px; height: 1px; background: var(--white); transition: all 0.3s ease; }
@@ -153,7 +172,7 @@
         .article-header { padding: 40px 0 48px; max-width: 760px; margin: 0 auto; }
         .article-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-primary); margin-bottom: 20px; }
         [data-theme="classic"] .article-tag { color: var(--light-gray); }
-        .article-header h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 600; color: var(--white); line-height: 1.3; margin-bottom: 16px; }
+        .article-header h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 200; color: var(--white); line-height: 1.3; margin-bottom: 16px; }
 
         .article-content { max-width: 760px; margin: 0 auto; padding-bottom: 80px; }
         .article-content p { font-size: 16px; line-height: 1.9; color: var(--light-gray); font-weight: 300; margin-bottom: 24px; }
@@ -237,7 +256,41 @@
             .footer-links { flex-wrap: wrap; justify-content: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
         }
+    
+        /* Theme Toggle */
+        .theme-toggle { display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+        .theme-toggle-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-gray); transition: color 0.3s ease; }
+        .theme-toggle-switch { position: relative; width: 52px; height: 28px; background: var(--dark-gray); border-radius: 14px; padding: 3px; transition: all 0.3s ease; border: 1px solid var(--mid-gray); }
+        .theme-toggle-switch::before { content: ''; position: absolute; width: 20px; height: 20px; background: var(--white); border-radius: 50%; top: 3px; left: 3px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        [data-theme="neon"] .theme-toggle-switch { background: linear-gradient(135deg, #8B5CF6, #7C3AED); border-color: #8B5CF6; }
+        [data-theme="neon"] .theme-toggle-switch::before { left: 27px; box-shadow: 0 2px 8px rgba(139,92,246,0.5); }
+        .theme-toggle:hover .theme-toggle-switch { border-color: var(--white); }
+        [data-theme="neon"] .theme-toggle:hover .theme-toggle-switch { border-color: #A855F7; box-shadow: 0 0 20px rgba(139,92,246,0.4); }
+        .mobile-theme-toggle { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--dark-gray); }
+    
+        /* Privacy Modal */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 20px; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content { background: var(--coal); max-width: 700px; max-height: 80vh; overflow-y: auto; padding: 48px; position: relative; border: 1px solid var(--dark-gray); }
+        .modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--mid-gray); font-size: 28px; cursor: pointer; transition: color 0.3s ease; line-height: 1; }
+        .modal-close:hover { color: var(--white); }
+        .modal-content h3 { font-size: 24px; font-weight: 600; color: var(--white); margin-bottom: 24px; }
+        .modal-content p { font-size: 15px; font-weight: 300; color: var(--light-gray); line-height: 1.8; margin-bottom: 16px; }
+        .modal-content ul { list-style: none; margin: 16px 0; }
+        .modal-content ul li { font-size: 14px; color: var(--light-gray); padding: 8px 0; padding-left: 20px; position: relative; }
+        .modal-content ul li::before { content: ''; position: absolute; left: 0; top: 14px; width: 6px; height: 6px; background: var(--accent-primary); border-radius: 50%; }
+        [data-theme="neon"] .modal-content { border-color: rgba(139,92,246,0.3); }
+        [data-theme="neon"] .modal-content ul li::before { background: #8B5CF6; }
     </style>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "vyoxcpmq95");
+    </script>
+
 </head>
 <body>
 
@@ -247,12 +300,12 @@
             <a href="/" class="logo">AlexNes</a>
             <ul class="nav-links">
                 <li><a href="/#about">Об Алексе</a></li>
-                <li><a href="/#services">Услуги</a></li>
-                <li><a href="testy">Тесты</a></li>
-                <li><a href="trezvost">Трезвость</a></li>
-                <li><a href="voprosy">Вопросы</a></li>
-                <li><a href="video">Видео</a></li>
-                <li><a href="blog">Блог</a></li>
+                <li><a href="/#services" class="active">Услуги</a></li>
+                <li><a href="/testy">Тесты</a></li>
+                <li><a href="/trezvost">Трезвость</a></li>
+                <li><a href="/voprosy">Вопросы</a></li>
+                <li><a href="/video">Видео</a></li>
+                <li><a href="/blog">Блог</a></li>
                 <li><a href="/#contact">Контакт</a></li>
             </ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
@@ -265,14 +318,13 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="/" onclick="toggleMenu()">Главная</a>
         <a href="/#about" onclick="toggleMenu()">Об Алексе</a>
-        <a href="/#services" onclick="toggleMenu()">Услуги</a>
-        <a href="testy" onclick="toggleMenu()">Тесты</a>
-        <a href="trezvost" onclick="toggleMenu()">Трезвость</a>
-        <a href="voprosy" onclick="toggleMenu()">Вопросы</a>
-        <a href="video" onclick="toggleMenu()">Видео</a>
-        <a href="blog" onclick="toggleMenu()">Блог</a>
+        <a href="/#services" onclick="toggleMenu()" class="active">Услуги</a>
+        <a href="/testy" onclick="toggleMenu()">Тесты</a>
+        <a href="/trezvost" onclick="toggleMenu()">Трезвость</a>
+        <a href="/voprosy" onclick="toggleMenu()">Вопросы</a>
+        <a href="/video" onclick="toggleMenu()">Видео</a>
+        <a href="/blog" onclick="toggleMenu()">Блог</a>
         <a href="/#contact" onclick="toggleMenu()">Контакт</a>
     </div>
 
@@ -282,7 +334,7 @@
         <ul>
             <li><a href="/">Главная</a></li>
             <li><span class="separator">/</span></li>
-            <li><a href="/#services">Услуги</a></li>
+            <li><a href="/#services" class="active">Услуги</a></li>
             <li><span class="separator">/</span></li>
             <li><span class="current" aria-current="page">Терапия созависимости</span></li>
         </ul>
@@ -420,12 +472,17 @@
                 <ul class="footer-links">
                     <li><a href="/#about">Об Алексе</a></li>
                     <li><a href="/#services">Услуги</a></li>
+                    <li><a href="/blog">Блог</a></li>
                     <li><a href="/#contact">Контакт</a></li>
-                    <li><a href="blog">Блог</a></li>
+                    <li><a href="#" onclick="openPrivacy(event)">Политика конфиденциальности</a></li>
                 </ul>
             </div>
             <div class="footer-bottom">
                 <p class="footer-copyright">&copy; 2025 AlexNes. Все права защищены.</p>
+                                <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Переключить тему">
+                    <span class="theme-toggle-label" id="desktopThemeLabel">Classic</span>
+                    <div class="theme-toggle-switch"></div>
+                </div>
                 <div class="footer-social">
                     <a href="https://t.me/nesterealex" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
                         <svg viewBox="0 0 24 24"><path d="M21 5L2 12.5l7 1M21 5l-2 14-8-6.5M21 5L9 13.5m0 0V19l3.5-3.5"/></svg>
@@ -442,9 +499,24 @@
     </footer>
 
     <script>
-        // Theme
+                // Theme Management
         function getTheme() { return localStorage.getItem('theme') || 'neon'; }
-        function setTheme(theme) { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); }
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            updateThemeLabels(theme);
+        }
+        function toggleTheme() {
+            const newTheme = getTheme() === 'classic' ? 'neon' : 'classic';
+            setTheme(newTheme);
+        }
+        function updateThemeLabels(theme) {
+            const label = theme === 'classic' ? 'Classic' : 'Neon';
+            const desktopLabel = document.getElementById('desktopThemeLabel');
+            const mobileLabel = document.getElementById('mobileThemeLabel');
+            if (desktopLabel) desktopLabel.textContent = label;
+            if (mobileLabel) mobileLabel.textContent = label;
+        }
         (function() { setTheme(getTheme()); })();
 
         // Nav scroll
@@ -464,6 +536,32 @@
             btn.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
         }
     </script>
+
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closePrivacy()" aria-label="Закрыть">&times;</button>
+            <h3>Политика конфиденциальности</h3>
+            <p>Ваша конфиденциальность — мой абсолютный приоритет. Все обращения и консультации строго конфиденциальны.</p>
+            <p><strong>Гарантии конфиденциальности:</strong></p>
+            <ul>
+                <li>Все личные данные, истории и обращения остаются строго между нами</li>
+                <li>Информация никогда не передаётся третьим лицам без вашего согласия</li>
+                <li>Записи консультаций не ведутся без вашего разрешения</li>
+                <li>Ваша личность и факт обращения не разглашаются</li>
+                <li>Все коммуникации (мессенджеры, email, звонки) защищены</li>
+            </ul>
+            <p><strong>Сбор данных:</strong></p>
+            <ul>
+                <li>Сайт собирает только данные, которые вы добровольно предоставляете через форму обратной связи</li>
+                <li>Для улучшения работы сайта используются сервисы аналитики (Google Analytics, Microsoft Clarity)</li>
+                <li>Шрифты загружаются с серверов Google Fonts</li>
+                <li>Запись на консультацию через сервис Cal.com (серверы в ЕС)</li>
+            </ul>
+            <p style="color: var(--mid-gray); font-size: 13px; margin-top: 24px;">Обновлено: Март 2026</p>
+        </div>
+    </div>
 
 </body>
 </html>
