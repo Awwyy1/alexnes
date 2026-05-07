@@ -121,6 +121,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://alexnes.com/blog/prokrastinaciya</loc>
+    <lastmod>2026-05-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://alexnes.com/blog/sravnenie-s-drugimi</loc>
     <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
