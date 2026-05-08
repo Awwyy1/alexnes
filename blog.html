@@ -103,7 +103,7 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
+            z-index: 1000;
             padding: 24px 0;
             transition: all 0.4s ease;
             background: transparent;
@@ -242,6 +242,16 @@
         .mobile-menu a.current-page {
             color: var(--accent-primary);
         }
+
+        .mobile-theme-toggle { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--dark-gray); }
+        .theme-toggle { display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+        .theme-toggle-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-gray); transition: color 0.3s ease; }
+        .theme-toggle-switch { position: relative; width: 52px; height: 28px; background: var(--dark-gray); border-radius: 14px; padding: 3px; transition: all 0.3s ease; border: 1px solid var(--mid-gray); }
+        .theme-toggle-switch::before { content: ''; position: absolute; width: 20px; height: 20px; background: var(--white); border-radius: 50%; top: 3px; left: 3px; transition: all 0.3s var(--ease-out-expo); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        [data-theme="neon"] .theme-toggle-switch { background: linear-gradient(135deg, #8B5CF6, #7C3AED); border-color: #8B5CF6; }
+        [data-theme="neon"] .theme-toggle-switch::before { left: 27px; background: #fff; box-shadow: 0 2px 8px rgba(139,92,246,0.5); }
+        .theme-toggle:hover .theme-toggle-switch { border-color: var(--white); }
+        [data-theme="neon"] .theme-toggle:hover .theme-toggle-switch { border-color: #A855F7; box-shadow: 0 0 20px rgba(139,92,246,0.4); }
 
         /* Blog Hero */
         .blog-hero {
@@ -608,6 +618,12 @@
         <a href="video" onclick="toggleMenu()">Видео</a>
         <a href="blog" onclick="toggleMenu()" class="current-page">Блог</a>
         <a href="/#contact" onclick="toggleMenu()">Контакт</a>
+        <div class="mobile-theme-toggle">
+            <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Переключить тему">
+                <span class="theme-toggle-label" id="mobileThemeLabel">Classic</span>
+                <div class="theme-toggle-switch"></div>
+            </div>
+        </div>
     </div>
 
     <main>
@@ -1022,9 +1038,18 @@
         function getTheme() {
             return localStorage.getItem('theme') || 'neon';
         }
+        function updateThemeLabels() {
+            var label = getTheme() === 'neon' ? 'Neon' : 'Classic';
+            var el = document.getElementById('mobileThemeLabel');
+            if (el) el.textContent = label;
+        }
         function setTheme(theme) {
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
+            updateThemeLabels();
+        }
+        function toggleTheme() {
+            setTheme(getTheme() === 'neon' ? 'classic' : 'neon');
         }
         (function() { setTheme(getTheme()); })();
 
