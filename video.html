@@ -141,7 +141,7 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 80px); }
 
         /* Navigation */
-        nav:not(.breadcrumbs) { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 24px 0; transition: all 0.4s ease; background: var(--black); }
+        nav:not(.breadcrumbs) { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 24px 0; transition: all 0.4s ease; background: var(--black); }
         nav:not(.breadcrumbs).scrolled { background: rgba(10,10,10,0.95); backdrop-filter: blur(20px); padding: 16px 0; }
         [data-theme="neon"] nav:not(.breadcrumbs).scrolled { background: rgba(12,10,26,0.95); }
         .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
@@ -152,17 +152,26 @@
         .nav-links a:hover { color: var(--white); }
         .nav-links a:hover::after { width: 100%; }
         [data-theme="neon"] .nav-links a::after { background: var(--accent-primary); }
-        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-        .mobile-menu-btn span { width: 24px; height: 1px; background: var(--white); transition: all 0.3s ease; }
-        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
-        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; }
-        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 1001; position: relative; }
+        .mobile-menu-btn span { display: block; width: 28px; height: 2px; background: var(--white); transition: all 0.3s ease; transform-origin: center; }
+        .mobile-menu-btn.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .mobile-menu-btn.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .mobile-menu-btn.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
         /* Mobile Menu */
-        .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,10,10,0.98); z-index: 99; flex-direction: column; justify-content: center; align-items: center; gap: 10px; padding-top: 50px; }
-        [data-theme="neon"] .mobile-menu { background: rgba(12,10,26,0.98); }
-        .mobile-menu.active { display: flex; }
-        .mobile-menu a { color: var(--white); text-decoration: none; font-size: 18px; font-weight: 300; letter-spacing: 0.1em; }
+        .mobile-menu { position: fixed; inset: 0; background: var(--black); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; opacity: 0; visibility: hidden; transition: all 0.4s ease; padding-top: 50px; }
+        .mobile-menu.active { opacity: 1; visibility: visible; }
+        .mobile-menu a { font-family: var(--font-main); font-size: 18px; font-weight: 300; color: var(--white); text-decoration: none; }
+        .mobile-menu a.current-page { color: var(--accent-primary); }
+        .mobile-theme-toggle { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--dark-gray); }
+        .theme-toggle { display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+        .theme-toggle-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid-gray); transition: color 0.3s ease; }
+        .theme-toggle-switch { position: relative; width: 52px; height: 28px; background: var(--dark-gray); border-radius: 14px; padding: 3px; transition: all 0.3s ease; border: 1px solid var(--mid-gray); }
+        .theme-toggle-switch::before { content: ''; position: absolute; width: 20px; height: 20px; background: var(--white); border-radius: 50%; top: 3px; left: 3px; transition: all 0.3s var(--ease-out-expo); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        [data-theme="neon"] .theme-toggle-switch { background: linear-gradient(135deg, #8B5CF6, #7C3AED); border-color: #8B5CF6; }
+        [data-theme="neon"] .theme-toggle-switch::before { left: 27px; background: #fff; box-shadow: 0 2px 8px rgba(139,92,246,0.5); }
+        .theme-toggle:hover .theme-toggle-switch { border-color: var(--white); }
+        [data-theme="neon"] .theme-toggle:hover .theme-toggle-switch { border-color: #A855F7; box-shadow: 0 0 20px rgba(139,92,246,0.4); }
 
         /* Breadcrumbs */
         .breadcrumbs { padding: 140px 0 0; max-width: 1200px; margin: 0 auto; }
@@ -231,6 +240,7 @@
         @media (max-width: 900px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: flex; }
+            .breadcrumbs { padding: 100px 0 0; }
         }
 
         /* Responsive */
@@ -273,16 +283,24 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="/" onclick="toggleMenu()">Главная</a>
         <a href="/#about" onclick="toggleMenu()">Об Алексе</a>
-        <a href="/#services" onclick="toggleMenu()">Услуги</a>
+        <a href="/#journey" onclick="toggleMenu()">Путь</a>
+        <a href="/#approach" onclick="toggleMenu()">Подход</a>
         <a href="/#reviews" onclick="toggleMenu()">Отзывы</a>
+        <a href="/#services" onclick="toggleMenu()">Услуги</a>
+        <a href="/#faq" onclick="toggleMenu()">FAQ</a>
         <a href="testy" onclick="toggleMenu()">Тесты</a>
         <a href="trezvost" onclick="toggleMenu()">Трезвость</a>
         <a href="voprosy" onclick="toggleMenu()">Вопросы</a>
-        <a href="video" onclick="toggleMenu()">Видео</a>
+        <a href="video" onclick="toggleMenu()" class="current-page">Видео</a>
         <a href="blog" onclick="toggleMenu()">Блог</a>
         <a href="/#contact" onclick="toggleMenu()">Контакт</a>
+        <div class="mobile-theme-toggle">
+            <div class="theme-toggle" onclick="toggleTheme()" role="button" aria-label="Переключить тему">
+                <span class="theme-toggle-label" id="mobileThemeLabel">Classic</span>
+                <div class="theme-toggle-switch"></div>
+            </div>
+        </div>
     </div>
 
     <main>
@@ -427,7 +445,9 @@
     <script>
         // Theme
         function getTheme() { return localStorage.getItem('theme') || 'neon'; }
-        function setTheme(theme) { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); }
+        function updateThemeLabels() { var label = getTheme() === 'neon' ? 'Neon' : 'Classic'; var el = document.getElementById('mobileThemeLabel'); if (el) el.textContent = label; }
+        function setTheme(theme) { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); updateThemeLabels(); }
+        function toggleTheme() { setTheme(getTheme() === 'neon' ? 'classic' : 'neon'); }
         (function() { setTheme(getTheme()); })();
 
         // Nav scroll
