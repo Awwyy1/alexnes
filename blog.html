@@ -296,6 +296,12 @@
             margin: 0 auto;
         }
 
+        .blog-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 32px; }
+        .blog-filter-btn { background: transparent; border: 1px solid var(--dark-gray); color: var(--mid-gray); font-family: var(--font-main); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 24px; border-radius: var(--btn-radius); cursor: pointer; transition: all 0.3s ease; }
+        .blog-filter-btn:hover { border-color: var(--white); color: var(--white); }
+        .blog-filter-btn.active { border-color: var(--accent-primary); color: var(--accent-primary); background: rgba(255,255,255,0.05); }
+        [data-theme="classic"] .blog-filter-btn.active { border-color: var(--white); color: var(--white); }
+
         /* Blog Cards */
         .blog-feed {
             display: flex;
@@ -632,6 +638,15 @@
         <div class="container">
             <h1>Блог</h1>
             <p>Статьи о зависимости, выздоровлении и о том, как помочь близким</p>
+            <div class="blog-filters">
+                <button class="blog-filter-btn active" data-filter="all">Все</button>
+                <button class="blog-filter-btn" data-filter="Самооценка">Самооценка</button>
+                <button class="blog-filter-btn" data-filter="Отношения">Отношения</button>
+                <button class="blog-filter-btn" data-filter="Зависимость">Зависимость</button>
+                <button class="blog-filter-btn" data-filter="Созависимость">Созависимость</button>
+                <button class="blog-filter-btn" data-filter="Родителям">Родителям</button>
+                <button class="blog-filter-btn" data-filter="Выздоровление">Выздоровление</button>
+            </div>
         </div>
     </section>
 
@@ -640,7 +655,7 @@
         <div class="blog-feed">
 
             <!-- Article — Родительские установки -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Самооценка">
                 <span class="blog-card-tag">Самооценка</span>
                 <h2>Родительские установки: как фразы из детства управляют вашей взрослой жизнью</h2>
                 <div class="blog-card-text">
@@ -648,11 +663,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/roditelskie-ustanovki" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">7 мая 2026</span>
                 </div>
             </article>
 
             <!-- Article — Страх одиночества -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Отношения">
                 <span class="blog-card-tag">Отношения</span>
                 <h2>Страх одиночества: почему вы готовы терпеть что угодно лишь бы не остаться одному</h2>
                 <div class="blog-card-text">
@@ -660,11 +676,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/strah-odinochestva" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">5 мая 2026</span>
                 </div>
             </article>
 
             <!-- Article — Прокрастинация -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Самооценка">
                 <span class="blog-card-tag">Самооценка</span>
                 <h2>Прокрастинация: почему вы откладываете жизнь на потом и что на самом деле за этим стоит</h2>
                 <div class="blog-card-text">
@@ -672,11 +689,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/prokrastinaciya" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">1 мая 2026</span>
                 </div>
             </article>
 
             <!-- Article — Сравнение с другими -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Самооценка">
                 <span class="blog-card-tag">Самооценка</span>
                 <h2>Сравнение с другими: почему вы всегда проигрываете в игре в которую невозможно выиграть</h2>
                 <div class="blog-card-text">
@@ -684,11 +702,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/sravnenie-s-drugimi" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">28 апреля 2026</span>
                 </div>
             </article>
 
             <!-- Article — Думскроллинг -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Зависимость">
                 <span class="blog-card-tag">Зависимость</span>
                 <h2>Думскроллинг: как телефон превратился в наркотик который всегда в кармане</h2>
                 <div class="blog-card-text">
@@ -696,11 +715,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/dumskrolling" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">24 апреля 2026</span>
                 </div>
             </article>
 
             <!-- Article — Синдром самозванца -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Самооценка">
                 <span class="blog-card-tag">Самооценка</span>
                 <h2>Синдром самозванца: почему вы не верите что заслужили то что имеете</h2>
                 <div class="blog-card-text">
@@ -708,11 +728,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/sindrom-samozvanca" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">20 апреля 2026</span>
                 </div>
             </article>
 
             <!-- Article — Газлайтинг -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Отношения">
                 <span class="blog-card-tag">Отношения</span>
                 <h2>Газлайтинг: как понять что вас заставляют сомневаться в себе</h2>
                 <div class="blog-card-text">
@@ -720,11 +741,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/gazlajting" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">15 апреля 2026</span>
                 </div>
             </article>
 
             <!-- Article — Перфекционизм -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Самооценка">
                 <span class="blog-card-tag">Самооценка</span>
                 <h2>Перфекционизм: как перестать гнаться за идеалом и начать жить</h2>
                 <div class="blog-card-text">
@@ -732,11 +754,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/perfekcionizm" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">10 апреля 2026</span>
                 </div>
             </article>
 
             <!-- Article — Синдром хорошего человека -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Самооценка">
                 <span class="blog-card-tag">Самооценка</span>
                 <h2>Синдром хорошего человека: когда удобность становится приговором</h2>
                 <div class="blog-card-text">
@@ -744,11 +767,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/sindrom-horoshego-cheloveka" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">4 апреля 2026</span>
                 </div>
             </article>
 
             <!-- Article — Токсичные отношения -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Отношения">
                 <span class="blog-card-tag">Отношения</span>
                 <h2>Токсичные отношения: как понять что вы в них</h2>
                 <div class="blog-card-text">
@@ -756,11 +780,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/toksichnye-otnosheniya" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">28 марта 2026</span>
                 </div>
             </article>
 
             <!-- Article — Тест на наркотики -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Зависимость">
                 <span class="blog-card-tag">Зависимость</span>
                 <h2>Тест на наркотики: что он покажет, а что нет</h2>
                 <div class="blog-card-text">
@@ -768,11 +793,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/test-na-narkotiki" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">21 марта 2026</span>
                 </div>
             </article>
 
             <!-- Article — Жалость убивает быстрее наркотика -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Созависимость">
                 <span class="blog-card-tag">Созависимость</span>
                 <h2>Жалость убивает быстрее наркотика</h2>
                 <div class="blog-card-text">
@@ -780,11 +806,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/zhalost-ubivaet-bystree-narkotika" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">14 марта 2026</span>
                 </div>
             </article>
 
             <!-- Article — Что происходит с семьей -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Созависимость">
                 <span class="blog-card-tag">Созависимость</span>
                 <h2>Что происходит с семьей когда один из нее зависимый</h2>
                 <div class="blog-card-text">
@@ -792,11 +819,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/chto-proishodit-s-semyoj" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">7 марта 2026</span>
                 </div>
             </article>
 
             <!-- Article 10 — New -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Зависимость">
                 <span class="blog-card-tag">Зависимость</span>
                 <h2>Как понять что ребенок употребляет наркотики. 12 признаков</h2>
                 <div class="blog-card-text">
@@ -804,11 +832,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/kak-ponyat-chto-rebenok-upotreblyaet" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">28 февраля 2026</span>
                 </div>
             </article>
 
             <!-- Article — Зависимость и созависимость -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Созависимость">
                 <span class="blog-card-tag">Созависимость</span>
                 <h2>Зависимость и созависимость: две формы разрушения</h2>
                 <div class="blog-card-text">
@@ -816,11 +845,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/zavisimost-i-sozavisimost" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">20 февраля 2026</span>
                 </div>
             </article>
 
             <!-- Article — Наркотики молодеют -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Родителям">
                 <span class="blog-card-tag">Родителям</span>
                 <h2>Наркотики молодеют — и это уже не страшилка</h2>
                 <div class="blog-card-text">
@@ -828,11 +858,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/narkotiki-molodeyut" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">12 февраля 2026</span>
                 </div>
             </article>
 
             <!-- Article 1 — Real -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Созависимость">
                 <span class="blog-card-tag">Созависимость</span>
                 <h2>Когда в ваш дом пришёл убийца</h2>
                 <div class="blog-card-text">
@@ -841,11 +872,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/kogda-v-vash-dom-prishyol-ubijca" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">3 февраля 2026</span>
                 </div>
             </article>
 
             <!-- Article 2 -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Выздоровление">
                 <span class="blog-card-tag">Осознанность</span>
                 <h2>Смирение — это не подчинение. Это выбор довериться</h2>
                 <div class="blog-card-text">
@@ -853,11 +885,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/smirenie-eto-ne-podchinenie" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">25 января 2026</span>
                 </div>
             </article>
 
             <!-- Article 3 -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Выздоровление">
                 <span class="blog-card-tag">Выздоровление</span>
                 <h2>Оттолкнуться от дна</h2>
                 <div class="blog-card-text">
@@ -865,11 +898,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/ottolknutsya-ot-dna" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">17 января 2026</span>
                 </div>
             </article>
 
             <!-- Article 4 -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Зависимость">
                 <span class="blog-card-tag">Доверие</span>
                 <h2>Вы когда приходите к хирургу, тоже руководите процессом?</h2>
                 <div class="blog-card-text">
@@ -877,11 +911,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/vy-kogda-prihodite-k-hirurgu" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">8 января 2026</span>
                 </div>
             </article>
 
             <!-- Article 5 -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Созависимость">
                 <span class="blog-card-tag">Созависимость</span>
                 <h2>«Наркоман из приличной семьи»</h2>
                 <div class="blog-card-text">
@@ -889,11 +924,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/narkoman-iz-prilichnoj-semi" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">28 декабря 2025</span>
                 </div>
             </article>
 
             <!-- Article 6 -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Зависимость">
                 <span class="blog-card-tag">Реабилитация</span>
                 <h2>Как сэкономить на реабилитации?!</h2>
                 <div class="blog-card-text">
@@ -901,11 +937,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/kak-sekonomit-na-reabilitacii" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">20 декабря 2025</span>
                 </div>
             </article>
 
             <!-- Article 7 -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Выздоровление">
                 <span class="blog-card-tag">Осознанность</span>
                 <h2>Живой или мёртвый?</h2>
                 <div class="blog-card-text">
@@ -913,11 +950,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/zhivoj-ili-myortvyj" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">12 декабря 2025</span>
                 </div>
             </article>
 
             <!-- Article 8 -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Зависимость">
                 <span class="blog-card-tag">Зависимость</span>
                 <h2>Наркоман — это не всегда тот, кого вы себе представляете</h2>
                 <div class="blog-card-text">
@@ -925,11 +963,12 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/narkoman-eto-ne-vsegda-tot" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">5 декабря 2025</span>
                 </div>
             </article>
 
             <!-- Article 9 -->
-            <article class="blog-card">
+            <article class="blog-card" data-tag="Зависимость">
                 <span class="blog-card-tag">Доверие</span>
                 <h2>Давайте будем действовать заодно!</h2>
                 <div class="blog-card-text">
@@ -937,6 +976,7 @@
                 </div>
                 <div class="blog-card-footer">
                     <a href="blog/davajte-dejstvovat-zaodno" class="blog-read-more">Читать полностью</a>
+                    <span class="blog-card-date">1 декабря 2025</span>
                 </div>
             </article>
 
@@ -1008,6 +1048,22 @@
             btn.setAttribute('aria-expanded', isOpen);
             btn.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
         }
+
+        // Blog filters
+        document.querySelectorAll('.blog-filter-btn').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.blog-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                var filter = btn.getAttribute('data-filter');
+                document.querySelectorAll('.blog-card').forEach(function(card) {
+                    if (filter === 'all' || card.getAttribute('data-tag') === filter) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
     </script>
 
 </body>
