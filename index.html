@@ -2356,6 +2356,17 @@
             background: #8B5CF6;
         }
 
+        /* Cookie Banner */
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1500; background: var(--coal); border-top: 1px solid var(--dark-gray); padding: 20px 24px; display: none; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        .cookie-banner.visible { display: flex; }
+        .cookie-banner p { font-size: 13px; font-weight: 300; color: var(--light-gray); line-height: 1.6; max-width: 600px; margin: 0; }
+        .cookie-banner p a { color: var(--accent-primary); text-decoration: underline; }
+        [data-theme="classic"] .cookie-banner p a { color: var(--white); }
+        .cookie-accept { background: var(--accent-primary); color: var(--black); border: none; font-family: var(--font-main); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 28px; border-radius: var(--btn-radius); cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+        .cookie-accept:hover { opacity: 0.85; }
+        [data-theme="classic"] .cookie-accept { background: var(--white); color: var(--black); }
+        [data-theme="neon"] .cookie-banner { border-color: rgba(139,92,246,0.2); }
+
         /* Success Popup */
         .success-popup {
             position: fixed;
@@ -3875,5 +3886,20 @@
             <button class="btn btn-primary" onclick="closeSuccessPopup()">Отлично</button>
         </div>
     </div>
+
+    <!-- Cookie Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <p>Сайт использует cookie для сохранения настроек и аналитики. Подробнее в <a href="#" onclick="openPrivacy(event)">политике конфиденциальности</a>.</p>
+        <button class="cookie-accept" onclick="acceptCookies()">Принять</button>
+    </div>
+    <script>
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookieBanner').classList.remove('visible');
+        }
+        if (!localStorage.getItem('cookiesAccepted')) {
+            document.getElementById('cookieBanner').classList.add('visible');
+        }
+    </script>
 </body>
 </html>
