@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Концепт: блок сертификатов — AlexNes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #0c0a1a; --coal: #13102a; --dark-gray: #1e1a3a;
+            --mid-gray: #6b7280; --light-gray: #9ca3af; --off-white: #e5e7eb; --white: #f9fafb;
+            --accent: #8B5CF6; --accent-2: #10B981;
+            --glow: rgba(139, 92, 246, 0.3);
+            --font-main: 'Montserrat', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); background: var(--black); color: var(--light-gray); line-height: 1.7; font-weight: 300; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Пояснительная плашка (только для концепта) */
+        .concept-note {
+            max-width: 760px; margin: 40px auto 0; padding: 16px 24px;
+            border: 1px dashed var(--mid-gray); border-radius: 12px;
+            font-size: 13px; color: var(--mid-gray); text-align: center;
+        }
+        .concept-note strong { color: var(--accent); font-weight: 600; }
+
+        /* ============ ВАРИАНТ РАЗМЕЩЕНИЯ: секция на странице /about ============ */
+        .certs-section { padding: 80px 0; }
+        .section-label {
+            display: block; text-align: center;
+            font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 20px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: clamp(28px, 4vw, 44px); font-weight: 200; line-height: 1.2;
+            color: var(--white); margin-bottom: 16px;
+        }
+        .section-title strong { font-weight: 600; }
+        .certs-intro {
+            text-align: center; max-width: 560px; margin: 0 auto 56px;
+            font-size: 15px; color: var(--light-gray);
+        }
+
+        .certs-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 32px; max-width: 1000px; margin: 0 auto;
+        }
+        .cert-card {
+            position: relative; display: block; cursor: zoom-in;
+            border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--dark-gray);
+            background: var(--coal);
+            transition: all 0.35s ease;
+        }
+        .cert-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 20px 50px -15px var(--glow); }
+        .cert-frame {
+            aspect-ratio: 297 / 210;   /* горизонтальный A4 */
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 14px; padding: 24px;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(139,92,246,0.08) 0%, transparent 60%),
+                linear-gradient(160deg, #f4f1ea 0%, #e9e4d8 100%);
+        }
+        /* Плейсхолдер под реальный скан — заменится на <img> */
+        .cert-frame .ph-seal {
+            width: 64px; height: 64px; border-radius: 50%;
+            border: 2px solid #b7a97f; display: flex; align-items: center; justify-content: center;
+            color: #b7a97f; font-size: 24px; font-weight: 700;
+        }
+        .cert-frame .ph-title { font-size: 15px; font-weight: 600; letter-spacing: 0.06em; color: #4c4534; text-transform: uppercase; text-align: center; }
+        .cert-frame .ph-lines { width: 60%; }
+        .cert-frame .ph-lines i { display: block; height: 6px; border-radius: 3px; background: #d4cbb4; margin: 8px auto; }
+        .cert-frame .ph-lines i:nth-child(1) { width: 100%; }
+        .cert-frame .ph-lines i:nth-child(2) { width: 80%; }
+        .cert-frame .ph-lines i:nth-child(3) { width: 90%; }
+
+        .cert-caption { padding: 18px 22px 20px; }
+        .cert-caption-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+        .cert-caption-sub { font-size: 12px; color: var(--mid-gray); }
+        .cert-zoom-hint {
+            position: absolute; top: 14px; right: 14px;
+            width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(12,10,26,0.65); backdrop-filter: blur(6px);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--white); font-size: 15px;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .cert-card:hover .cert-zoom-hint { opacity: 1; }
+
+        /* ============ Лайтбокс ============ */
+        .lightbox {
+            position: fixed; inset: 0; z-index: 300;
+            background: rgba(5, 4, 12, 0.92); backdrop-filter: blur(10px);
+            display: none; align-items: center; justify-content: center; padding: 32px;
+            cursor: zoom-out;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-inner { max-width: min(1100px, 94vw); width: 100%; }
+        .lightbox-inner .cert-frame { border-radius: 12px; box-shadow: 0 40px 120px -20px rgba(0,0,0,0.8); }
+        .lightbox-close {
+            position: fixed; top: 24px; right: 28px;
+            font-size: 32px; color: var(--white); background: none; border: none; cursor: pointer; line-height: 1;
+        }
+
+        /* ============ ВАРИАНТ 2: компактная полоса доверия для главной ============ */
+        .trust-strip-demo { padding: 60px 0 100px; border-top: 1px solid var(--dark-gray); margin-top: 40px; }
+        .trust-strip {
+            max-width: 900px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: center; gap: 28px; flex-wrap: wrap;
+            padding: 24px 32px;
+            border: 1px solid var(--dark-gray); border-radius: 16px;
+        }
+        .trust-item { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--light-gray); }
+        .trust-item svg { width: 22px; height: 22px; stroke: var(--accent-2); stroke-width: 1.6; fill: none; flex-shrink: 0; }
+        .trust-item a { color: var(--white); text-decoration: none; border-bottom: 1px solid var(--mid-gray); transition: border-color 0.3s ease; }
+        .trust-item a:hover { border-color: var(--accent); }
+
+        @media (max-width: 720px) {
+            .certs-grid { grid-template-columns: 1fr; max-width: 520px; }
+            .trust-strip { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="concept-note">
+        <strong>Концепт.</strong> Рекомендуемое место — страница <strong>«Об Алексе»</strong>, сразу после истории и цитаты:
+        сначала личный путь (доверие через опыт), затем сертификаты (доверие через квалификацию).
+        Серые макеты ниже заменяются сканами твоих A4-сертификатов. Клик по карточке — увеличение.
+    </div>
+
+    <!-- ============ ОСНОВНОЙ ВАРИАНТ: секция для /about ============ -->
+    <section class="certs-section">
+        <div class="container">
+            <span class="section-label">Квалификация</span>
+            <h2 class="section-title">Опыт, подтверждённый <strong>документами</strong></h2>
+            <p class="certs-intro">Моя главная школа — собственный путь. Но работаю я на основе профессиональной подготовки.</p>
+
+            <div class="certs-grid">
+                <div class="cert-card" onclick="openLb(this)">
+                    <div class="cert-frame">
+                        <div class="ph-seal">✓</div>
+                        <div class="ph-title">Сертификат · Консультант по химической зависимости</div>
+                        <div class="ph-lines"><i></i><i></i><i></i></div>
+                    </div>
+                    <div class="cert-zoom-hint">⤢</div>
+                    <div class="cert-caption">
+                        <div class="cert-caption-title">Консультант по химической зависимости</div>
+                        <div class="cert-caption-sub">Название организации · год выдачи</div>
+                    </div>
+                </div>
+
+                <div class="cert-card" onclick="openLb(this)">
+                    <div class="cert-frame">
+                        <div class="ph-seal">✓</div>
+                        <div class="ph-title">Сертификат · Психологическое консультирование</div>
+                        <div class="ph-lines"><i></i><i></i><i></i></div>
+                    </div>
+                    <div class="cert-zoom-hint">⤢</div>
+                    <div class="cert-caption">
+                        <div class="cert-caption-title">Психологическое консультирование</div>
+                        <div class="cert-caption-sub">Название организации · год выдачи</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ДОПОЛНЕНИЕ: полоса доверия для главной ============ -->
+    <div class="trust-strip-demo">
+        <div class="container">
+            <p style="text-align:center; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--mid-gray); margin-bottom:24px;">+ дополнение: компактная полоса на главной (под блоком «Об Алексе»)</p>
+            <div class="trust-strip">
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+                    <span>Сертифицированный консультант — <a href="#">смотреть документы</a></span>
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    <span>11 лет личной трезвости</span>
+                </div>
+                <div class="trust-item">
+                    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    <span>100+ клиентов в терапии</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Лайтбокс -->
+    <div class="lightbox" id="lightbox" onclick="closeLb()">
+        <button class="lightbox-close" aria-label="Закрыть">×</button>
+        <div class="lightbox-inner" id="lightboxInner"></div>
+    </div>
+
+    <script>
+        function openLb(card) {
+            var frame = card.querySelector('.cert-frame').cloneNode(true);
+            var inner = document.getElementById('lightboxInner');
+            inner.innerHTML = '';
+            inner.appendChild(frame);
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLb() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLb(); });
+    </script>
+
+</body>
+</html>
