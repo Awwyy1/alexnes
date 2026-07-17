@@ -16,16 +16,16 @@
     <meta property="og:url" content="https://alexnes.com/blog/lozhnoe-ya">
     <meta property="og:title" content="Ложное «я», за которым вы так долго прятались что забыли кто вы на самом деле — AlexNes">
     <meta property="og:description" content="Как формируется маска которую вы носите всю жизнь, почему вы забыли кто вы на самом деле и как начать возвращаться к себе.">
-    <meta property="og:image" content="https://alexnes.com/favicon.svg">
+    <meta property="og:image" content="https://alexnes.com/images/og-cover.jpg">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="AlexNes">
     <meta property="article:author" content="AlexNes">
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Ложное «я», за которым вы так долго прятались что забыли кто вы на самом деле">
     <meta name="twitter:description" content="Как формируется маска которую вы носите всю жизнь, почему вы забыли кто вы на самом деле и как начать возвращаться к себе.">
-    <meta name="twitter:image" content="https://alexnes.com/favicon.svg">
+    <meta name="twitter:image" content="https://alexnes.com/images/og-cover.jpg">
 
     <!-- JSON-LD Article Schema -->
     <script type="application/ld+json">
@@ -47,7 +47,7 @@
                     "name": "AlexNes",
                     "logo": {
                         "@type": "ImageObject",
-                        "url": "https://alexnes.com/favicon.svg"
+                        "url": "https://alexnes.com/images/og-cover.jpg"
                     }
                 },
                 "mainEntityOfPage": "https://alexnes.com/blog/lozhnoe-ya",
@@ -208,7 +208,15 @@
             .footer-links { flex-wrap: wrap; justify-content: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
         }
-    </style>
+            .test-banner { display:block; margin:0 0 48px; padding:26px 28px; border:1px solid var(--accent-primary); border-radius:var(--btn-radius); text-decoration:none; transition:all 0.3s ease; }
+        .test-banner:hover { transform:translateY(-2px); box-shadow:0 4px 20px var(--glow-color); }
+        [data-theme="classic"] .test-banner { border-color:var(--mid-gray); }
+        [data-theme="classic"] .test-banner:hover { border-color:var(--white); }
+        .test-banner-tag { font-size:10px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent-primary); margin-bottom:10px; }
+        [data-theme="classic"] .test-banner-tag { color:var(--mid-gray); }
+        .test-banner-title { font-size:17px; font-weight:600; color:var(--white); margin-bottom:6px; line-height:1.4; }
+        .test-banner-meta { font-size:13px; color:var(--mid-gray); }
+</style>
 </head>
 <body>
 
@@ -335,6 +343,12 @@
                 Написать в WhatsApp
             </a>
         </div>
+
+        <a href="/testy/samoocenka" class="test-banner">
+            <div class="test-banner-tag">Тест по теме</div>
+            <div class="test-banner-title">Тест на самооценку и личные границы</div>
+            <div class="test-banner-meta">20 вопросов · 3 минуты · бесплатно и анонимно →</div>
+        </a>
 
         <!-- Related Articles -->
         <div class="related-articles">

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Концепт светлой темы — AlexNes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+           ТРИ СВЕТЛЫЕ ПАЛИТРЫ — конструктив не тронут, только цвета
+           ============================================================ */
+
+        /* Вариант 1 — Крем и глубокий зелёный */
+        body.v1 {
+            --bg: #FAF6F0;
+            --surface: #F1EAE0;
+            --line: #E4DACB;
+            --ink: #241F1A;
+            --body-text: #5C544A;
+            --muted: #9A9082;
+            --accent: #3E6B4F;
+            --accent-ink: #FAF6F0;
+            --glow: rgba(62, 107, 79, 0.14);
+            --glow-2: rgba(62, 107, 79, 0.07);
+        }
+
+        /* Вариант 2 — Белый и фиолет (светлая версия neon) */
+        body.v2 {
+            --bg: #FCFBFF;
+            --surface: #F3F0FC;
+            --line: #E6E1F5;
+            --ink: #17133A;
+            --body-text: #4E4966;
+            --muted: #8D87A8;
+            --accent: #7C3AED;
+            --accent-ink: #FCFBFF;
+            --glow: rgba(124, 58, 237, 0.16);
+            --glow-2: rgba(124, 58, 237, 0.07);
+        }
+
+        /* Вариант 3 — Песок и терракота */
+        body.v3 {
+            --bg: #F8F3EC;
+            --surface: #F0E6D8;
+            --line: #E3D5C1;
+            --ink: #2B211B;
+            --body-text: #6B5D51;
+            --muted: #A3927F;
+            --accent: #C05A38;
+            --accent-ink: #F8F3EC;
+            --glow: rgba(192, 90, 56, 0.15);
+            --glow-2: rgba(192, 90, 56, 0.07);
+        }
+
+        /* Вариант 4 — Лёд и глубокий синий */
+        body.v4 {
+            --bg: #F5F8FB;
+            --surface: #E9EFF6;
+            --line: #D8E2EE;
+            --ink: #14202E;
+            --body-text: #4A5A6C;
+            --muted: #8296AB;
+            --accent: #1E5A96;
+            --accent-ink: #F5F8FB;
+            --glow: rgba(30, 90, 150, 0.15);
+            --glow-2: rgba(30, 90, 150, 0.07);
+        }
+
+        /* Вариант 5 — Тёплый серый и янтарь */
+        body.v5 {
+            --bg: #F7F5F2;
+            --surface: #EDEAE4;
+            --line: #E0DBD2;
+            --ink: #26221C;
+            --body-text: #5D574D;
+            --muted: #99917F;
+            --accent: #A66A1E;
+            --accent-ink: #F7F5F2;
+            --glow: rgba(166, 106, 30, 0.15);
+            --glow-2: rgba(166, 106, 30, 0.07);
+        }
+
+        /* Вариант 6 — Мята и глубокая бирюза */
+        body.v6 {
+            --bg: #F3F8F6;
+            --surface: #E6F0EC;
+            --line: #D4E4DD;
+            --ink: #142621;
+            --body-text: #4B605A;
+            --muted: #81978F;
+            --accent: #0E7568;
+            --accent-ink: #F3F8F6;
+            --glow: rgba(14, 117, 104, 0.15);
+            --glow-2: rgba(14, 117, 104, 0.07);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--body-text);
+            line-height: 1.7;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.6s ease, color 0.6s ease;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== Навигация (конструктив как на сайте) ===== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 20px 0;
+            background: color-mix(in srgb, var(--bg) 88%, transparent);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--line);
+            transition: background 0.6s ease, border-color 0.6s ease;
+        }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 18px; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; transition: color 0.6s ease; }
+        .nav-links { display: flex; gap: 24px; list-style: none; }
+        .nav-links a {
+            color: var(--body-text); text-decoration: none;
+            font-size: 12px; font-weight: 400; letter-spacing: 0.03em;
+            position: relative; transition: color 0.3s ease;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 1px; background: var(--accent); transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--ink); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ===== HERO (структура index.html, только цвета) ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 120px 0 80px;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 30% 20%, var(--surface) 0%, var(--bg) 70%);
+            transition: background 0.6s ease;
+        }
+        .hero-bg::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 0%, var(--bg) 100%);
+        }
+        .hero-glow {
+            position: absolute; width: 800px; height: 800px; border-radius: 50%;
+            background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+            top: -200px; right: -200px;
+            animation: hero-glow-pulse 8s ease-in-out infinite;
+        }
+        .hero-glow-2 {
+            position: absolute; width: 600px; height: 600px; border-radius: 50%;
+            background: radial-gradient(circle, var(--glow-2) 0%, transparent 70%);
+            bottom: -150px; left: -150px;
+        }
+        @keyframes hero-glow-pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.1); }
+        }
+        .hero-content { position: relative; z-index: 10; max-width: 900px; }
+        .hero-label {
+            display: inline-block;
+            font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 32px;
+            opacity: 0; animation: fade-in-up 1s cubic-bezier(0.16,1,0.3,1) 0.2s forwards;
+        }
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 88px);
+            font-weight: 200; line-height: 1.1;
+            color: var(--ink);
+            margin-bottom: 32px;
+            opacity: 0; animation: fade-in-up 1s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;
+            transition: color 0.6s ease;
+        }
+        .hero h1 strong { font-weight: 700; display: block; }
+        .hero-subtitle {
+            font-size: clamp(16px, 2vw, 20px); font-weight: 300;
+            color: var(--body-text);
+            max-width: 600px; margin-bottom: 48px; line-height: 1.8;
+            opacity: 0; animation: fade-in-up 1s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
+        }
+        .hero-buttons {
+            display: flex; gap: 20px; flex-wrap: wrap;
+            opacity: 0; animation: fade-in-up 1s cubic-bezier(0.16,1,0.3,1) 0.8s forwards;
+        }
+        .btn {
+            display: inline-block; padding: 18px 40px;
+            font-family: inherit; font-size: 13px; font-weight: 600;
+            letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+            border-radius: 50px; cursor: pointer;
+            transition: all 0.35s ease;
+        }
+        .btn-primary {
+            background: var(--accent); color: var(--accent-ink);
+            border: 1px solid var(--accent);
+            box-shadow: 0 10px 30px -10px var(--glow);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -10px var(--glow); }
+        .btn-secondary {
+            background: transparent; color: var(--ink);
+            border: 1px solid var(--line);
+        }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+        .hero-stats {
+            display: flex; gap: 60px; margin-top: 80px; padding-top: 40px;
+            border-top: 1px solid var(--line);
+            opacity: 0; animation: fade-in-up 1s cubic-bezier(0.16,1,0.3,1) 1s forwards;
+            transition: border-color 0.6s ease;
+        }
+        .hero-stat { text-align: left; }
+        .hero-stat-value {
+            font-size: clamp(32px, 4.5vw, 52px); font-weight: 200;
+            color: var(--ink); line-height: 1; margin-bottom: 8px;
+            transition: color 0.6s ease;
+        }
+        .hero-stat-value em { font-style: normal; color: var(--accent); }
+        .hero-stat-label {
+            font-size: 11px; font-weight: 500; color: var(--muted);
+            text-transform: uppercase; letter-spacing: 0.15em;
+        }
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== Секция "Об Алексе" (структура index.html) ===== */
+        .about {
+            padding: clamp(80px, 12vw, 160px) 0;
+            position: relative;
+            background: var(--surface);
+            transition: background 0.6s ease;
+        }
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1.2fr;
+            gap: clamp(40px, 6vw, 100px); align-items: center;
+        }
+        .about-image {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px -20px var(--glow), 0 8px 24px rgba(0,0,0,0.06);
+        }
+        .about-image::after {
+            content: ''; position: absolute; inset: 0;
+            border: 1px solid var(--line); border-radius: 24px; pointer-events: none;
+        }
+        .about-image img { display: block; width: 100%; height: auto; }
+        .section-label {
+            display: block;
+            font-size: 11px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: clamp(32px, 5vw, 64px); font-weight: 200; line-height: 1.15;
+            color: var(--ink); margin-bottom: 32px;
+            transition: color 0.6s ease;
+        }
+        .section-title strong { font-weight: 600; }
+        .section-text { font-size: 16px; color: var(--body-text); margin-bottom: 24px; line-height: 1.9; }
+        blockquote {
+            margin: 32px 0; padding: 24px 32px;
+            font-size: 19px; font-weight: 300; font-style: italic;
+            color: var(--ink);
+            border-left: 3px solid var(--accent);
+            background: color-mix(in srgb, var(--accent) 5%, transparent);
+            border-radius: 0 16px 16px 0;
+            transition: color 0.6s ease, background 0.6s ease, border-color 0.6s ease;
+        }
+
+        /* ===== Переключатель вариантов (только для демо) ===== */
+        .switcher {
+            position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+            z-index: 200;
+            display: flex; align-items: center; gap: 6px;
+            padding: 8px;
+            background: rgba(20, 18, 16, 0.88);
+            backdrop-filter: blur(16px);
+            border-radius: 60px;
+            box-shadow: 0 20px 50px -12px rgba(0,0,0,0.4);
+        }
+        .switcher button {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 18px;
+            font-family: inherit; font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+            color: rgba(255,255,255,0.65);
+            background: transparent; border: none; border-radius: 40px;
+            cursor: pointer; transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .switcher button:hover { color: #fff; }
+        .switcher button.active { background: rgba(255,255,255,0.14); color: #fff; }
+        .swatch {
+            width: 16px; height: 16px; border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.5);
+            flex-shrink: 0;
+        }
+        .swatch-v1 { background: linear-gradient(135deg, #FAF6F0 50%, #3E6B4F 50%); }
+        .swatch-v2 { background: linear-gradient(135deg, #FCFBFF 50%, #7C3AED 50%); }
+        .swatch-v3 { background: linear-gradient(135deg, #F8F3EC 50%, #C05A38 50%); }
+        .swatch-v4 { background: linear-gradient(135deg, #F5F8FB 50%, #1E5A96 50%); }
+        .swatch-v5 { background: linear-gradient(135deg, #F7F5F2 50%, #A66A1E 50%); }
+        .swatch-v6 { background: linear-gradient(135deg, #F3F8F6 50%, #0E7568 50%); }
+
+        .variant-name {
+            position: fixed; top: 84px; left: 50%; transform: translateX(-50%);
+            z-index: 150;
+            font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--accent);
+            padding: 8px 20px;
+            border: 1px solid var(--line);
+            border-radius: 40px;
+            background: color-mix(in srgb, var(--bg) 80%, transparent);
+            backdrop-filter: blur(10px);
+            transition: color 0.6s ease, border-color 0.6s ease;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            .hero-stats { gap: 32px; flex-wrap: wrap; }
+            .switcher button span.label-text { display: none; }
+            .switcher button { padding: 12px 14px; }
+            .variant-name { top: 76px; font-size: 10px; }
+        }
+    </style>
+</head>
+<body class="v1">
+
+    <!-- Навигация -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">AlexNes</a>
+            <ul class="nav-links">
+                <li><a href="#">Об Алексе</a></li>
+                <li><a href="#">Услуги</a></li>
+                <li><a href="#">Тесты</a></li>
+                <li><a href="#">Трезвость</a></li>
+                <li><a href="#">Вопросы</a></li>
+                <li><a href="#">Видео</a></li>
+                <li><a href="#">Блог</a></li>
+                <li><a href="#">Контакт</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="variant-name" id="variantName">Вариант 1 — крем и глубокий зелёный</div>
+
+    <!-- HERO — структура как на главной, изменены только цвета -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-glow-2"></div>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-label">Терапия зависимостей</span>
+                <h1>Помощь, основанная на реальном опыте</h1>
+                <p class="hero-subtitle">11 лет трезвости. Сотни клиентов. Не теория, а живой путь восстановления, который я прошёл сам.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Записаться на консультацию</a>
+                    <a href="#" class="btn btn-secondary">Узнать программы</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">11<em>+</em></div>
+                        <div class="hero-stat-label">лет трезвости</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">100<em>+</em></div>
+                        <div class="hero-stat-label">клиентов</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">20<em>+</em></div>
+                        <div class="hero-stat-label">лет в зависимости</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Об Алексе — структура как на главной, изменены только цвета -->
+    <section class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="images/alex.jpg" alt="Александр Нестеренко — терапевт зависимостей AlexNes">
+                </div>
+                <div class="about-content">
+                    <span class="section-label">Об Алексе</span>
+                    <h2 class="section-title">Я <strong>знаю</strong>, что ты чувствуешь</h2>
+                    <p class="section-text">
+                        Меня зовут Алекс. Я не читал о зависимости в книгах, я прожил её. 20+ лет употребления, падения на самое дно, потеря всего. А потом - решение изменить жизнь. Навсегда.
+                    </p>
+                    <blockquote>
+                        «Моя сила в моём прошлом. Я не буду осуждать тебя. Я был там.»
+                    </blockquote>
+                    <p class="section-text">
+                        Сегодня я помогаю людям пройти путь выздоровления быстрее, безопаснее и с поддержкой того, кто понимает каждый шаг изнутри.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Переключатель палитр -->
+    <div class="switcher">
+        <button onclick="setVariant('v1', this)" class="active">
+            <span class="swatch swatch-v1"></span>
+            <span class="label-text">Зелёный</span>
+        </button>
+        <button onclick="setVariant('v2', this)">
+            <span class="swatch swatch-v2"></span>
+            <span class="label-text">Фиолет</span>
+        </button>
+        <button onclick="setVariant('v3', this)">
+            <span class="swatch swatch-v3"></span>
+            <span class="label-text">Терракота</span>
+        </button>
+        <button onclick="setVariant('v4', this)">
+            <span class="swatch swatch-v4"></span>
+            <span class="label-text">Синий</span>
+        </button>
+        <button onclick="setVariant('v5', this)">
+            <span class="swatch swatch-v5"></span>
+            <span class="label-text">Янтарь</span>
+        </button>
+        <button onclick="setVariant('v6', this)">
+            <span class="swatch swatch-v6"></span>
+            <span class="label-text">Бирюза</span>
+        </button>
+    </div>
+
+    <script>
+        var names = {
+            v1: 'Вариант 1 — крем и глубокий зелёный',
+            v2: 'Вариант 2 — белый и фиолет',
+            v3: 'Вариант 3 — песок и терракота',
+            v4: 'Вариант 4 — лёд и глубокий синий',
+            v5: 'Вариант 5 — тёплый серый и янтарь',
+            v6: 'Вариант 6 — мята и глубокая бирюза'
+        };
+        function setVariant(v, btn) {
+            document.body.className = v;
+            document.getElementById('variantName').textContent = names[v];
+            document.querySelectorAll('.switcher button').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+        }
+        document.addEventListener('keydown', function(e) {
+            var map = { '1': 0, '2': 1, '3': 2, '4': 3, '5': 4, '6': 5 };
+            if (e.key in map) {
+                var btns = document.querySelectorAll('.switcher button');
+                btns[map[e.key]].click();
+            }
+        });
+    </script>
+
+</body>
+</html>
