@@ -781,7 +781,15 @@
                 text-align: center;
             }
         }
-    </style>
+            .test-banner { display:block; margin:0 0 48px; padding:26px 28px; border:1px solid var(--accent-primary); border-radius:var(--btn-radius); text-decoration:none; transition:all 0.3s ease; }
+        .test-banner:hover { transform:translateY(-2px); box-shadow:0 4px 20px var(--glow-color); }
+        [data-theme="classic"] .test-banner { border-color:var(--mid-gray); }
+        [data-theme="classic"] .test-banner:hover { border-color:var(--white); }
+        .test-banner-tag { font-size:10px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent-primary); margin-bottom:10px; }
+        [data-theme="classic"] .test-banner-tag { color:var(--mid-gray); }
+        .test-banner-title { font-size:17px; font-weight:600; color:var(--white); margin-bottom:6px; line-height:1.4; }
+        .test-banner-meta { font-size:13px; color:var(--mid-gray); }
+</style>
 </head>
 <body>
 
@@ -983,6 +991,12 @@
                 Написать в WhatsApp
             </a>
         </div>
+
+        <a href="/testy/sozavisimost" class="test-banner">
+            <div class="test-banner-tag">Тест по теме</div>
+            <div class="test-banner-title">Тест на созависимость в отношениях</div>
+            <div class="test-banner-meta">20 вопросов · 3 минуты · бесплатно и анонимно →</div>
+        </a>
 
         <!-- Related Articles -->
         <div class="related-articles">
