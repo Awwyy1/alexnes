@@ -232,6 +232,35 @@
                 </div>
             </a>
         </div>
+        <div class="tests-grid" style="margin-top:24px">
+            <a class="test-card" href="/testy/alkogol">
+                <div class="test-card-tag">20 вопросов · 3 минуты</div>
+                <div class="test-card-title">Алкогольная зависимость</div>
+                <div class="test-card-desc">Где заканчивается привычка выпивать и начинается зависимость. Честный тест без осуждения</div>
+                <div class="test-card-bottom">
+                    <div class="test-card-counter">прошли <span id="count-alkogol">—</span> чел.</div>
+                    <span class="test-card-btn">Тест →</span>
+                </div>
+            </a>
+            <a class="test-card" href="/testy/narkozavisimost">
+                <div class="test-card-tag">20 вопросов · 3 минуты</div>
+                <div class="test-card-title">Зависимость от веществ</div>
+                <div class="test-card-desc">Анонимный тест на зависимость от веществ. Результат увидишь только ты</div>
+                <div class="test-card-bottom">
+                    <div class="test-card-counter">прошли <span id="count-narkozavisimost">—</span> чел.</div>
+                    <span class="test-card-btn">Тест →</span>
+                </div>
+            </a>
+            <a class="test-card" href="/testy/blizkij-upotreblyaet">
+                <div class="test-card-tag">20 признаков · 3 минуты</div>
+                <div class="test-card-title">Близкий употребляет</div>
+                <div class="test-card-desc">Двадцать признаков того, что с близким человеком что-то происходит. Тест для родных</div>
+                <div class="test-card-bottom">
+                    <div class="test-card-counter">прошли <span id="count-blizkij">—</span> чел.</div>
+                    <span class="test-card-btn">Тест →</span>
+                </div>
+            </a>
+        </div>
     </div>
     </main>
     <footer>
@@ -280,7 +309,7 @@
         appId:"1:563090683165:web:d3e1bd21eeab906e9a1df4"
     });
     var db=firebase.database();
-    var tests=['samoocenka','sozavisimost','parnaya','trevozhnost','vygoranie','kritik'];
+    var tests=['samoocenka','sozavisimost','parnaya','trevozhnost','vygoranie','kritik','alkogol','narkozavisimost','blizkij'];
     tests.forEach(function(t){
         db.ref('counters/'+t).on('value',function(snap){
             var v=snap.val()||0;

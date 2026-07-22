@@ -85,6 +85,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://alexnes.com/testy/alkogol</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alexnes.com/testy/narkozavisimost</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://alexnes.com/testy/blizkij-upotreblyaet</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://alexnes.com/testy/samoocenka</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
