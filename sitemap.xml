@@ -205,6 +205,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://alexnes.com/blog/muzh-pyot-chto-delat</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://alexnes.com/blog/gazlajting</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>monthly</changefreq>
