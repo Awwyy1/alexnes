@@ -260,6 +260,15 @@
                     <span class="test-card-btn">Тест →</span>
                 </div>
             </a>
+            <a class="test-card" href="/testy/igromaniya">
+                <div class="test-card-tag">20 вопросов · 3 минуты</div>
+                <div class="test-card-title">Игровая зависимость</div>
+                <div class="test-card-desc">Ставки, казино, онлайн-игры. Проверь, игра это ещё развлечение или уже болезнь</div>
+                <div class="test-card-bottom">
+                    <div class="test-card-counter">прошли <span id="count-igromaniya">—</span> чел.</div>
+                    <span class="test-card-btn">Тест →</span>
+                </div>
+            </a>
         </div>
     </div>
     </main>
@@ -309,7 +318,7 @@
         appId:"1:563090683165:web:d3e1bd21eeab906e9a1df4"
     });
     var db=firebase.database();
-    var tests=['samoocenka','sozavisimost','parnaya','trevozhnost','vygoranie','kritik','alkogol','narkozavisimost','blizkij'];
+    var tests=['samoocenka','sozavisimost','parnaya','trevozhnost','vygoranie','kritik','alkogol','narkozavisimost','blizkij','igromaniya'];
     tests.forEach(function(t){
         db.ref('counters/'+t).on('value',function(snap){
             var v=snap.val()||0;
