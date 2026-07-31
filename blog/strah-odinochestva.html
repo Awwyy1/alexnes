@@ -420,5 +420,8 @@
         }
     </script>
 
+<script>/* analytics: whatsapp click */
+(function(){if(window.__waTracked)return;window.__waTracked=1;document.addEventListener('click',function(e){var t=e.target;var a=t&&t.closest?t.closest('a[href*="wa.me"]'):null;if(a&&typeof gtag==='function'){try{gtag('event','whatsapp_click',{source:location.pathname});}catch(_){}}},true);})();
+</script>
 </body>
 </html>
