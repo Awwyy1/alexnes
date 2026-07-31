@@ -237,6 +237,13 @@
             .footer-links { flex-wrap: wrap; justify-content: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
         }
+            .read-more-block { margin-top:20px;padding-top:40px;border-top:1px solid var(--dark-gray); }
+        .read-more-label { display:block;font-size:11px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--mid-gray);margin-bottom:18px; }
+        .read-more-link { display:block;color:var(--accent-primary);text-decoration:none;font-size:16px;line-height:1.5;padding:12px 0;border-bottom:1px solid var(--dark-gray);transition:color 0.3s ease; }
+        .read-more-link:last-child { border-bottom:none; }
+        .read-more-link:hover { color:var(--white); }
+        [data-theme="classic"] .read-more-link { color:var(--light-gray); }
+        [data-theme="classic"] .read-more-link:hover { color:var(--white); }
     </style>
 </head>
 <body>
@@ -402,6 +409,14 @@
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="fill:none;stroke:currentColor;stroke-width:1.5"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 5h6m-3 7l2 2 4-4"/></svg>
                 Пройти тест
             </a>
+        </div>
+
+        <div class="read-more-block">
+            <span class="read-more-label">Почитать по теме</span>
+            <a class="read-more-link" href="/blog/zavisimost-i-sozavisimost">Зависимость и созависимость, в чём разница и что общего →</a>
+            <a class="read-more-link" href="/blog/chto-proishodit-s-semyoj">Что происходит с семьёй, где есть зависимый →</a>
+            <a class="read-more-link" href="/blog/zhalost-ubivaet-bystree-narkotika">Почему жалость к зависимому убивает быстрее наркотика →</a>
+            <a class="read-more-link" href="/blog/muzh-pyot-chto-delat">Муж пьёт, и вы уже не знаете, что с этим делать →</a>
         </div>
 
         <a href="/#services" class="article-back">&larr; Назад к услугам</a>
