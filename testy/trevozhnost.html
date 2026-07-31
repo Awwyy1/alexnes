@@ -136,6 +136,33 @@
         .result-read:hover { color:var(--white); }
         [data-theme="classic"] .result-read { color:var(--light-gray); }
         [data-theme="classic"] .result-read:hover { color:var(--white); }
+    
+        /* ===== Единая навигация ===== */
+        .nav-links{display:flex;align-items:center;gap:26px;list-style:none;}
+        .nav-links > li{position:relative;}
+        .nav-links a{color:var(--light-gray);text-decoration:none;font-size:13px;font-weight:400;letter-spacing:.03em;transition:color .3s ease;white-space:nowrap;}
+        .nav-links a:hover{color:var(--white);}
+        .nav-dt{display:flex;align-items:center;gap:6px;cursor:pointer;color:var(--light-gray);font-size:13px;letter-spacing:.03em;transition:color .3s ease;white-space:nowrap;}
+        .nav-dt:hover{color:var(--white);}
+        .nav-dt svg{width:10px;height:10px;stroke:currentColor;stroke-width:2;fill:none;transition:transform .3s ease;}
+        .nav-has-dd:hover .nav-dt svg{transform:rotate(180deg);}
+        .nav-has-dd:hover .nav-dt{color:var(--white);}
+        .nav-dd{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);min-width:232px;background:var(--coal);border:1px solid var(--dark-gray);border-radius:14px;padding:10px;opacity:0;visibility:hidden;transition:all .25s ease;box-shadow:0 20px 50px -14px rgba(0,0,0,.6);z-index:200;}
+        .nav-has-dd:hover .nav-dd{opacity:1;visibility:visible;transform:translateX(-50%) translateY(2px);}
+        .nav-dd::before{content:'';position:absolute;top:-12px;left:0;right:0;height:12px;}
+        .nav-dd a{display:block;padding:10px 14px;border-radius:9px;font-size:14px;line-height:1.35;transition:all .2s ease;}
+        .nav-dd a:hover{background:var(--dark-gray);color:var(--white);}
+        .nav-dd-note{display:block;font-size:11px;color:var(--mid-gray);margin-top:3px;}
+        .nav-cta{display:inline-block;padding:11px 24px;border-radius:var(--btn-radius);background:var(--accent-primary);color:var(--black)!important;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:all .3s ease;}
+        .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px -8px var(--glow-color);color:var(--black)!important;}
+        [data-theme="classic"] .nav-cta{background:var(--white);color:#0a0a0a!important;}
+        .mobile-menu{justify-content:flex-start!important;align-items:stretch!important;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:96px 30px 48px!important;gap:0!important;}
+        .mm-group{margin-bottom:20px;}
+        .mm-label{display:block;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--mid-gray);margin-bottom:8px;}
+        .mobile-menu a{display:block;text-align:left!important;font-size:17px!important;letter-spacing:0!important;padding:8px 0;}
+        .mm-cta{margin-top:6px;padding:15px 20px!important;text-align:center!important;border-radius:var(--btn-radius);background:var(--accent-primary);color:var(--black)!important;font-size:13px!important;font-weight:600!important;letter-spacing:.08em!important;text-transform:uppercase;}
+        [data-theme="classic"] .mm-cta{background:var(--white);color:#0a0a0a!important;}
+        @media(max-width:1160px){.nav-links{display:none;}.mobile-menu-btn{display:flex;}}
     </style>
     <script type="application/ld+json">
     {"@context": "https://schema.org", "@graph": [{"@type": "Quiz", "name": "Тест на тревожность", "description": "Тест на уровень тревожности онлайн. 20 вопросов, 3 минуты, результат сразу и без регистрации. Проверь, где заканчивается забота о будущем и начинается тревога.", "url": "https://alexnes.com/testy/trevozhnost", "inLanguage": "ru", "isAccessibleForFree": true, "provider": {"@type": "Person", "name": "Алекс Нестеренко", "url": "https://alexnes.com/about"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://alexnes.com/"}, {"@type": "ListItem", "position": 2, "name": "Тесты", "item": "https://alexnes.com/testy"}, {"@type": "ListItem", "position": 3, "name": "Тревожность"}]}]}
@@ -145,32 +172,15 @@
     <nav>
         <div class="container nav-inner">
             <a href="/" class="logo">AlexNes</a>
-            <ul class="nav-links">
-                <li><a href="/#about">Об Алексе</a></li>
-                <li><a href="/#services">Услуги</a></li>
-                <li><a href="/#faq">FAQ</a></li>
-                <li><a href="/testy">Тесты</a></li>
-                <li><a href="/video">Видео</a></li>
-                <li><a href="/blog">Блог</a></li>
-                <li><a href="/#contact">Контакт</a></li>
-            </ul>
+            <ul class="nav-links"><li class="nav-has-dd"><span class="nav-dt">Об Алексе<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-dd"><a href="/about">Кто я<span class="nav-dd-note">11 лет трезвости, реальный путь</span></a><a href="/#journey">Мой путь<span class="nav-dd-note">От зависимости к свободе</span></a><a href="/#approach">Подход<span class="nav-dd-note">Как я работаю</span></a><a href="/reviews">Отзывы<span class="nav-dd-note">Истории моих клиентов</span></a></div></li><li class="nav-has-dd"><span class="nav-dt">Услуги<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-dd"><a href="/#services">Все услуги и цены</a><a href="/terapiya-sozavisimosti">Терапия созависимости<span class="nav-dd-note">Для тех, кто рядом с зависимым</span></a><a href="/terapiya-travmy">Терапия травмы</a><a href="/samoocenka-i-granici">Самооценка и границы</a><a href="/trevoga-i-panicheskie-ataki">Тревога и панические атаки</a></div></li><li class="nav-has-dd"><span class="nav-dt">Инструменты<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-dd"><a href="/testy">Тесты<span class="nav-dd-note">10 бесплатных и анонимных</span></a><a href="/trezvost">Счётчик трезвости<span class="nav-dd-note">Считай дни без вещества</span></a><a href="/voprosy">Задать вопрос<span class="nav-dd-note">Анонимно, отвечу публично</span></a></div></li><li class="nav-has-dd"><span class="nav-dt">Материалы<svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span><div class="nav-dd"><a href="/blog">Блог<span class="nav-dd-note">Статьи о зависимости и выздоровлении</span></a><a href="/video">Видео<span class="nav-dd-note">Разборы и истории</span></a><a href="/#faq">Частые вопросы<span class="nav-dd-note">Как всё устроено</span></a></div></li><li><a href="/#contact" class="nav-cta">Записаться</a></li></ul>
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </nav>
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="/" onclick="toggleMenu()">Главная</a>
-        <a href="/#about" onclick="toggleMenu()">Об Алексе</a>
-        <a href="/#services" onclick="toggleMenu()">Услуги</a>
-        <a href="/#faq" onclick="toggleMenu()">FAQ</a>
-        <a href="/testy" onclick="toggleMenu()">Тесты</a>
-        <a href="/trezvost" onclick="toggleMenu()">Трезвость</a>
-        <a href="/voprosy" onclick="toggleMenu()">Вопросы</a>
-        <a href="/video" onclick="toggleMenu()">Видео</a>
-        <a href="/blog" onclick="toggleMenu()">Блог</a>
-        <a href="/#contact" onclick="toggleMenu()">Контакт</a>
-    </div>
+    <div class="mobile-menu" id="mobileMenu"><div class="mm-group"><a href="/" onclick="toggleMenu()">Главная</a></div><div class="mm-group"><span class="mm-label">Об Алексе</span><a href="/about" onclick="toggleMenu()">Кто я</a><a href="/#journey" onclick="toggleMenu()">Мой путь</a><a href="/#approach" onclick="toggleMenu()">Подход</a><a href="/reviews" onclick="toggleMenu()">Отзывы</a></div><div class="mm-group"><span class="mm-label">Услуги</span><a href="/#services" onclick="toggleMenu()">Все услуги и цены</a><a href="/terapiya-sozavisimosti" onclick="toggleMenu()">Терапия созависимости</a><a href="/terapiya-travmy" onclick="toggleMenu()">Терапия травмы</a><a href="/samoocenka-i-granici" onclick="toggleMenu()">Самооценка и границы</a><a href="/trevoga-i-panicheskie-ataki" onclick="toggleMenu()">Тревога и панические атаки</a></div><div class="mm-group"><span class="mm-label">Инструменты</span><a href="/testy" onclick="toggleMenu()">Тесты</a><a href="/trezvost" onclick="toggleMenu()">Счётчик трезвости</a><a href="/voprosy" onclick="toggleMenu()">Задать вопрос</a></div><div class="mm-group"><span class="mm-label">Материалы</span><a href="/blog" onclick="toggleMenu()">Блог</a><a href="/video" onclick="toggleMenu()">Видео</a><a href="/#faq" onclick="toggleMenu()">Частые вопросы</a></div><a href="/#contact" class="mm-cta" onclick="toggleMenu()">Записаться на консультацию</a></div>
+
+    
     <main>
     <nav class="breadcrumbs container" aria-label="Хлебные крошки">
         <ul>
