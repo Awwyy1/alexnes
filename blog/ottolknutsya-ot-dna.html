@@ -304,6 +304,10 @@
         .mm-sub a:hover{color:var(--white)!important;}
         .mm-cta{margin-top:18px;padding:14px 20px!important;text-align:center!important;border-radius:var(--btn-radius);background:var(--accent-primary);color:var(--black)!important;font-size:13px!important;font-weight:600!important;letter-spacing:.06em!important;text-transform:uppercase;white-space:nowrap;}
         .mobile-theme-toggle{margin-top:20px!important;padding-top:18px!important;border-top:1px solid var(--dark-gray);}
+            /* хлебные крошки должны сохранять отступ под фиксированной шапкой */
+        nav.breadcrumbs { padding-top: 140px; }
+        /* кнопка в мобильном меню по центру, перебиваем .mobile-menu a */
+        .mobile-menu a.mm-cta { text-align: center !important; }
     </style>
 </head>
 <body>
