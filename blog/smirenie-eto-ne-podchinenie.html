@@ -436,8 +436,8 @@
     </footer>
 
     <script>
-        function getTheme() { var t = localStorage.getItem('theme'); if (t === 'neon') return 'neon'; return 'light'; }
-        function setTheme(theme) { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); }
+        function getTheme() { return localStorage.getItem('themePref') === 'neon' ? 'neon' : 'light'; }
+        function setTheme(theme, save) { document.documentElement.setAttribute('data-theme', theme); if (save) localStorage.setItem('themePref', theme); }
         (function() { setTheme(getTheme()); })();
         const nav = document.querySelector('nav');
         window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 50); });

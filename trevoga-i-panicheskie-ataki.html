@@ -464,8 +464,8 @@
 
     <script>
         // Theme
-        function getTheme() { var t = localStorage.getItem('theme'); if (t === 'neon') return 'neon'; return 'light'; }
-        function setTheme(theme) { document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('theme', theme); }
+        function getTheme() { return localStorage.getItem('themePref') === 'neon' ? 'neon' : 'light'; }
+        function setTheme(theme, save) { document.documentElement.setAttribute('data-theme', theme); if (save) localStorage.setItem('themePref', theme); }
         (function() { setTheme(getTheme()); })();
 
         // Nav scroll

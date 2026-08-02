@@ -3615,18 +3615,18 @@
 
     <script>
         // Theme Management
-        function getTheme() { var t = localStorage.getItem('theme'); if (t === 'neon') return 'neon'; return 'light'; }
+        function getTheme() { return localStorage.getItem('themePref') === 'neon' ? 'neon' : 'light'; }
 
-        function setTheme(theme) {
+        function setTheme(theme, save) {
             document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
+            if (save) localStorage.setItem('themePref', theme);
             updateThemeLabels(theme);
         }
 
         function toggleTheme() {
             const currentTheme = getTheme();
             const newTheme = currentTheme === 'neon' ? 'light' : 'neon';
-            setTheme(newTheme);
+            setTheme(newTheme, true);
         }
 
         function updateThemeLabels(theme) {

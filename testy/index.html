@@ -328,10 +328,10 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
     <script>
-    function getTheme() { var t = localStorage.getItem('theme'); if (t === 'neon') return 'neon'; return 'light'; }
+    function getTheme() { return localStorage.getItem('themePref') === 'neon' ? 'neon' : 'light'; }
     function updateThemeLabels(){var l=getTheme()==='neon'?'Neon':'Classic';var e=document.getElementById('mobileThemeLabel');if(e)e.textContent=l}
-    function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);updateThemeLabels()}
-    function toggleTheme(){setTheme(getTheme() === 'neon' ? 'light' : 'neon')}
+    function setTheme(t,save){document.documentElement.setAttribute('data-theme',t);if(save)localStorage.setItem('themePref',t);updateThemeLabels()}
+    function toggleTheme(){setTheme(getTheme() === 'neon' ? 'light' : 'neon', true)}
     (function(){setTheme(getTheme())})();
     var nav=document.querySelector('nav');
     window.addEventListener('scroll',function(){if(window.scrollY>50){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}});
