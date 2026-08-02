@@ -1219,19 +1219,19 @@
 
     <script>
         // Theme
-        function getTheme() { var t = localStorage.getItem('theme'); if (t === 'neon') return 'neon'; return 'light'; }
+        function getTheme() { return localStorage.getItem('themePref') === 'neon' ? 'neon' : 'light'; }
         function updateThemeLabels() {
             var label = getTheme() === 'neon' ? 'Neon' : 'Classic';
             var el = document.getElementById('mobileThemeLabel');
             if (el) el.textContent = label;
         }
-        function setTheme(theme) {
+        function setTheme(theme, save) {
             document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
+            if (save) localStorage.setItem('themePref', theme);
             updateThemeLabels();
         }
         function toggleTheme() {
-            setTheme(getTheme() === 'neon' ? 'light' : 'neon');
+            setTheme(getTheme() === 'neon' ? 'light' : 'neon', true);
         }
         (function() { setTheme(getTheme()); })();
 

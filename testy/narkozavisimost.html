@@ -276,8 +276,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
     <script>
-    function getTheme() { var t = localStorage.getItem('theme'); if (t === 'neon') return 'neon'; return 'light'; }
-    function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t)}
+    function getTheme() { return localStorage.getItem('themePref') === 'neon' ? 'neon' : 'light'; }
+    function setTheme(t,save){document.documentElement.setAttribute('data-theme',t);if(save)localStorage.setItem('themePref',t)}
     (function(){setTheme(getTheme())})();
     var nav=document.querySelector('nav');
     window.addEventListener('scroll',function(){if(window.scrollY>50){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}});
