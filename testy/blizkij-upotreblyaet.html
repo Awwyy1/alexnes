@@ -9,7 +9,7 @@
     <link rel="alternate" hreflang="ru" href="https://alexnes.com/testy/blizkij-upotreblyaet" />
     <link rel="alternate" hreflang="x-default" href="https://alexnes.com/testy/blizkij-upotreblyaet" />
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#F7F5F0">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://alexnes.com/testy/blizkij-upotreblyaet">
     <meta property="og:title" content="Тест, употребляет ли ваш близкий человек, 20 признаков | AlexNes">
@@ -34,14 +34,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --black:#0a0a0a;--coal:#1a1a1a;--dark-gray:#2a2a2a;--mid-gray:#666;--light-gray:#b0b0b0;--off-white:#f0f0f0;--white:#fff;--font-main:'Montserrat',-apple-system,sans-serif;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);--btn-radius:0;--accent-primary:var(--white);--accent-secondary:var(--mid-gray);--glow-color:rgba(255,255,255,0.15); }
-        [data-theme="neon"] { --black:#0c0a1a;--coal:#13102a;--dark-gray:#1e1a3a;--mid-gray:#6b7280;--light-gray:#9ca3af;--off-white:#e5e7eb;--white:#f9fafb;--btn-radius:50px;--accent-primary:#8B5CF6;--accent-secondary:#10B981;--glow-color:rgba(139,92,246,0.3); }
+        :root { --black: #F7F5F0;--coal: #EFEBE3;--dark-gray: #DFD9CD;--mid-gray: #6E675C;--light-gray: #5E5850;--off-white: #2A2721;--white: #171512;--font-main:'Montserrat',-apple-system,sans-serif;--ease-out-expo:cubic-bezier(0.16,1,0.3,1);--btn-radius: 50px;--accent-primary: #0F766E;--accent-secondary: #0D9488;--glow-color: rgba(15,118,110,0.20);
+            --nav-bg: rgba(247,245,240,0.95);
+            --menu-bg: rgba(247,245,240,0.98);
+        }
+        [data-theme="neon"] { --black:#0c0a1a;--coal:#13102a;--dark-gray:#1e1a3a;--mid-gray:#6b7280;--light-gray:#9ca3af;--off-white:#e5e7eb;--white:#f9fafb;--btn-radius:50px;--accent-primary:#8B5CF6;--accent-secondary:#10B981;--glow-color:rgba(139,92,246,0.3);
+            --nav-bg: rgba(12,10,26,0.95);
+            --menu-bg: rgba(12,10,26,0.98);
+        }
         * { margin:0;padding:0;box-sizing:border-box; }
         body { font-family:var(--font-main);background:var(--black);color:var(--light-gray);line-height:1.7;font-weight:300;-webkit-font-smoothing:antialiased; }
         .container { max-width:1200px;margin:0 auto;padding:0 24px; }
         nav:not(.breadcrumbs) { position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 0;transition:all 0.4s ease;background:var(--black); }
-        nav:not(.breadcrumbs).scrolled { background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);padding:16px 0; }
-        [data-theme="neon"] nav:not(.breadcrumbs).scrolled { background:rgba(12,10,26,0.95); }
+        nav:not(.breadcrumbs).scrolled { background: var(--nav-bg);backdrop-filter:blur(20px);padding:16px 0; }
+        [data-theme="neon"] nav:not(.breadcrumbs).scrolled { background: var(--nav-bg); }
         .nav-inner { max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center; }
         .logo { font-size:18px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:0.15em;text-transform:uppercase; }
         .nav-links { display:flex;gap:32px;list-style:none; }
@@ -55,8 +61,8 @@
         .mobile-menu-btn.active span:nth-child(1) { transform:rotate(45deg) translate(4px,4px); }
         .mobile-menu-btn.active span:nth-child(2) { opacity:0; }
         .mobile-menu-btn.active span:nth-child(3) { transform:rotate(-45deg) translate(4px,-4px); }
-        .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,10,0.98);z-index:99;flex-direction:column;justify-content:center;align-items:center;gap:32px; }
-        [data-theme="neon"] .mobile-menu { background:rgba(12,10,26,0.98); }
+        .mobile-menu { display:none;position:fixed;top:0;left:0;right:0;bottom:0;background: var(--menu-bg);z-index:99;flex-direction:column;justify-content:center;align-items:center;gap:32px; }
+        [data-theme="neon"] .mobile-menu { background: var(--menu-bg); }
         .mobile-menu.active { display:flex; }
         .mobile-menu a { color:var(--white);text-decoration:none;font-size:24px;font-weight:300;letter-spacing:0.1em; }
         .breadcrumbs { padding:140px 0 0;max-width:760px;margin:0 auto; }
@@ -270,7 +276,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
     <script>
-    function getTheme(){return localStorage.getItem('theme')||'neon'}
+    function getTheme() { var t = localStorage.getItem('theme'); if (t === 'neon') return 'neon'; return 'light'; }
     function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t)}
     (function(){setTheme(getTheme())})();
     var nav=document.querySelector('nav');
