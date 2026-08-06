@@ -103,6 +103,7 @@
             --btn-radius: 50px;
             --accent-primary: #0F766E;
             --accent-secondary: #0D9488;
+            --article-link: #0F766E; --article-link-line: rgba(15, 118, 110, 0.4);
             --glow-color: rgba(15,118,110,0.20);
             --nav-bg: rgba(247,245,240,0.95);
             --menu-bg: rgba(247,245,240,0.98);
@@ -119,6 +120,7 @@
             --btn-radius: 50px;
             --accent-primary: #8B5CF6;
             --accent-secondary: #10B981;
+            --article-link: #A78BFA; --article-link-line: rgba(167, 139, 250, 0.45);
             --glow-color: rgba(139, 92, 246, 0.3);
             --nav-bg: rgba(12,10,26,0.95);
             --menu-bg: rgba(12,10,26,0.98);
@@ -170,6 +172,17 @@
 
         .article-content { max-width: 760px; margin: 0 auto; padding-bottom: 80px; }
         .article-content p { font-size: 16px; line-height: 1.9; color: var(--light-gray); font-weight: 300; margin-bottom: 24px; }
+        /* Ссылки внутри текста статьи. Один цвет в каждой теме, без жирного начертания. */
+        .article-content a {
+            color: var(--article-link);
+            font-weight: 400;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            text-decoration-color: var(--article-link-line);
+            transition: text-decoration-color 0.3s ease;
+        }
+        .article-content a:hover { text-decoration-color: var(--article-link); }
         .article-content h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 600; color: var(--white); margin: 48px 0 24px; line-height: 1.3; }
         .article-content strong { color: var(--white); font-weight: 500; }
 
