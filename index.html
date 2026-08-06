@@ -2578,7 +2578,11 @@
         .cert-card { position: relative; display: block; cursor: zoom-in; border-radius: 16px; overflow: hidden; border: 1px solid var(--dark-gray); background: var(--coal); transition: all 0.35s ease; }
         .cert-card:hover { transform: translateY(-4px); border-color: var(--accent-primary); box-shadow: 0 20px 50px -15px var(--glow-color); }
         [data-theme="classic"] .cert-card:hover { border-color: var(--white); box-shadow: none; }
-        .cert-card img { display: block; width: 100%; aspect-ratio: 297 / 210; object-fit: cover; background: #e9e4d8; }
+        /* <picture> не должен участвовать в раскладке, иначе width:100% у img
+   считается от строчной обёртки, а не от родительской карточки */
+        picture { display: contents; }
+
+        .cert-card img { display: block; width: 100%; height: auto; aspect-ratio: 297 / 210; object-fit: cover; background: #e9e4d8; }
         .cert-caption { padding: 16px 20px 18px; }
         .cert-caption-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
         .cert-caption-sub { font-size: 12px; color: var(--mid-gray); }
@@ -2720,7 +2724,7 @@
         <div class="container">
             <div class="about-grid">
                 <div class="about-image fade-in">
-                    <picture><source srcset="images/alex.webp" type="image/webp"><img src="images/alex.jpg" alt="Александр Нестеренко — терапевт зависимостей AlexNes" loading="lazy"></picture>
+                    <picture><source srcset="images/alex.webp" type="image/webp"><img src="images/alex.jpg" alt="Александр Нестеренко — терапевт зависимостей AlexNes" loading="lazy" width="600" height="750"></picture>
                 </div>
                 <div class="about-content fade-in">
                     <span class="section-label">Об Алексе</span>
@@ -2858,7 +2862,7 @@
             <p class="certs-intro fade-in">Моя главная школа это собственный путь. Но работаю я на основе профессиональной подготовки.</p>
             <div class="certs-grid">
                 <div class="cert-card fade-in" onclick="openCertLb(this)">
-                    <picture><source srcset="images/certs/nlp-master-praktik.webp" type="image/webp"><img src="images/certs/nlp-master-praktik.jpg" alt="Сертификат НЛП мастер-практик, школа НЛП Владимира Стиханова, Александр Нестеренко" loading="lazy"></picture>
+                    <picture><source srcset="images/certs/nlp-master-praktik.webp" type="image/webp"><img src="images/certs/nlp-master-praktik.jpg" alt="Сертификат НЛП мастер-практик, школа НЛП Владимира Стиханова, Александр Нестеренко" loading="lazy" width="1600" height="1132"></picture>
                     <div class="cert-zoom-hint">+</div>
                     <div class="cert-caption">
                         <div class="cert-caption-title">НЛП мастер-практик</div>
@@ -2866,7 +2870,7 @@
                     </div>
                 </div>
                 <div class="cert-card fade-in" onclick="openCertLb(this)">
-                    <picture><source srcset="images/certs/erikson-gipnoz.webp" type="image/webp"><img src="images/certs/erikson-gipnoz.jpg" alt="Сертификат специалиста по эриксоновскому гипнозу, школа НЛП Владимира Стиханова, Александр Нестеренко" loading="lazy"></picture>
+                    <picture><source srcset="images/certs/erikson-gipnoz.webp" type="image/webp"><img src="images/certs/erikson-gipnoz.jpg" alt="Сертификат специалиста по эриксоновскому гипнозу, школа НЛП Владимира Стиханова, Александр Нестеренко" loading="lazy" width="1600" height="1132"></picture>
                     <div class="cert-zoom-hint">+</div>
                     <div class="cert-caption">
                         <div class="cert-caption-title">Специалист по эриксоновскому гипнозу</div>
@@ -3004,25 +3008,25 @@
             <div class="carousel-container fade-in">
                 <div class="carousel-track">
                     <div class="carousel-slides" id="carouselSlides">
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-01.webp" type="image/webp"><img src="images/reviews/review-01.jpg" alt="Отзыв клиента о терапии зависимостей AlexNes" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-02.webp" type="image/webp"><img src="images/reviews/review-02.jpg" alt="Реальный отзыв о работе с Александром Нестеренко" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-03.webp" type="image/webp"><img src="images/reviews/review-03.jpg" alt="Скриншот отзыва клиента AlexNes" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-04.webp" type="image/webp"><img src="images/reviews/review-04.jpg" alt="Отзыв о терапии зависимостей с AlexNes" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-05.webp" type="image/webp"><img src="images/reviews/review-05.jpg" alt="Благодарность клиента терапевту Александру Нестеренко" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-06.webp" type="image/webp"><img src="images/reviews/review-06.jpg" alt="Отзыв клиента о терапии зависимостей AlexNes" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-07.webp" type="image/webp"><img src="images/reviews/review-07.jpg" alt="Реальный отзыв о работе с Александром Нестеренко" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-08.webp" type="image/webp"><img src="images/reviews/review-08.jpg" alt="Скриншот отзыва клиента AlexNes" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-09.webp" type="image/webp"><img src="images/reviews/review-09.jpg" alt="Отзыв о терапии зависимостей с AlexNes" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-10.webp" type="image/webp"><img src="images/reviews/review-10.jpg" alt="Благодарность клиента терапевту Александру Нестеренко" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-11.webp" type="image/webp"><img src="images/reviews/review-11.jpg" alt="Отзыв клиента о терапии зависимостей AlexNes" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-12.webp" type="image/webp"><img src="images/reviews/review-12.jpg" alt="Реальный отзыв о работе с Александром Нестеренко" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-13.webp" type="image/webp"><img src="images/reviews/review-13.jpg" alt="Скриншот отзыва клиента AlexNes" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-14.webp" type="image/webp"><img src="images/reviews/review-14.jpg" alt="Отзыв о терапии зависимостей с AlexNes" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-15.webp" type="image/webp"><img src="images/reviews/review-15.jpg" alt="Благодарность клиента терапевту Александру Нестеренко" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-16.webp" type="image/webp"><img src="images/reviews/review-16.jpg" alt="Отзыв клиента о терапии зависимостей AlexNes" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-17.webp" type="image/webp"><img src="images/reviews/review-17.jpg" alt="Реальный отзыв о работе с Александром Нестеренко" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-18.webp" type="image/webp"><img src="images/reviews/review-18.jpg" alt="Скриншот отзыва клиента AlexNes" loading="lazy"></picture></div>
-                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-19.webp" type="image/webp"><img src="images/reviews/review-19.jpg" alt="Отзыв о терапии зависимостей с AlexNes" loading="lazy"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-01.webp" type="image/webp"><img src="images/reviews/review-01.jpg" alt="Отзыв клиента о терапии зависимостей AlexNes" loading="lazy" width="750" height="1280"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-02.webp" type="image/webp"><img src="images/reviews/review-02.jpg" alt="Реальный отзыв о работе с Александром Нестеренко" loading="lazy" width="753" height="1280"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-03.webp" type="image/webp"><img src="images/reviews/review-03.jpg" alt="Скриншот отзыва клиента AlexNes" loading="lazy" width="828" height="1262"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-04.webp" type="image/webp"><img src="images/reviews/review-04.jpg" alt="Отзыв о терапии зависимостей с AlexNes" loading="lazy" width="766" height="1280"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-05.webp" type="image/webp"><img src="images/reviews/review-05.jpg" alt="Благодарность клиента терапевту Александру Нестеренко" loading="lazy" width="828" height="1117"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-06.webp" type="image/webp"><img src="images/reviews/review-06.jpg" alt="Отзыв клиента о терапии зависимостей AlexNes" loading="lazy" width="778" height="1280"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-07.webp" type="image/webp"><img src="images/reviews/review-07.jpg" alt="Реальный отзыв о работе с Александром Нестеренко" loading="lazy" width="770" height="1280"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-08.webp" type="image/webp"><img src="images/reviews/review-08.jpg" alt="Скриншот отзыва клиента AlexNes" loading="lazy" width="828" height="1139"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-09.webp" type="image/webp"><img src="images/reviews/review-09.jpg" alt="Отзыв о терапии зависимостей с AlexNes" loading="lazy" width="828" height="1158"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-10.webp" type="image/webp"><img src="images/reviews/review-10.jpg" alt="Благодарность клиента терапевту Александру Нестеренко" loading="lazy" width="828" height="1191"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-11.webp" type="image/webp"><img src="images/reviews/review-11.jpg" alt="Отзыв клиента о терапии зависимостей AlexNes" loading="lazy" width="828" height="1210"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-12.webp" type="image/webp"><img src="images/reviews/review-12.jpg" alt="Реальный отзыв о работе с Александром Нестеренко" loading="lazy" width="828" height="1214"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-13.webp" type="image/webp"><img src="images/reviews/review-13.jpg" alt="Скриншот отзыва клиента AlexNes" loading="lazy" width="828" height="1073"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-14.webp" type="image/webp"><img src="images/reviews/review-14.jpg" alt="Отзыв о терапии зависимостей с AlexNes" loading="lazy" width="828" height="965"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-15.webp" type="image/webp"><img src="images/reviews/review-15.jpg" alt="Благодарность клиента терапевту Александру Нестеренко" loading="lazy" width="828" height="842"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-16.webp" type="image/webp"><img src="images/reviews/review-16.jpg" alt="Отзыв клиента о терапии зависимостей AlexNes" loading="lazy" width="828" height="818"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-17.webp" type="image/webp"><img src="images/reviews/review-17.jpg" alt="Реальный отзыв о работе с Александром Нестеренко" loading="lazy" width="828" height="834"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-18.webp" type="image/webp"><img src="images/reviews/review-18.jpg" alt="Скриншот отзыва клиента AlexNes" loading="lazy" width="828" height="597"></picture></div>
+                        <div class="carousel-slide"><picture><source srcset="images/reviews/review-19.webp" type="image/webp"><img src="images/reviews/review-19.jpg" alt="Отзыв о терапии зависимостей с AlexNes" loading="lazy" width="828" height="502"></picture></div>
                     </div>
                 </div>
                 <div class="carousel-controls">
