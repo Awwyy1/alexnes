@@ -459,7 +459,7 @@
         <div class="container">
             <div class="counter-box">
                 <div class="counter-number" id="dayCount">0</div>
-                <div class="counter-label" id="dayLabel">дней</div>
+                <div class="counter-label" id="dayLabel">дней трезвости</div>
                 <div class="counter-start-date" id="startDateDisplay"></div>
                 <button class="checkin-btn" id="checkinBtn" onclick="doCheckin()">Отметить день</button>
             </div>
@@ -659,12 +659,12 @@
             if (days < 0) days = 0;
 
             document.getElementById('dayCount').textContent = days;
-            document.getElementById('dayLabel').textContent = dayWord(days);
+            document.getElementById('dayLabel').textContent = dayWord(days) + ' трезвости';
             document.getElementById('startDateDisplay').textContent = 'Начало: ' + formatDateRu(start);
 
             var btn = document.getElementById('checkinBtn');
             if (getLastCheckin() === todayStr()) {
-                btn.textContent = 'День отмечен';
+                btn.textContent = 'Засчитано';
                 btn.classList.add('checked');
             } else {
                 btn.textContent = 'Отметить день';
@@ -700,7 +700,7 @@
         function doCheckin() {
             localStorage.setItem(KEY_CHECKIN, todayStr());
             var btn = document.getElementById('checkinBtn');
-            btn.textContent = 'День отмечен';
+            btn.textContent = 'Засчитано';
             btn.classList.add('checked');
         }
 
